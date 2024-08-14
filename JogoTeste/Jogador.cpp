@@ -2,7 +2,7 @@
 
 
 Jogador::Jogador():
-    Entidade(), vel(0.1f, 0.1f)
+    Personagem(), vel(0.1f, 0.1f)
 {
 }
 

@@ -2,17 +2,19 @@
 #include <SFML/Graphics.hpp>
 
 
-class Entidade
-{
-protected:
-	sf::RectangleShape body;
-	sf::RenderWindow* window;
+namespace Entidades {
+	class Entidade
+	{
+	protected:
+		sf::RectangleShape body;
+		sf::RenderWindow* window;
 
-public:
-	Entidade();
-	virtual ~Entidade();
+	public:
+		Entidade();
+		virtual ~Entidade();
 
-	void setWindow(sf::RenderWindow* w);
-	void draw();
-};
+		void setWindow(sf::RenderWindow* w);
+		void draw();
+	};
 
+} using namespace Entidades;
