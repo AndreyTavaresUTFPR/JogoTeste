@@ -2,7 +2,7 @@
 
 
 Entidade::Entidade():
-	body(sf::Vector2f(100.f, 100.f)), window(NULL)
+	body(sf::Vector2f(100.f, 100.f)), window(nullptr)
 {
 }
 
