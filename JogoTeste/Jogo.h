@@ -1,15 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include "Jogador.h"
+#include "Inimigo.h"
 
 class Jogo
 {
-private:
+private:	
 	sf::RenderWindow window;
-	sf::RectangleShape shape;
+	Jogador jogador1;
+	Inimigo inimigo1;
 
 public:
 	Jogo();
+	~Jogo();
 
 	void executar();
 };

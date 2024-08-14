@@ -2,13 +2,15 @@
 
 
 Jogo::Jogo() :
-    window(sf::VideoMode(800, 800), "SFML works!"),
-    shape(sf::Vector2f(100.f, 100.f))
+    window(sf::VideoMode(600, 600), "Jogo")
 {
-    shape.setFillColor(sf::Color::Green);
-    shape.setOutlineThickness(21);
-    shape.setOutlineColor(sf::Color::Cyan);
+    jogador1.setWindow(&window);
+    inimigo1.setWindow(&window);
     executar();
+}
+
+Jogo::~Jogo()
+{
 }
 
 
@@ -23,12 +25,10 @@ void Jogo::executar()
                 window.close();
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            shape.move(sf::Vector2f(0.2f, 0.1f));
-        }
-
+        jogador1.move();
         window.clear();
-        window.draw(shape);
+        jogador1.draw();
+        inimigo1.draw();
         window.display();
     }
 }
