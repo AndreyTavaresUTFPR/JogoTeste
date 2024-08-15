@@ -6,6 +6,10 @@
 #include "Fase.h"
 
 
+#define WIDTH  800
+#define HEIGHT 800
+
+
 class Jogo
 {
 private:	

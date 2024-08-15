@@ -2,7 +2,7 @@
 
 
 Inimigo::Inimigo(Jogador* jogador):
-	Personagem(), vida(100), vel(VEL_INIMIGO_X, VEL_INIMIGO_Y), jogador(jogador)
+	Personagem(), vida(VIDA_INIMIGO), vel(VEL_INIMIGO_X, VEL_INIMIGO_Y), jogador(jogador)
 {
 	body.setFillColor(sf::Color::Magenta);
 	body.setPosition(sf::Vector2f(400.f, 250.f));

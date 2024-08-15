@@ -2,6 +2,7 @@
 #include "Personagem.h"
 #include "Jogador.h"
 
+#define VIDA_INIMIGO 100
 
 #define VEL_INIMIGO_X 0.025f
 #define VEL_INIMIGO_Y 0.025f

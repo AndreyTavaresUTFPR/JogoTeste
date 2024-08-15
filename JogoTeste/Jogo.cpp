@@ -4,7 +4,7 @@ using namespace std;
 
 
 Jogo::Jogo() :
-    window(sf::VideoMode(600, 600), "Jogo")
+    window(sf::VideoMode(WIDTH, HEIGHT), "Jogo")
 {
     temp = nullptr;
     
