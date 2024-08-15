@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies);sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -132,7 +132,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies);sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="GerenciadorColisao.cpp" />
+    <ClCompile Include="GerenciadorEvento.cpp" />
+    <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
@@ -149,6 +152,9 @@
     <ClCompile Include="Personagem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GerenciadorColisao.h" />
+    <ClInclude Include="GerenciadorEvento.h" />
+    <ClInclude Include="GerenciadorGrafico.h" />
     <ClInclude Include="Elemento.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase.h" />
