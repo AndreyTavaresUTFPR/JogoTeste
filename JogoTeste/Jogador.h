@@ -12,7 +12,7 @@ namespace Personagens {
         Jogador();
         ~Jogador();
 
-
         void move();
+        void executar();
     };
 } using namespace Personagens;

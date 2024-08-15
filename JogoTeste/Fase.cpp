@@ -11,7 +11,7 @@ Fase::Fase(Jogador* j1, sf::RenderWindow* window)
 	this->window = window;
 	listaEntidades = new ListaEntidades();
 	this->j1 = j1;
-	i1 = new Inimigo();
+	i1 = new Inimigo(j1);
 	i1->setWindow(window);
 
 	inicializaElementos();

@@ -1,8 +1,11 @@
 #include "Jogador.h"
 
+#define VEL_JOGADOR_X 0.15f
+#define VEL_JOGADOR_Y 0.15f
+
 
 Jogador::Jogador():
-    Personagem(), vel(0.1f, 0.1f)
+    Personagem(), vel(VEL_JOGADOR_X, VEL_JOGADOR_Y)
 {
 }
 
@@ -26,4 +29,9 @@ void Jogador::move()
         body.move(sf::Vector2f(vel.x, 0));
     }
   
+}
+
+void Personagens::Jogador::executar()
+{
+    move();
 }

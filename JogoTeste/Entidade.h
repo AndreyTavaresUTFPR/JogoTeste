@@ -13,8 +13,11 @@ namespace Entidades {
 		Entidade();
 		virtual ~Entidade();
 
+		const sf::RectangleShape getBody();
 		void setWindow(sf::RenderWindow* w);
 		void draw();
+
+		virtual void executar() = 0;
 	};
 
 } using namespace Entidades;
