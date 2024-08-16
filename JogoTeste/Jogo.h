@@ -13,7 +13,8 @@ private:
 	GerenciadorGrafico* pGrafico;
 	GerenciadorEvento* pEvento;
 	Jogador* jogador1;
-	ListaEntidades* LEs;
+	ListaEntidades* LEs1;
+	ListaEntidades* LEs2;
 	Fase* fase1;
 	// Entidade* temp; // Ponteiro temporario auxiliar (SEM USO)
 	int lenLEs;     // tamanho da lista de entidades

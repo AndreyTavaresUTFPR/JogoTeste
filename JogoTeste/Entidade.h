@@ -7,15 +7,16 @@ namespace Entidades {
 	{
 	protected:
 		sf::RectangleShape body;
-		sf::RenderWindow* window;
+		//sf::RenderWindow* window; O atributo window e os metodos relacionados nao estao sendo utilizados
 
 	public:
 		Entidade();
 		virtual ~Entidade();
 
-		const sf::RectangleShape getBody();
-		void setWindow(sf::RenderWindow* w);
-		void draw();
+		sf::RectangleShape getBody();
+		virtual void setBody(sf::Vector2f tam);
+		//void setWindow(sf::RenderWindow* w);
+		//void draw();
 
 		virtual void executar() = 0;
 	};

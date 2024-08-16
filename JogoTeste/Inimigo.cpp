@@ -4,8 +4,7 @@
 Inimigo::Inimigo(Jogador* jogador):
 	Personagem(), vida(VIDA_INIMIGO), vel(VEL_INIMIGO_X, VEL_INIMIGO_Y), jogador(jogador), moveAleatorio(rand()%5)
 {
-	body.setFillColor(sf::Color::Magenta);
-	body.setPosition(sf::Vector2f(400.f, 250.f));
+
 }
 
 
@@ -13,6 +12,13 @@ Inimigo::~Inimigo()
 {
 }
 
+void Inimigo::setBody(sf::Vector2f tam)
+{
+	sf::RectangleShape b(tam);
+	body = b;
+	body.setFillColor(sf::Color::Magenta);
+	body.setPosition(sf::Vector2f(400.f, 250.f));
+}
 
 void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo) // Persegue o jogardor se o mesmo entrar no aggro
 {

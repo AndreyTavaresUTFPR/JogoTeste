@@ -53,7 +53,7 @@ public:
 		Elemento<TL>* temp = pPrimeiro;
 		Elemento<TL>* tempAnt = nullptr;
 
-		while (temp - getItem() != item) {
+		while (temp->getItem() != item) {
 			tempAnt = temp;
 			temp = temp->getPProx();
 		}
@@ -89,4 +89,12 @@ inline Lista<TL>::Lista():
 template<class TL>
 inline Lista<TL>::~Lista()
 {
+	while (pPrimeiro != nullptr)
+	{
+		Elemento<TL>* temp = pPrimeiro->getPProx();
+		delete pPrimeiro;
+		pPrimeiro = temp;
+	}
+	pPrimeiro = nullptr;
+	pUltimo = nullptr;
 }

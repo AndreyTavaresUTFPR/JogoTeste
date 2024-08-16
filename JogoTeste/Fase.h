@@ -1,6 +1,7 @@
 #pragma once
 #include "Jogador.h"
 #include "Inimigo.h"
+#include "Obstaculosimples.h"
 #include "ListaEntidades.h"
 #include <SFML/Graphics.hpp>
 
@@ -8,9 +9,11 @@
 class Fase
 {
 private:
-	ListaEntidades* listaEntidades;
+	ListaEntidades* lPersonagens;
+	ListaEntidades* lObstaculos;
 	Inimigo* i1;
 	Jogador* j1;
+	Obstaculosimples* os1;
 	sf::RenderWindow* window;
 
 	void inicializaElementos();
@@ -20,6 +23,7 @@ public:
 	~Fase();
 
 	
-	ListaEntidades* getListaEntidades();
+	ListaEntidades* getListaPersonagens();
+	ListaEntidades* getListaObstaculos();
 };
 

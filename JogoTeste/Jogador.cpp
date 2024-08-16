@@ -7,10 +7,18 @@
 Jogador::Jogador():
     Personagem(), vel(VEL_JOGADOR_X, VEL_JOGADOR_Y)
 {
+    
 }
 
 Jogador::~Jogador()
 {
+}
+
+void Jogador::setBody(sf::Vector2f tam)
+{
+    sf::RectangleShape b(tam);
+    body = b;
+    body.setPosition(0.f, 700.f);
 }
 
 // Move o jogardor

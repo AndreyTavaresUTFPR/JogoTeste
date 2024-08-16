@@ -12,6 +12,7 @@ namespace Personagens {
         Jogador();
         ~Jogador();
 
+        void setBody(sf::Vector2f tam);
         void move();
         void executar();
     };

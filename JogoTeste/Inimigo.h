@@ -26,7 +26,7 @@ namespace Personagens {
 		Inimigo(Jogador* jogador);
 		~Inimigo();
 
-		
+		virtual void setBody(sf::Vector2f tam);
 		void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
 		void movimentoAleatorio();
 		void move();

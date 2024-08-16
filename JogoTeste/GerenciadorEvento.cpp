@@ -3,7 +3,7 @@
 GerenciadorEvento* GerenciadorEvento::pEventos(NULL); // Atributo STATIC
 
 GerenciadorEvento::GerenciadorEvento() :
-    pGrafico(pGrafico->getGerenciadorGrafico()), pJogador(nullptr), pLista(nullptr) 
+    pGrafico(pGrafico->getGerenciadorGrafico()), pJogador(nullptr), listaPersonagens(nullptr), listaObstaculos(nullptr)
 {
 }
 
@@ -25,9 +25,14 @@ void GerenciadorEvento::setJogador(Jogador* pJog)
     pJogador = pJog;
 }
 
-void GerenciadorEvento::setLista(ListaEntidades* lista)
+void GerenciadorEvento::setListaPersonagens(ListaEntidades* lista)
 {
-    pLista = lista;
+    listaPersonagens = lista;
+}
+
+void GerenciadorEvento::setListaObstaculos(ListaEntidades* lista)
+{
+    listaObstaculos = lista;
 }
 
 void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
@@ -52,8 +57,13 @@ void GerenciadorEvento::executar()
         }
 
         pGrafico->limparJanela();
-        for (int i = 0; i < pLista->LEs.getLen(); i++) {
-            Entidade* temp = pLista->LEs.getItem(i); //Pensar em como usar .at(i) para fazer isso, se for possível
+        for (int i = 0; i < listaPersonagens->LEs.getLen(); i++) {
+            Entidade* temp = listaPersonagens->LEs.getItem(i); //Pensar em como usar .at(i) para fazer isso, se for possível
+            temp->executar();
+            pGrafico->desenharElemento(temp->getBody());
+        }
+        for (int i = 0; i < listaObstaculos->LEs.getLen(); i++) {
+            Entidade* temp = listaObstaculos->LEs.getItem(i);
             temp->executar();
             pGrafico->desenharElemento(temp->getBody());
         }

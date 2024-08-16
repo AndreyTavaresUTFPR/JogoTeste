@@ -10,7 +10,8 @@ namespace Gerenciadores
 	private:
 		GerenciadorGrafico* pGrafico;
 		Jogador* pJogador;
-		ListaEntidades* pLista;
+		ListaEntidades* listaPersonagens;
+		ListaEntidades* listaObstaculos;
 
 		static GerenciadorEvento* pEventos;
 		GerenciadorEvento();
@@ -18,7 +19,8 @@ namespace Gerenciadores
 		~GerenciadorEvento();
 		static GerenciadorEvento* getGerenciadorEvento();
 		void setJogador(Jogador* pJog);
-		void setLista(ListaEntidades* lista);
+		void setListaPersonagens(ListaEntidades* lista);
+		void setListaObstaculos(ListaEntidades* lista);
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
 		void executar();

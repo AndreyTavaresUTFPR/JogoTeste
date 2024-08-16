@@ -2,17 +2,24 @@
 
 void Fase::inicializaElementos()
 {
-	listaEntidades->LEs.push(j1);
-	listaEntidades->LEs.push(i1);
+	lPersonagens->LEs.push(static_cast<Entidade*>(j1));
+	lPersonagens->LEs.push(static_cast<Entidade*>(i1));
+	lObstaculos->LEs.push(static_cast<Entidade*>(os1));
 }
 
 Fase::Fase(Jogador* j1, sf::RenderWindow* window)
 {
+	sf::Vector2f tam(50.f, 50.f);
 	this->window = window;
-	listaEntidades = new ListaEntidades();
+	lPersonagens = new ListaEntidades();
+	lObstaculos = new ListaEntidades();
 	this->j1 = j1;
 	i1 = new Inimigo(j1);
-	i1->setWindow(window);
+	i1->setBody(tam);
+	os1 = new Obstaculosimples();
+	os1->setBody();
+
+	//i1->setWindow(window);
 
 	inicializaElementos();
 }
@@ -22,4 +29,6 @@ Fase::~Fase()
 }
 
 
-ListaEntidades* Fase::getListaEntidades() { return listaEntidades; }
+ListaEntidades* Fase::getListaPersonagens() { return lPersonagens; }
+
+ListaEntidades* Fase::getListaObstaculos() { return lObstaculos; }
