@@ -1,6 +1,8 @@
 #pragma once
 #include "Obstaculo.h"
 
+//COMENTARIO TESTE
+
 namespace Obstaculos {
 	class Obstaculosimples : public Obstaculo
 	{
