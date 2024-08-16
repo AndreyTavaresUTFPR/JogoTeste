@@ -1,9 +1,9 @@
 #include "GerenciadorEvento.h"
 
-GerenciadorEvento* GerenciadorEvento::pEventos(NULL);
+GerenciadorEvento* GerenciadorEvento::pEventos(NULL); // Atributo STATIC
 
 GerenciadorEvento::GerenciadorEvento() :
-    pGrafico(pGrafico->getGerenciadorGrafico())
+    pGrafico(pGrafico->getGerenciadorGrafico()), pJogador(nullptr), pLista(nullptr) 
 {
 }
 

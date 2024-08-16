@@ -13,7 +13,7 @@ Entidade::~Entidade()
 
 const sf::RectangleShape Entidades::Entidade::getBody() { return body; }
 
-void Entidade::setWindow(sf::RenderWindow* w) {window = w;}
+void Entidade::setWindow(sf::RenderWindow* w) { window = w; }
 
 void Entidade::draw() { window->draw(body); }
 

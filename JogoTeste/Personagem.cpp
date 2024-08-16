@@ -1,11 +1,13 @@
 #include "Personagem.h"
+#define VIDA_PADRAO 100
+
 
 Personagens::Personagem::Personagem():
-	Entidade(), vida(5)
+	Entidade(), vida(VIDA_PADRAO)
 {
 }
 
 Personagens::Personagem::~Personagem()
 {
-	vida = 0;
+	vida = -1;
 }

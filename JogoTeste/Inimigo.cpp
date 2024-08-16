@@ -24,8 +24,7 @@ void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo) // Per
 
 	if (posJogador.y - posInimigo.y > 0.0f) {
 		body.move(0.0f, vel.y);
-	}
-	else {
+	} else {
 		body.move(0.0f, -vel.y);
 	}
 }
@@ -41,7 +40,8 @@ void Personagens::Inimigo::movimentoAleatorio() // Movimento aleatório do inimig
 	}
 	else if (moveAleatorio == 2) {
 		body.move(0.0f, vel.y/2.f);
-	} else if (moveAleatorio == 3) {
+	} 
+	else if (moveAleatorio == 3) {
 		body.move(-vel.x/2.f, 0.f);
 	}
 	else {
@@ -75,7 +75,4 @@ void Inimigo::move() // Gerencia todo o movimento do inimigo
 }
 
 
-void Inimigo::executar() // Move o inimigo corretamente
-{
-	move();
-}
+void Inimigo::executar() { move(); } // Move o inimigo corretamente

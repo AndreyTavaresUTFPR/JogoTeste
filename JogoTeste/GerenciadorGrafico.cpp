@@ -54,8 +54,5 @@ void GerenciadorGrafico::fecharJanela()
 
 const bool GerenciadorGrafico::verificarJanela()
 {
-	if (window->isOpen())
-		return true;
-	else
-		return false;
+	return (window->isOpen()); // Mais simples!
 }

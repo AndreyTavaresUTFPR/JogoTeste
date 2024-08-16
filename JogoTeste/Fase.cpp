@@ -15,13 +15,11 @@ Fase::Fase(Jogador* j1, sf::RenderWindow* window)
 	i1->setWindow(window);
 
 	inicializaElementos();
-
 }
 
 Fase::~Fase()
 {
 }
-
 
 
 ListaEntidades* Fase::getListaEntidades() { return listaEntidades; }

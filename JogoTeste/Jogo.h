@@ -15,7 +15,7 @@ private:
 	Jogador* jogador1;
 	ListaEntidades* LEs;
 	Fase* fase1;
-	Entidade* temp; // Ponteiro temporario auxiliar
+	// Entidade* temp; // Ponteiro temporario auxiliar (SEM USO)
 	int lenLEs;     // tamanho da lista de entidades
 
 public:

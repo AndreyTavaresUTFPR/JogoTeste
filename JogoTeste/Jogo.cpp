@@ -1,12 +1,10 @@
 #include "Jogo.h"
-#include <iostream>
-using namespace std;
 
 
 Jogo::Jogo() :
     pGrafico(pGrafico->getGerenciadorGrafico()), pEvento(pEvento->getGerenciadorEvento())
 {
-    temp = nullptr;
+    // temp = nullptr;
     
     jogador1 = new Jogador();
     jogador1->setWindow(pGrafico->getWindow());
@@ -19,7 +17,7 @@ Jogo::Jogo() :
 
 Jogo::~Jogo()
 {
-    temp = nullptr;
+    // temp = nullptr;
 }
 
 void Jogo::executar()
