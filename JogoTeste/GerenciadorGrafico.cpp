@@ -3,17 +3,17 @@
 GerenciadorGrafico* GerenciadorGrafico::pGrafico(NULL);
 
 GerenciadorGrafico::GerenciadorGrafico() :
-	janela(new sf::RenderWindow(sf::VideoMode(600, 600), "Jogo"))
+	window(new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo"))
 {
 
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
-	if (janela != NULL)
+	if (window != NULL)
 	{
-		delete janela;
-		janela = NULL;
+		delete window;
+		window = NULL;
 	}
 }
 
@@ -27,34 +27,34 @@ GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
 	return pGrafico;
 }
 
-sf::RenderWindow* GerenciadorGrafico::getJanela()
+sf::RenderWindow* GerenciadorGrafico::getWindow()
 {
-	return janela;
+	return window;
 }
 
 void GerenciadorGrafico::limparJanela()
 {
-	janela->clear();
+	window->clear();
 }
 
 void GerenciadorGrafico::desenharElemento(sf::RectangleShape corpo)
 {
-	janela->draw(corpo);
+	window->draw(corpo);
 }
 
 void GerenciadorGrafico::mostrarElemento()
 {
-	janela->display();
+	window->display();
 }
 
 void GerenciadorGrafico::fecharJanela()
 {
-	janela->close();
+	window->close();
 }
 
 const bool GerenciadorGrafico::verificarJanela()
 {
-	if (janela->isOpen())
+	if (window->isOpen())
 		return true;
 	else
 		return false;

@@ -1,11 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+#define WIDTH  800
+#define HEIGHT 800
+
+
 namespace Gerenciadores {
 	class GerenciadorGrafico
 	{
 	private:
-		sf::RenderWindow* janela;
+		sf::RenderWindow* window;
 
 
 		static GerenciadorGrafico* pGrafico;
@@ -14,7 +18,7 @@ namespace Gerenciadores {
 	public:
 		~GerenciadorGrafico();
 		static GerenciadorGrafico* getGerenciadorGrafico();
-		sf::RenderWindow* getJanela();
+		sf::RenderWindow* getWindow();
 		void limparJanela();
 		void desenharElemento(sf::RectangleShape corpo);
 		void mostrarElemento();

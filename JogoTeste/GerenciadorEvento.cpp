@@ -45,16 +45,16 @@ void GerenciadorEvento::executar()
     while (pGrafico->verificarJanela())
     {
         sf::Event event;
-        while (pGrafico->getJanela()->pollEvent(event))
+        while (pGrafico->getWindow()->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 pGrafico->fecharJanela();
         }
 
-        pJogador->move();
         pGrafico->limparJanela();
         for (int i = 0; i < pLista->LEs.getLen(); i++) {
-            Entidade* temp = pLista->LEs.getItem(i);
+            Entidade* temp = pLista->LEs.getItem(i); //Pensar em como usar .at(i) para fazer isso, se for possível
+            temp->executar();
             pGrafico->desenharElemento(temp->getBody());
         }
         pGrafico->mostrarElemento();

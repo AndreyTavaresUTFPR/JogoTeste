@@ -1,19 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "GerenciadorGrafico.h"
+#include "GerenciadorEvento.h"
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "ListaEntidades.h"
 #include "Fase.h"
 
-
-#define WIDTH  800
-#define HEIGHT 800
-
-
 class Jogo
 {
 private:	
-	sf::RenderWindow window;
+	GerenciadorGrafico* pGrafico;
+	GerenciadorEvento* pEvento;
 	Jogador* jogador1;
 	ListaEntidades* LEs;
 	Fase* fase1;
