@@ -1,5 +1,6 @@
 #pragma once
 #include "GerenciadorGrafico.h"
+#include "GerenciadorColisao.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
 
@@ -9,9 +10,11 @@ namespace Gerenciadores
 	{
 	private:
 		GerenciadorGrafico* pGrafico;
+		GerenciadorColisao* pColisao;
 		Jogador* pJogador;
 		ListaEntidades* listaPersonagens;
 		ListaEntidades* listaObstaculos;
+		
 
 		static GerenciadorEvento* pEventos;
 		GerenciadorEvento();

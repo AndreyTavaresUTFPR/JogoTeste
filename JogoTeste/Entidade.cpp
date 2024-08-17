@@ -1,8 +1,8 @@
 #include "Entidade.h"
 
 
-Entidade::Entidade()
-	//body(sf::Vector2f(50.f, 50.f)) window(nullptr)
+Entidade::Entidade() :
+	cair(true)//body(sf::Vector2f(50.f, 50.f)) window(nullptr)
 {
 }
 

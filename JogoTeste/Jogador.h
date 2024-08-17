@@ -7,6 +7,7 @@ namespace Personagens {
     {
     private:
         sf::Vector2f vel;
+        sf::Clock timer;
 
     public:
         Jogador();

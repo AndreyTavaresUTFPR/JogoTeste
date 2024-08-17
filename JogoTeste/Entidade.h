@@ -13,6 +13,8 @@ namespace Entidades {
 		Entidade();
 		virtual ~Entidade();
 
+		bool cair;
+
 		sf::RectangleShape getBody();
 		virtual void setBody(sf::Vector2f tam);
 		//void setWindow(sf::RenderWindow* w);

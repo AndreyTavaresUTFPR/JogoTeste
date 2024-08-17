@@ -18,7 +18,7 @@ void Jogador::setBody(sf::Vector2f tam)
 {
     sf::RectangleShape b(tam);
     body = b;
-    body.setPosition(0.f, 700.f);
+    body.setPosition(0.f, 0.f);
 }
 
 // Move o jogardor
@@ -27,13 +27,20 @@ void Jogador::move()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { // para cima
         body.move(sf::Vector2f(0, -vel.y));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { // para direita
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { // para esquerda
         body.move(sf::Vector2f(-vel.x, 0));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { // para baixo
-        body.move(sf::Vector2f(0, vel.y));
+    if (cair) {
+        body.move(sf::Vector2f(0, 9.8 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { // para esquerda
+    else
+        timer.restart();
+    
+        /* if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { // para baixo
+        body.move(sf::Vector2f(0, vel.y));
+    }*/
+    
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { // para direita
         body.move(sf::Vector2f(vel.x, 0));
     }
   

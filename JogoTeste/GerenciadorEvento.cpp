@@ -5,6 +5,7 @@ GerenciadorEvento* GerenciadorEvento::pEventos(NULL); // Atributo STATIC
 GerenciadorEvento::GerenciadorEvento() :
     pGrafico(pGrafico->getGerenciadorGrafico()), pJogador(nullptr), listaPersonagens(nullptr), listaObstaculos(nullptr)
 {
+    pColisao = new GerenciadorColisao();
 }
 
 GerenciadorEvento::~GerenciadorEvento()
@@ -47,6 +48,7 @@ void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
 
 void GerenciadorEvento::executar()
 {
+    pColisao->setListas(listaPersonagens, listaObstaculos);
     while (pGrafico->verificarJanela())
     {
         sf::Event event;
@@ -60,13 +62,16 @@ void GerenciadorEvento::executar()
         for (int i = 0; i < listaPersonagens->LEs.getLen(); i++) {
             Entidade* temp = listaPersonagens->LEs.getItem(i); //Pensar em como usar .at(i) para fazer isso, se for possível
             temp->executar();
+            pColisao->executar();
             pGrafico->desenharElemento(temp->getBody());
         }
         for (int i = 0; i < listaObstaculos->LEs.getLen(); i++) {
             Entidade* temp = listaObstaculos->LEs.getItem(i);
             temp->executar();
+            pColisao->executar();
             pGrafico->desenharElemento(temp->getBody());
         }
+        pColisao->executar();
         pGrafico->mostrarElemento();
     }
 }

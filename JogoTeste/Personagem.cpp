@@ -2,7 +2,7 @@
 #define VIDA_PADRAO 100
 
 
-Personagens::Personagem::Personagem():
+Personagens::Personagem::Personagem() :
 	Entidade(), vida(VIDA_PADRAO)
 {
 }
