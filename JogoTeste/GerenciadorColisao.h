@@ -15,9 +15,8 @@ namespace Gerenciadores {
 		~GerenciadorColisao();
 
 		void setListas(ListaEntidades* pPers, ListaEntidades* pObst);
-		sf::Vector2f calcularColisao(Entidade* ent1, Entidade* ent2);
+
 		void repararColisao(Entidade* ent1, Entidade* ent2);
-		bool verificarColisao(Entidade* ent1, Entidade* ent2);
 		void executar();
 	};
 } using namespace Gerenciadores;

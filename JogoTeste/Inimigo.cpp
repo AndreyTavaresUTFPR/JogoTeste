@@ -27,27 +27,15 @@ void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo) // Per
 	} else {
 		body.move(-vel.x, 0.0f);
 	}
-
-	if (posJogador.y - posInimigo.y > 0.0f) {
-		body.move(0.0f, vel.y);
-	} else {
-		body.move(0.0f, -vel.y);
-	}
 }
 
 
 void Personagens::Inimigo::movimentoAleatorio() // Movimento aleatório do inimigo
 {
-	if (moveAleatorio == 0) {
-		body.move(0.f, -vel.y/2.f);
-	}
-	else if (moveAleatorio == 1) {
+	if (moveAleatorio == 1) {
 		body.move(vel.x/2.f, 0.f);
 	}
 	else if (moveAleatorio == 2) {
-		body.move(0.0f, vel.y/2.f);
-	} 
-	else if (moveAleatorio == 3) {
 		body.move(-vel.x/2.f, 0.f);
 	}
 	else {
@@ -56,7 +44,7 @@ void Personagens::Inimigo::movimentoAleatorio() // Movimento aleatório do inimig
 
 	float tempo = relogio.getElapsedTime().asSeconds();
 	if (tempo >= 1.0f) {	// Relogio que controla o movimento aleatorio
-		moveAleatorio = rand() % 5;
+		moveAleatorio = rand() % 3;
 		relogio.restart();
 	}
 }
@@ -67,8 +55,7 @@ void Inimigo::move() // Gerencia todo o movimento do inimigo
 	sf::Vector2f posJogador = jogador->getBody().getPosition();
 	sf::Vector2f posInimigo = getBody().getPosition();
 
-	if (fabs(posJogador.x - posInimigo.x) <= RAIO_AGGRO_X &&  // Ve se o jogador está dentro do aggro
-		fabs(posJogador.y - posInimigo.y) <= RAIO_AGGRO_Y)   {
+	if (fabs(posJogador.x - posInimigo.x) <= RAIO_AGGRO_X) {
 
 			perseguir(posJogador, posInimigo);
 
@@ -78,6 +65,10 @@ void Inimigo::move() // Gerencia todo o movimento do inimigo
 	} else {
 		movimentoAleatorio();
 	}
+	if (cair) {
+		body.move(sf::Vector2f(0, 9.8 * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
+	}
+
 }
 
 
