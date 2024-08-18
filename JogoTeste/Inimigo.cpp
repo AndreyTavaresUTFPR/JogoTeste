@@ -23,20 +23,26 @@ void Inimigo::setBody(sf::Vector2f tam)
 void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo) // Persegue o jogardor se o mesmo entrar no aggro
 {
 	if (posJogador.x - posInimigo.x > 0.0f) {
-		body.move(vel.x, 0.0f);
+		if (direita)
+			body.move(vel.x, 0.0f);
+		esquerda = true;
 	} else {
-		body.move(-vel.x, 0.0f);
+		if (esquerda)
+			body.move(-vel.x, 0.0f);
+		direita = true;
 	}
 }
 
 
 void Personagens::Inimigo::movimentoAleatorio() // Movimento aleatório do inimigo
 {
-	if (moveAleatorio == 1) {
+	if (moveAleatorio == 1 && direita) {
 		body.move(vel.x/2.f, 0.f);
+		esquerda = true;
 	}
-	else if (moveAleatorio == 2) {
+	else if (moveAleatorio == 2 && esquerda) {
 		body.move(-vel.x/2.f, 0.f);
+		direita = true;
 	}
 	else {
 		body.move(0.f, 0.f);  // Pausas ocasionais no movimento
@@ -66,7 +72,7 @@ void Inimigo::move() // Gerencia todo o movimento do inimigo
 		movimentoAleatorio();
 	}
 	if (cair) {
-		body.move(sf::Vector2f(0, 9.8 * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
+		body.move(sf::Vector2f(0, 9.8f * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
 	}
 
 }

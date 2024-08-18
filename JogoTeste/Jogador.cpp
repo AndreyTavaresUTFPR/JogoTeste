@@ -27,8 +27,9 @@ void Jogador::move()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { // para cima
         body.move(sf::Vector2f(0, -vel.x*3));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { // para esquerda
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && esquerda) { // para esquerda
         body.move(sf::Vector2f(-vel.x, 0));
+        direita = true;
     }
     if (cair) {
         body.move(sf::Vector2f(0, 9.8/2 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
@@ -36,8 +37,9 @@ void Jogador::move()
     else
         timer.restart();
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { // para direita
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direita) { // para direita
         body.move(sf::Vector2f(vel.x, 0));
+        esquerda = true;
     }
   
 }

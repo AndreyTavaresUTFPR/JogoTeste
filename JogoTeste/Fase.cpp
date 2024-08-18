@@ -5,6 +5,7 @@ void Fase::inicializaElementos()
 	lPersonagens->LEs.push(static_cast<Entidade*>(j1));
 	lPersonagens->LEs.push(static_cast<Entidade*>(i1));
 	lObstaculos->LEs.push(static_cast<Entidade*>(os1));
+	lObstaculos->LEs.push(static_cast<Entidade*>(os2));
 }
 
 Fase::Fase(Jogador* j1, sf::RenderWindow* window)
@@ -17,7 +18,7 @@ Fase::Fase(Jogador* j1, sf::RenderWindow* window)
 	i1 = new Inimigo(j1);
 	i1->setBody(tam);
 	os1 = new Obstaculosimples();
-	os1->setBody();
+	os2 = new Obstaculodiferente();
 
 	//i1->setWindow(window);
 

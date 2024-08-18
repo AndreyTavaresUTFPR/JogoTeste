@@ -150,6 +150,7 @@
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
+    <ClCompile Include="Obstaculodiferente.cpp" />
     <ClCompile Include="Obstaculosimples.cpp" />
     <ClCompile Include="Personagem.cpp" />
   </ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Obstaculo.h" />
+    <ClInclude Include="Obstaculodiferente.h" />
     <ClInclude Include="Obstaculosimples.h" />
     <ClInclude Include="Personagem.h" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "Obstaculosimples.h"
+#include "Obstaculodiferente.h"
 #include "ListaEntidades.h"
 #include <SFML/Graphics.hpp>
 
@@ -14,6 +15,7 @@ private:
 	Inimigo* i1;
 	Jogador* j1;
 	Obstaculosimples* os1;
+	Obstaculodiferente* os2;
 	sf::RenderWindow* window;
 
 	void inicializaElementos();

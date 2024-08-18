@@ -3,6 +3,7 @@
 Obstaculosimples::Obstaculosimples() :
 	Obstaculo(false)
 {
+	setBody();
 }
 
 Obstaculosimples::~Obstaculosimples()
