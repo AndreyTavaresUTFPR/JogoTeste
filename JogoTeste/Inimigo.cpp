@@ -2,7 +2,7 @@
 
 
 Inimigo::Inimigo(Jogador* jogador):
-	Personagem(), vida(VIDA_INIMIGO), vel(VEL_INIMIGO_X, VEL_INIMIGO_Y), jogador(jogador), moveAleatorio(rand()%5)
+	Personagem(), vel(VEL_INIMIGO_X, VEL_INIMIGO_Y), jogador(jogador), moveAleatorio(rand()%5)
 {
 
 }

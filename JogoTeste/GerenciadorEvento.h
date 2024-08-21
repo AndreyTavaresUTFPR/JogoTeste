@@ -3,6 +3,7 @@
 #include "GerenciadorColisao.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
+#include "MenuPrincipal.h"
 
 namespace Gerenciadores
 {
@@ -11,9 +12,9 @@ namespace Gerenciadores
 	private:
 		GerenciadorGrafico* pGrafico;
 		GerenciadorColisao* pColisao;
-		Jogador* pJogador;
 		ListaEntidades* listaPersonagens;
 		ListaEntidades* listaObstaculos;
+		MenuPrincipal menujogo;
 		
 
 		static GerenciadorEvento* pEventos;
@@ -21,11 +22,12 @@ namespace Gerenciadores
 	public:
 		~GerenciadorEvento();
 		static GerenciadorEvento* getGerenciadorEvento();
-		void setJogador(Jogador* pJog);
 		void setListaPersonagens(ListaEntidades* lista);
 		void setListaObstaculos(ListaEntidades* lista);
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
+		void executarMenu();
+		void executarFase();
 		void executar();
 	};
 } using namespace Gerenciadores;

@@ -14,7 +14,6 @@ namespace Personagens {
 
 
 			virtual void move() = 0;
-			virtual void executar() = 0; // Não sei se é necessario, pois ja esta na classe Entidade
+			virtual void executar() = 0; 
 		};
-
 } using namespace Personagens;

@@ -1,16 +1,16 @@
-#include "Obstaculosimples.h"
+#include "Solo.h"
 
-Obstaculosimples::Obstaculosimples() :
+Solo::Solo() :
 	Obstaculo(false)
 {
 	setBody();
 }
 
-Obstaculosimples::~Obstaculosimples()
+Solo::~Solo()
 {
 }
 
-void Obstaculosimples::setBody()
+void Solo::setBody()
 {
 	//Cria um objeto Obstaculo que serve como "chão" da janela;
 	sf::RectangleShape b(sf::Vector2f (800.f, 50.f)); 
@@ -19,6 +19,6 @@ void Obstaculosimples::setBody()
 	body.move(sf::Vector2f (0.f, 750.f)); //Move para a parte inferior da jaenla;
 }
 
-void Obstaculosimples::executar()
+void Solo::executar()
 {
 }

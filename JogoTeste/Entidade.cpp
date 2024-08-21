@@ -2,7 +2,7 @@
 
 
 Entidade::Entidade() :
-	cair(true), esquerda(true), direita(true)
+	cair(false), esquerda(false), direita(false)
 {
 
 }
@@ -12,7 +12,21 @@ Entidade::~Entidade()
 {
 }
 
-sf::RectangleShape Entidades::Entidade::getBody() { return body; }
+void Entidade::liberarGravidade()
+{
+	cair = true;
+}
+
+void Entidade::liberarMovimento()
+{
+	esquerda = true;
+	direita = true;
+}
+
+sf::RectangleShape Entidades::Entidade::getBody() 
+{ 
+	return body; 
+}
 
 void Entidade::setBody(sf::Vector2f tam)
 {
@@ -20,46 +34,38 @@ void Entidade::setBody(sf::Vector2f tam)
 	body = b;
 }
 
-void Entidade::conferirColisao(sf::Vector2f colisao, Entidade* outraEnt)
+sf::Vector2f Entidade::getCentro()
 {
-	sf::Vector2f pos1 = body.getPosition();
-	sf::Vector2f tam1 = body.getSize();
-	sf::Vector2f pos2 = outraEnt->getBody().getPosition();
-	sf::Vector2f tam2 = outraEnt->getBody().getSize();
-	sf::Vector2f centro1((pos1.x + (tam1.x / 2.f)), (pos1.y + (tam1.y / 2)));
-	sf::Vector2f centro2((pos2.x + (tam2.x / 2.f)), (pos2.y + (tam2.y / 2)));
-	/*
-	if (colisao.x > colisao.y)
-	{
-		if ((pos1.y + (tam1.y / 2.f))  < (pos2.y + (tam2.y / 2.f))) {
-			body.setPosition(pos1.x, (pos1.x - colisao.x));
-			cair = false;
+	sf::Vector2f centro((body.getPosition().x + body.getSize().x / 2.f), (body.getPosition().y + body.getSize().y / 2));
+	return centro;
+}
+
+void Entidade::conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraEnt) //Colisão diz o quanto um corpo entrou no outro, e centroOutraEnt é o centro do corpo da entidade comparada
+{
+	sf::Vector2f centro1 = getCentro(); //Centro da entidadade que chamou a função
+	sf::Vector2f centro2 = centroOutraEnt; //Centro da entidade a ser comparada
+
+		if (colisao.x > colisao.y) // Colisao vertical
+		{
+			if (centro1.y < centro2.y) //Centro1 acima do Centro2
+			{
+				getBody().setPosition(getBody().getPosition().x, (getBody().getPosition().y - colisao.y - 0.01f)); // Move a distancia da sua altura para cima da outra entidade;
+				cair = false; //Está encima de outra entidade, não está caindo
+			}
+			else // Entidade que chamou a função está abaixo da outra entidade
+				getBody().setPosition(getBody().getPosition().x, (getBody().getPosition().y + colisao.y + 0.01f));
 		}
-		else
-			body.setPosition(pos1.x, (pos1.y + colisao.y));
-	}
-	else
-	{
-		if ((pos1.x + (tam1.x / 2.f)) < (pos2.x + (tam2.x / 2.f)))
-			body.setPosition((pos1.x - colisao.x), pos1.y);
-		else
-			body.setPosition((pos1.x + colisao.x), pos1.y);
-	}*/
-	if (colisao.x > colisao.y)
-	{
-		if (centro1.y < centro2.y) {
-			body.setPosition(body.getPosition().x, (outraEnt->getBody().getPosition().y - body.getSize().y));
-			cair = false;
+		else // Colisao horizontal
+		{
+			if (centro1.x < centro2.x) {
+				getBody().setPosition((getBody().getPosition().x - colisao.x - 0.01f), getBody().getSize().y);
+				direita = false;
+			}
+			else {
+				getBody().setPosition((getBody().getPosition().x + getBody().getSize().x + 0.01f), getBody().getSize().y);
+				esquerda = false;
+			}
 		}
-		else
-			body.setPosition(body.getPosition().x, (outraEnt->getBody().getPosition().y + outraEnt->getBody().getSize().y));
-	}
-	else
-	{
-		if (centro1.x < centro2.x)
-			body.setPosition(body.getPosition().x - colisao.x, body.getPosition().y);
-		else
-			body.setPosition(body.getPosition().x + colisao.x, body.getPosition().y);
-	}
+	
 }
 

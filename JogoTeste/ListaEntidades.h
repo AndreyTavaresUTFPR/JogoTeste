@@ -7,5 +7,7 @@ class ListaEntidades
 {
 public:
 	Lista<Entidade> LEs;
+	ListaEntidades();
+	~ListaEntidades();
 };
 

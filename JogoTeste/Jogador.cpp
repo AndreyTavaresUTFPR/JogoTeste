@@ -25,20 +25,24 @@ void Jogador::setBody(sf::Vector2f tam)
 void Jogador::move()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { // para cima
-        body.move(sf::Vector2f(0, -vel.x*3));
+        body.move(sf::Vector2f(0, -vel.x));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && esquerda) { // para esquerda
         body.move(sf::Vector2f(-vel.x, 0));
+        if (body.getPosition().x < 0.f)
+            body.setPosition(sf::Vector2f(0.f, body.getPosition().y));
         direita = true;
     }
     if (cair) {
-        body.move(sf::Vector2f(0, 9.8/2 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
+        body.move(sf::Vector2f(0, 9.8f/2 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
     }
     else
         timer.restart();
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direita) { // para direita
         body.move(sf::Vector2f(vel.x, 0));
+        if (body.getPosition().x > 750.f)
+            body.setPosition(sf::Vector2f((800.f - body.getSize().x), body.getPosition().y));
         esquerda = true;
     }
   

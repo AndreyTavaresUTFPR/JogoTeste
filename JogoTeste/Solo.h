@@ -1,16 +1,14 @@
 #pragma once
 #include "Obstaculo.h"
 
-//COMENTARIO TESTE
-
 namespace Obstaculos {
-	class Obstaculosimples : public Obstaculo
+	class Solo : public Obstaculo
 	{
 	private:
 
 	public:
-		Obstaculosimples();
-		~Obstaculosimples();
+		Solo();
+		~Solo();
 
 		void setBody();
 		void executar();

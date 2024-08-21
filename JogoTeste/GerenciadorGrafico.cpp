@@ -1,28 +1,26 @@
 #include "GerenciadorGrafico.h"
 
-GerenciadorGrafico* GerenciadorGrafico::pGrafico(NULL);
+GerenciadorGrafico* GerenciadorGrafico::pGrafico(nullptr);
 
-GerenciadorGrafico::GerenciadorGrafico() :
-	window(new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo"))
+GerenciadorGrafico::GerenciadorGrafico()
 {
-
+	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo");
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
-	if (window != NULL)
+	if (window != nullptr)
 	{
 		delete window;
-		window = NULL;
+		window = nullptr;
 	}
 }
 
 GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
 {
-	if (pGrafico == NULL)
+	if (pGrafico == nullptr)
 	{
-		return new GerenciadorGrafico();
-
+		pGrafico = new GerenciadorGrafico();
 	}
 	return pGrafico;
 }
@@ -35,6 +33,13 @@ sf::RenderWindow* GerenciadorGrafico::getWindow()
 void GerenciadorGrafico::limparJanela()
 {
 	window->clear();
+}
+
+void GerenciadorGrafico::desenharMenu(sf::Text text[], int nMenus)
+{
+	for (int i = 0; i < nMenus; i++)
+		window->draw(text[i]);
+	window->display();
 }
 
 void GerenciadorGrafico::desenharElemento(sf::RectangleShape corpo)
@@ -52,7 +57,7 @@ void GerenciadorGrafico::fecharJanela()
 	window->close();
 }
 
-const bool GerenciadorGrafico::verificarJanela()
+bool GerenciadorGrafico::verificarJanela() const
 {
-	return (window->isOpen()); // Mais simples!
+	return (window->isOpen());
 }

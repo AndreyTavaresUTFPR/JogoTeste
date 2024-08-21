@@ -1,7 +1,7 @@
 #pragma once
 #include "Jogador.h"
 #include "Inimigo.h"
-#include "Obstaculosimples.h"
+#include "Solo.h"
 #include "Obstaculodiferente.h"
 #include "ListaEntidades.h"
 #include <SFML/Graphics.hpp>
@@ -14,14 +14,13 @@ private:
 	ListaEntidades* lObstaculos;
 	Inimigo* i1;
 	Jogador* j1;
-	Obstaculosimples* os1;
-	Obstaculodiferente* os2;
-	sf::RenderWindow* window;
+	Solo* solo1;
+	Obstaculodiferente* obst1;
 
 	void inicializaElementos();
 
 public:
-	Fase(Jogador* j1, sf::RenderWindow* window);
+	Fase(Jogador* j1);
 	~Fase();
 
 	

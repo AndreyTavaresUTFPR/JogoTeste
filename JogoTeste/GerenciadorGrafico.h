@@ -20,9 +20,10 @@ namespace Gerenciadores {
 		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
 		void limparJanela();
+		void desenharMenu(sf::Text text[], int nMenus);
 		void desenharElemento(sf::RectangleShape corpo);
 		void mostrarElemento();
 		void fecharJanela();
-		const bool verificarJanela();
+		bool verificarJanela() const;
 	};
 } using namespace Gerenciadores;

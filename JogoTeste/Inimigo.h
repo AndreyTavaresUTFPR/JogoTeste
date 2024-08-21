@@ -15,7 +15,6 @@ namespace Personagens {
 	class Inimigo : public Personagem
 	{
 	private:
-		int vida;
 		sf::Vector2f vel;
 
 		Jogador* jogador; // Ponteiro para jogador
