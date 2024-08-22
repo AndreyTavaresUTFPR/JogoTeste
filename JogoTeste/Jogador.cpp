@@ -1,13 +1,11 @@
 #include "Jogador.h"
 
-#define VEL_JOGADOR_X 0.15f
-#define VEL_JOGADOR_Y 0.15f
-
 
 Jogador::Jogador():
-    Personagem(), vel(VEL_JOGADOR_X, VEL_JOGADOR_Y)
+    Personagem()
 {
-    
+    vel.x = VEL_JOGADOR_X;
+    vel.y = VEL_JOGADOR_Y;
 }
 
 Jogador::~Jogador()
@@ -25,20 +23,20 @@ void Jogador::setBody(sf::Vector2f tam)
 void Jogador::move()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { // para cima
-        body.move(sf::Vector2f(0, -vel.x*3));
+        body.move(sf::Vector2f(0.f, -vel.x*3.f));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && esquerda) { // para esquerda
-        body.move(sf::Vector2f(-vel.x, 0));
+        body.move(sf::Vector2f(-vel.x, 0.f));
         direita = true;
     }
     if (cair) {
-        body.move(sf::Vector2f(0, 9.8/2 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
+        body.move(sf::Vector2f(0.f, 9.8f/2.f * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
     }
     else
         timer.restart();
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direita) { // para direita
-        body.move(sf::Vector2f(vel.x, 0));
+        body.move(sf::Vector2f(vel.x, 0.f));
         esquerda = true;
     }
   

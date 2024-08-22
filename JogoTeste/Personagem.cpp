@@ -3,7 +3,7 @@
 
 
 Personagens::Personagem::Personagem() :
-	Entidade(), vida(VIDA_PADRAO)
+	Entidade(), vida(VIDA_PADRAO), vel(0.f, 0.f)
 {
 }
 

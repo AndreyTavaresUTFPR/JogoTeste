@@ -1,35 +1,15 @@
 #pragma once
 #include "Personagem.h"
-#include "Jogador.h"
+class Inimigo : public Personagem
+{
+protected:
+	int nivel_maldade;
 
-#define VIDA_INIMIGO 100
+public:
+	Inimigo();
+	~Inimigo();
 
-#define VEL_INIMIGO_X 0.05f
-#define VEL_INIMIGO_Y 0.05f
+	virtual void move() = 0;
+	virtual void executar() = 0;
+};
 
-#define RAIO_AGGRO_X 200.0f
-#define RAIO_AGGRO_Y 200.0f
-
-
-namespace Personagens {
-	class Inimigo : public Personagem
-	{
-	private:
-		int vida;
-		sf::Vector2f vel;
-
-		Jogador* jogador; // Ponteiro para jogador
-		sf::Clock relogio;
-		int moveAleatorio;
-
-	public:
-		Inimigo(Jogador* jogador);
-		~Inimigo();
-
-		virtual void setBody(sf::Vector2f tam);
-		void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
-		void movimentoAleatorio();
-		void move();
-		void executar();
-	};
-} using namespace Personagens;

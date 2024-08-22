@@ -6,6 +6,7 @@ namespace Personagens {
 		class Personagem : public Entidade
 		{
 		protected:
+			sf::Vector2f vel;
 			int vida;
 
 		public:

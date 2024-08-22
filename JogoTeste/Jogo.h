@@ -3,7 +3,6 @@
 #include "GerenciadorGrafico.h"
 #include "GerenciadorEvento.h"
 #include "Jogador.h"
-#include "Inimigo.h"
 #include "ListaEntidades.h"
 #include "Fase.h"
 
