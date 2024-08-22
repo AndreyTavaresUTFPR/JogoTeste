@@ -3,33 +3,35 @@
 Aranha::Aranha():
 	Inimigo(), pulo(VELOCIDADE_HORIZONTAL, VELOCIDADE_PULO)
 {
-	timer_pulo.restart();
-	timer_gravide.restart();
+	timer_gravidade.restart();
 }
 
 Aranha::~Aranha()
 {
 }
 
+
+void Aranha::pular()
+{
+	float tempo = timer_gravidade.getElapsedTime().asSeconds();
+	body.move(sf::Vector2f(pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo))));
+}
+
+
 void Aranha::move()
 {
-	if (timer_pulo.getElapsedTime().asSeconds() >= 3.f) {
-		body.move(pulo);
-	}
+	pular();
 
-	if (cair) {
-		body.move(sf::Vector2f(0.f, 9.8f / 2.f * timer_pulo.getElapsedTime().asSeconds() * timer_pulo.getElapsedTime().asSeconds()));
+	if (!cair) {
+		timer_gravidade.restart();
 	}
-	else {
-		timer_gravide.restart();
-		// timer_pulo.restart();
-		cair = false;
-	}
-
 }
 
 void Aranha::executar()
 {
+	if (body.getPosition().x > 800-body.getSize().x || body.getPosition().x < 0)
+		pulo.x = -pulo.x;
+
 	move();
 }
 

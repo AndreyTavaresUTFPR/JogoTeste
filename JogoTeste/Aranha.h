@@ -1,8 +1,8 @@
 #pragma once
 #include "Inimigo.h"
 
-#define VELOCIDADE_PULO -3.F
-#define VELOCIDADE_HORIZONTAL 0.25f
+#define VELOCIDADE_PULO -0.3f
+#define VELOCIDADE_HORIZONTAL -0.1f
 
 
 class Aranha :
@@ -10,12 +10,13 @@ class Aranha :
 {
 private:
     sf::Vector2f pulo;
-    sf::Clock timer_pulo;
-    sf::Clock timer_gravide;
+    sf::Clock timer_gravidade;
 
 public:
     Aranha();
     ~Aranha();
+
+    void pular();
 
     void move();
     void executar();
