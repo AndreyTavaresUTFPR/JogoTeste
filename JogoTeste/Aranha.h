@@ -1,7 +1,7 @@
 #pragma once
 #include "Inimigo.h"
 
-#define VELOCIDADE_PULO -1
+#define VELOCIDADE_PULO -3.F
 #define VELOCIDADE_HORIZONTAL 0.25f
 
 
@@ -19,5 +19,7 @@ public:
 
     void move();
     void executar();
+
+    void setBody(sf::Vector2f tam);
 };
 
