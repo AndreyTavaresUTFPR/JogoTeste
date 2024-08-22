@@ -5,7 +5,7 @@
 #include "Menu.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
-#include "Fase.h"
+#include "FaseUm.h"
 
 class Jogo
 {
@@ -15,7 +15,7 @@ private:
 	Jogador* jogador1;
 	ListaEntidades* LEs1;
 	ListaEntidades* LEs2;
-	Fase* fase1;
+	FaseUm* fase1;
 
 public:
 	Jogo();

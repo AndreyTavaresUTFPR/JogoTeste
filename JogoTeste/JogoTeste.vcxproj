@@ -142,6 +142,7 @@
     <ClCompile Include="Aranha.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="FaseUm.cpp" />
     <ClCompile Include="GerenciadorColisao.cpp" />
     <ClCompile Include="GerenciadorEvento.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aranha.h" />
+    <ClInclude Include="FaseUm.h" />
     <ClInclude Include="GerenciadorColisao.h" />
     <ClInclude Include="GerenciadorEvento.h" />
     <ClInclude Include="GerenciadorGrafico.h" />

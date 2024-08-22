@@ -14,7 +14,7 @@ namespace Gerenciadores {
 		GerenciadorColisao();
 		~GerenciadorColisao();
 
-		void setListas(ListaEntidades* pPers, ListaEntidades* pObst);
+		void setListas(ListaEntidades* listaPers, ListaEntidades* listaObst);
 
 		void repararColisao(Entidade* ent1, Entidade* ent2);
 		void executar();

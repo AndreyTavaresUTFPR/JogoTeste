@@ -51,7 +51,7 @@ void GerenciadorEvento::executarMenu()
     menujogo.desenharMenu();
 }
 
-void GerenciadorEvento::executarFase()
+void GerenciadorEvento::executarFaseUm()
 {
     while (pGrafico->verificarJanela())
     {
@@ -93,7 +93,7 @@ void GerenciadorEvento::executar()
     {
         executarMenu();
         if (menujogo.getIniciar())
-            executarFase();
+            executarFaseUm();
     }
     
 }

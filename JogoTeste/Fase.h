@@ -1,29 +1,21 @@
 #pragma once
 #include "Jogador.h"
-#include "Esqueleto.h"
-#include "Aranha.h"
-#include "Solo.h"
-#include "Obstaculodiferente.h"
 #include "ListaEntidades.h"
 #include <SFML/Graphics.hpp>
 
 
 class Fase
 {
-private:
+protected:
 	ListaEntidades* lPersonagens;
 	ListaEntidades* lObstaculos;
-	Esqueleto* e1;
-	Aranha* a1;
 	Jogador* j1;
-	Solo* solo1;
-	Obstaculodiferente* obst1;
 
-	void inicializaElementos();
+	virtual void inicializaElementos() = 0;
 
 public:
 	Fase(Jogador* j1);
-	~Fase();
+	virtual ~Fase();
 
 	
 	ListaEntidades* getListaPersonagens();

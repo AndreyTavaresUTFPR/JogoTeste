@@ -27,7 +27,7 @@ namespace Gerenciadores
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
 		void executarMenu();
-		void executarFase();
+		void executarFaseUm();
 		void executar();
 	};
 } using namespace Gerenciadores;
