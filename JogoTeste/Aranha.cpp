@@ -22,7 +22,7 @@ void Aranha::move()
 	}
 	else {
 		timer_gravide.restart();
-		timer_pulo.restart();
+		// timer_pulo.restart();
 		cair = false;
 	}
 
@@ -31,4 +31,12 @@ void Aranha::move()
 void Aranha::executar()
 {
 	move();
+}
+
+void Aranha::setBody(sf::Vector2f tam)
+{
+	sf::RectangleShape b(tam);
+	body = b;
+	body.setFillColor(sf::Color::Yellow);
+	body.setPosition(sf::Vector2f(700.f, 250.f));
 }
