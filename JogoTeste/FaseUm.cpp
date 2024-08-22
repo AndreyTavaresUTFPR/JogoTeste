@@ -12,7 +12,7 @@ FaseUm::FaseUm(Jogador* j1) :
 	a1 = new Aranha();
 	a1->setBody(tam);
 	solo1 = new Solo();
-	obst1 = new Obstaculodiferente();
+	obst1 = new Teia();
 
 	inicializaElementos();
 }

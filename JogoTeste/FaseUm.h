@@ -3,7 +3,7 @@
 #include "Esqueleto.h"
 #include "Aranha.h"
 #include "Solo.h"
-#include "Obstaculodiferente.h"
+#include "Teia.h"
 
 namespace Fases {
 	class FaseUm : public Fase
@@ -12,7 +12,7 @@ namespace Fases {
 		Esqueleto* e1;
 		Aranha* a1;
 		Solo* solo1;
-		Obstaculodiferente* obst1;
+		Teia* obst1;
 
 		void inicializaElementos();
 	public:

@@ -5,7 +5,8 @@ void Fase::inicializaElementos()
 	
 }
 
-Fase::Fase(Jogador* j1)
+Fase::Fase(Jogador* j1) :
+	Ente()
 {
 	
 }
@@ -15,6 +16,17 @@ Fase::~Fase()
 }
 
 
-ListaEntidades* Fase::getListaPersonagens() { return lPersonagens; }
+ListaEntidades* Fase::getListaPersonagens() 
+{ 
+	return lPersonagens; 
+}
 
-ListaEntidades* Fase::getListaObstaculos() { return lObstaculos; }
+ListaEntidades* Fase::getListaObstaculos() 
+{ 
+	return lObstaculos; 
+}
+
+void Fase::executar()
+{
+
+}

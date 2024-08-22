@@ -2,15 +2,14 @@
 #include "SFML/Graphics.hpp"
 #include "Obstaculo.h"
 
-
 namespace Obstaculos {
-	class Obstaculodiferente : public Obstaculo 
+	class Teia : public Obstaculo 
 	{
 	private:
 	
 	public:
-		Obstaculodiferente();
-		~Obstaculodiferente();
+		Teia();
+		~Teia();
 
 		void setBody();
 		void executar();

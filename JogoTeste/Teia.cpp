@@ -1,17 +1,17 @@
-#include "Obstaculodiferente.h"
+#include "Teia.h"
 
-Obstaculodiferente::Obstaculodiferente() :
+Teia::Teia() :
 	Obstaculo(false)
 {
 	setBody();
 }
 
-Obstaculodiferente::~Obstaculodiferente()
+Teia::~Teia()
 {
 
 }
 
-void Obstaculodiferente::setBody()
+void Teia::setBody()
 {
 	sf::RectangleShape b(sf::Vector2f(50.f, 50.f));
 	body = b;
@@ -19,7 +19,7 @@ void Obstaculodiferente::setBody()
 	body.move(sf::Vector2f(100.f, 700.f)); //Move para a parte inferior da jaenla;
 }
 
-void Obstaculodiferente::executar()
+void Teia::executar()
 {
 
 }
