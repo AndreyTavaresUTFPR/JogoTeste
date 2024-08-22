@@ -4,7 +4,6 @@
 #include "GerenciadorEvento.h"
 #include "Menu.h"
 #include "Jogador.h"
-#include "Inimigo.h"
 #include "ListaEntidades.h"
 #include "Fase.h"
 

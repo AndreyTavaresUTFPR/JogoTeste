@@ -1,13 +1,11 @@
 #include "Jogador.h"
 
-#define VEL_JOGADOR_X 0.15f
-#define VEL_JOGADOR_Y 0.15f
-
 
 Jogador::Jogador():
-    Personagem(), vel(VEL_JOGADOR_X, VEL_JOGADOR_Y)
+    Personagem()
 {
-    
+    vel.x = VEL_JOGADOR_X;
+    vel.y = VEL_JOGADOR_Y;
 }
 
 Jogador::~Jogador()
@@ -34,7 +32,7 @@ void Jogador::move()
         direita = true;
     }
     if (cair) {
-        body.move(sf::Vector2f(0, 9.8f/2 * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
+        body.move(sf::Vector2f(0.f, 9.8f/2.f * timer.getElapsedTime().asSeconds() * timer.getElapsedTime().asSeconds()));
     }
     else
         timer.restart();

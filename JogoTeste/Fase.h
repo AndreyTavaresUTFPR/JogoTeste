@@ -1,6 +1,7 @@
 #pragma once
 #include "Jogador.h"
-#include "Inimigo.h"
+#include "Esqueleto.h"
+#include "Aranha.h"
 #include "Solo.h"
 #include "Obstaculodiferente.h"
 #include "ListaEntidades.h"
@@ -12,7 +13,8 @@ class Fase
 private:
 	ListaEntidades* lPersonagens;
 	ListaEntidades* lObstaculos;
-	Inimigo* i1;
+	Esqueleto* e1;
+	Aranha* a1;
 	Jogador* j1;
 	Solo* solo1;
 	Obstaculodiferente* obst1;
