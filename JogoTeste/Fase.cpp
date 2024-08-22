@@ -21,7 +21,6 @@ Fase::Fase(Jogador* j1)
 	a1->setBody(tam);
 	solo1 = new Solo();
 	obst1 = new Obstaculodiferente();
->>>>>>> Stashed changes
 
 	inicializaElementos();
 }
