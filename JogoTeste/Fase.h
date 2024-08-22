@@ -2,6 +2,7 @@
 #include "Ente.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
+#include "Obstaculo.h"
 #include <SFML/Graphics.hpp>
 
 namespace Fases {
@@ -9,7 +10,7 @@ namespace Fases {
 	{
 	protected:
 		ListaEntidades* lPersonagens;
-		ListaEntidades* lObstaculos;
+		Lista<Obstaculo> lObstaculos;
 		Jogador* j1;
 
 		virtual void inicializaElementos() = 0;
@@ -20,7 +21,7 @@ namespace Fases {
 
 		
 		ListaEntidades* getListaPersonagens();
-		ListaEntidades* getListaObstaculos();
+		Lista<Obstaculo>* getListaObstaculos();
 		void executar();
 	};
 } using namespace Fases;

@@ -11,7 +11,7 @@ GerenciadorColisao::~GerenciadorColisao()
 
 }
 
-void GerenciadorColisao::setListas(ListaEntidades* listaPers, ListaEntidades* listaObst)
+void GerenciadorColisao::setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst)
 {
 	lPersonagens = listaPers;
 	lObstaculos = listaObst;
@@ -51,9 +51,9 @@ void GerenciadorColisao::executar()
 			ent2 = lPersonagens->LEs.getItem(j);
 			repararColisao(ent1, ent2);
 		}
-		for (j = 0; j < lObstaculos->LEs.getLen(); j++)
+		for (j = 0; j < lObstaculos->getLen(); j++)
 		{
-			ent2 = lObstaculos->LEs.getItem(j);
+			ent2 = static_cast<Entidade*>(lObstaculos->getItem(j));
 			repararColisao(ent1, ent2);
 		}
 	}

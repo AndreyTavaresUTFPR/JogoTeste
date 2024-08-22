@@ -20,14 +20,10 @@ GerenciadorEvento* GerenciadorEvento::getGerenciadorEvento()
     return pEventos;
 }
 
-void GerenciadorEvento::setListaPersonagens(ListaEntidades* lista)
+void GerenciadorEvento::setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst)
 {
-    listaPersonagens = lista;
-}
-
-void GerenciadorEvento::setListaObstaculos(ListaEntidades* lista)
-{
-    listaObstaculos = lista;
+    listaPersonagens = listaPers;
+    listaObstaculos = listaObst;
 }
 
 void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
@@ -75,11 +71,11 @@ void GerenciadorEvento::executarFaseUm()
             temp->executar();
             pGrafico->desenharElemento(temp->getBody());
         }
-        for (int i = 0; i < listaObstaculos->LEs.getLen(); i++) 
+        for (int i = 0; i < listaObstaculos->getLen(); i++) 
         {
-            Entidade* temp = listaObstaculos->LEs.getItem(i);
-            temp->executar();
-            pGrafico->desenharElemento(temp->getBody());
+            Obstaculo* tempObst = listaObstaculos->getItem(i);
+            tempObst->executar();
+            pGrafico->desenharElemento(tempObst->getBody());
         }
         pColisao->executar();
         pGrafico->mostrarElemento();

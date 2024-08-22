@@ -1,7 +1,9 @@
 #include "Solo.h"
+#define DANO false
+#define SOLIDEZ true
 
 Solo::Solo() :
-	Obstaculo(false)
+	Obstaculo(DANO, SOLIDEZ)
 {
 	setBody();
 }

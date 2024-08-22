@@ -6,9 +6,11 @@ namespace Obstaculos {
 	{
 	protected:
 		bool danoso;
+		bool solido;
+
 	public:
-		Obstaculo(bool dano);
-		~Obstaculo();
+		Obstaculo(bool dano, bool solidez);
+		virtual ~Obstaculo();
 
 		virtual void executar() = 0;
 	};

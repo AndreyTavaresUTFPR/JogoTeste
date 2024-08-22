@@ -9,8 +9,8 @@ Jogo::Jogo() :
     jogador1 = new Jogador();
     jogador1->setBody(tam);
     fase1 = new FaseUm(jogador1);
-    LEs1 = fase1->getListaPersonagens();
-    LEs2 = fase1->getListaObstaculos();
+    lPersonagens = fase1->getListaPersonagens();
+    lObstaculos = fase1->getListaObstaculos();
    
     executar();
 }
@@ -24,8 +24,7 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
     //Conferir qual a fase a ser executada  
-        pEvento->setListaPersonagens(LEs1);
-        pEvento->setListaObstaculos(LEs2);
+        pEvento->setListas(lPersonagens, lObstaculos);
         pEvento->executar();
 
 }

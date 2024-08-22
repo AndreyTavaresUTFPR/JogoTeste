@@ -2,8 +2,8 @@
 #define DANO false
 
 
-Obstaculos::Obstaculo::Obstaculo(bool dano):
-	Entidade(), danoso(dano)
+Obstaculos::Obstaculo::Obstaculo(bool dano, bool solidez):
+	Entidade(), danoso(dano), solido(solidez)
 {
 }
 

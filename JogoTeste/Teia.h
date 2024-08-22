@@ -6,7 +6,8 @@ namespace Obstaculos {
 	class Teia : public Obstaculo 
 	{
 	private:
-	
+		float lentidao;
+
 	public:
 		Teia();
 		~Teia();
