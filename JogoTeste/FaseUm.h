@@ -4,6 +4,7 @@
 #include "Aranha.h"
 #include "Solo.h"
 #include "Teia.h"
+#include "Espinhos.h"
 
 namespace Fases {
 	class FaseUm : public Fase
@@ -15,6 +16,7 @@ namespace Fases {
 		Solo* solo1;
 		Teia* obst1;
 		Teia* obst2;
+		Espinhos* obst3;
 
 		void inicializaElementos();
 	public:

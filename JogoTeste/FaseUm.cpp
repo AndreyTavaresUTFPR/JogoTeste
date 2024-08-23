@@ -19,7 +19,8 @@ FaseUm::FaseUm(Jogador* j1, Jogador* j2) :
 	obst1->getBody()->setPosition(sf::Vector2f(400.f, 350.f));
 	obst2 = new Teia();
 	obst2->getBody()->setPosition(sf::Vector2f(200.f, 150.f));
-	
+	obst3 = new Espinhos();
+	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
 
 	inicializaElementos();
 }
@@ -38,6 +39,7 @@ void FaseUm::inicializaElementos()
 	listaInimigos.push(static_cast<Inimigo*>(a1));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst1));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst2));
+	listaObstaculos.push(static_cast<Obstaculo*>(obst3));
 	criarMapa();
 }
 
