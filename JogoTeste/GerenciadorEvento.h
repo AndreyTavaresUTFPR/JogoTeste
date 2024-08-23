@@ -5,6 +5,7 @@
 #include "ListaEntidades.h"
 #include "MenuPrincipal.h"
 #include "Obstaculo.h"
+#include "Inimigo.h"
 
 namespace Gerenciadores
 {
@@ -13,7 +14,8 @@ namespace Gerenciadores
 	private:
 		GerenciadorGrafico* pGrafico;
 		GerenciadorColisao* pColisao;
-		ListaEntidades* listaPersonagens;
+		Lista<Jogador>* listaJogadores;
+		Lista<Inimigo>* listaInimigos;
 		Lista<Obstaculo>* listaObstaculos;
 		MenuPrincipal menujogo;
 		
@@ -23,7 +25,7 @@ namespace Gerenciadores
 	public:
 		~GerenciadorEvento();
 		static GerenciadorEvento* getGerenciadorEvento();
-		void setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst);
+		void setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst);
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
 		void executarMenu();

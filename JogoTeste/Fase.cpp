@@ -6,24 +6,28 @@ void Fase::inicializaElementos()
 }
 
 Fase::Fase(Jogador* j1, Jogador* j2) :
-	Ente(), lPersonagens(nullptr), lObstaculos()
+	Ente(), listaJogadores(), listaInimigos(), listaObstaculos()
 {
-	lPersonagens = new ListaEntidades();
+
 }
 
 Fase::~Fase()
 {
 }
 
+Lista<Jogador>* Fase::getListaJogadores()
+{
+	return &listaJogadores;
+}
 
-ListaEntidades* Fase::getListaPersonagens() 
+Lista<Inimigo>* Fase::getListaInimigos() 
 { 
-	return lPersonagens; 
+	return &listaInimigos; 
 }
 
 Lista<Obstaculo>* Fase::getListaObstaculos()
 { 
-	return &lObstaculos; 
+	return &listaObstaculos; 
 }
 
 void Fase::executar()

@@ -1,7 +1,7 @@
 #include "GerenciadorColisao.h"
 
 GerenciadorColisao::GerenciadorColisao() :
-	lPersonagens(nullptr), lObstaculos(nullptr)
+	listaJogadores(nullptr), listaInimigos(nullptr), listaObstaculos(nullptr)
 {
 	
 }
@@ -11,10 +11,11 @@ GerenciadorColisao::~GerenciadorColisao()
 
 }
 
-void GerenciadorColisao::setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst)
+void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
 {
-	lPersonagens = listaPers;
-	lObstaculos = listaObst;
+	listaJogadores = listaJog;
+	listaInimigos = listaInim;
+	listaObstaculos = listaObst;
 }
 
 void GerenciadorColisao::repararColisao(Entidade* ent1, Entidade* ent2) //Confere se houve colisão entre as Entidades, caso o if seja true, corrige as posições das entidades e seus movimentos.
@@ -33,27 +34,56 @@ void GerenciadorColisao::repararColisao(Entidade* ent1, Entidade* ent2) //Confer
 
 void GerenciadorColisao::executar()
 {
-	Entidade* ent1 = nullptr, *ent2 = nullptr;
+	Jogador* pJog = nullptr;
+	Inimigo* pInim1 = nullptr;
+	Inimigo* pInim2 = nullptr;
+	Obstaculo* pObst = nullptr;
+
+	Entidade* ent1 = nullptr;
+	Entidade* ent2 = nullptr;
+
 	int i = 0, j = 0;
 
-	for (i = 0; i < lPersonagens->LEs.getLen(); i++)
+	for (i = 0; i < listaJogadores->getLen(); i++)
 	{
-		ent1 = lPersonagens->LEs.getItem(i);
-		ent1->liberarGravidade();
-		ent1->liberarMovimento();
+		pJog = listaJogadores->getItem(i);
+		pJog->liberarGravidade();
+		pJog->liberarMovimento();
 	}
 
-	for (i = 0; i < lPersonagens->LEs.getLen(); i++)
+	for (i = 0; i < listaInimigos->getLen(); i++)
 	{
-		ent1 = lPersonagens->LEs.getItem(i);
-		for (j = i + 1; j < lPersonagens->LEs.getLen(); j++)
+		pInim1 = listaInimigos->getItem(i);
+		pInim1->liberarGravidade();
+		pInim1->liberarMovimento();
+	}
+
+	for (i = 0; i < listaJogadores->getLen(); i++)
+	{
+		ent1 = static_cast<Entidade*>(listaJogadores->getItem(i));
+		for (j = 0; j < listaInimigos->getLen(); j++)
 		{
-			ent2 = lPersonagens->LEs.getItem(j);
+			ent2 = static_cast<Entidade*>(listaInimigos->getItem(j));
 			repararColisao(ent1, ent2);
 		}
-		for (j = 0; j < lObstaculos->getLen(); j++)
+		for (j = 0; j < listaObstaculos->getLen(); j++)
 		{
-			ent2 = static_cast<Entidade*>(lObstaculos->getItem(j));
+			ent2 = static_cast<Entidade*>(listaObstaculos->getItem(j));
+			repararColisao(ent1, ent2);
+		}
+	}
+
+	for (i = 0; i < listaInimigos->getLen(); i++)
+	{
+		ent1 = static_cast<Entidade*>(listaInimigos->getItem(i));
+		for (j = i + 1; j < listaInimigos->getLen(); j++)
+		{
+			ent2 = static_cast<Entidade*>(listaInimigos->getItem(j));
+			repararColisao(ent1, ent2);
+		}
+		for (j = 0; j < listaObstaculos->getLen(); j++)
+		{
+			ent2 = static_cast<Entidade*>(listaObstaculos->getItem(j));
 			repararColisao(ent1, ent2);
 		}
 	}

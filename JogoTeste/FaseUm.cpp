@@ -23,10 +23,15 @@ FaseUm::~FaseUm()
 
 void FaseUm::inicializaElementos()
 {
-	lPersonagens->LEs.push(static_cast<Entidade*>(j1));
-	lPersonagens->LEs.push(static_cast<Entidade*>(j2));
-	lPersonagens->LEs.push(static_cast<Entidade*>(e1));
-	lPersonagens->LEs.push(static_cast<Entidade*>(a1));
-	lObstaculos.push(static_cast<Obstaculo*>(solo1));
-	lObstaculos.push(static_cast<Obstaculo*>(obst1));
+	listaJogadores.push(j1);
+	listaJogadores.push(j2);
+	listaInimigos.push(static_cast<Inimigo*>(e1));
+	listaInimigos.push(static_cast<Inimigo*>(a1));
+	listaObstaculos.push(static_cast<Obstaculo*>(solo1));
+	listaObstaculos.push(static_cast<Obstaculo*>(obst1));
+}
+
+void FaseUm::executar()
+{
+
 }

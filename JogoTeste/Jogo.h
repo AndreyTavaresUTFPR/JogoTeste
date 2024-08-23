@@ -14,8 +14,9 @@ private:
 	GerenciadorEvento* pEvento;
 	Jogador* jogador1;
 	Jogador* jogador2;
-	ListaEntidades* lPersonagens;
-	Lista<Obstaculo>* lObstaculos;
+	Lista<Jogador>* listaJogadores;
+	Lista<Inimigo>* listaInimigos;
+	Lista<Obstaculo>* listaObstaculos;
 	FaseUm* fase1;
 
 public:

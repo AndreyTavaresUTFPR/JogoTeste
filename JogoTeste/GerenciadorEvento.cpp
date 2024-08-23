@@ -3,7 +3,11 @@
 GerenciadorEvento* GerenciadorEvento::pEventos(NULL); // Atributo STATIC
 
 GerenciadorEvento::GerenciadorEvento() :
-    pGrafico(pGrafico->getGerenciadorGrafico()), listaPersonagens(nullptr), listaObstaculos(nullptr)
+    pGrafico(pGrafico->getGerenciadorGrafico()),
+    pColisao(nullptr),
+    listaJogadores(nullptr),
+    listaInimigos(nullptr),
+    listaObstaculos(nullptr)
 {
     pColisao = new GerenciadorColisao();
 }
@@ -20,9 +24,10 @@ GerenciadorEvento* GerenciadorEvento::getGerenciadorEvento()
     return pEventos;
 }
 
-void GerenciadorEvento::setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst)
+void GerenciadorEvento::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
 {
-    listaPersonagens = listaPers;
+    listaJogadores = listaJog;
+    listaInimigos = listaInim;
     listaObstaculos = listaObst;
 }
 
@@ -30,11 +35,11 @@ void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
     //TO DO: Implementar interações do usuário
     Entidade* ent;
-    for (int i = 0; i < listaPersonagens->LEs.getLen(); i++)
+    /*for (int i = 0; i < listaPersonagens->LEs.getLen(); i++)
     {
         ent = listaPersonagens->LEs.getItem(i);
         ent->executar();
-    }
+    }*/
 }
 
 void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
@@ -49,6 +54,8 @@ void GerenciadorEvento::executarMenu()
 
 void GerenciadorEvento::executarFaseUm()
 {
+    Entidade* temp = nullptr;
+    int i = 0;
     while (pGrafico->verificarJanela())
     {
         sf::Event event;
@@ -65,17 +72,23 @@ void GerenciadorEvento::executarFaseUm()
         }
 
         pGrafico->limparJanela();
-        for (int i = 0; i < listaPersonagens->LEs.getLen(); i++) 
+        for (i = 0; i < listaJogadores->getLen(); i++) 
         {
-            Entidade* temp = listaPersonagens->LEs.getItem(i);
+            temp = static_cast<Entidade*>(listaJogadores->getItem(i));
             temp->executar();
             pGrafico->desenharElemento(temp->getBody());
         }
-        for (int i = 0; i < listaObstaculos->getLen(); i++) 
+        for (i = 0; i < listaInimigos->getLen(); i++)
         {
-            Obstaculo* tempObst = listaObstaculos->getItem(i);
-            tempObst->executar();
-            pGrafico->desenharElemento(tempObst->getBody());
+            temp = static_cast<Entidade*>(listaInimigos->getItem(i));
+            temp->executar();
+            pGrafico->desenharElemento(temp->getBody());
+        }
+        for (i = 0; i < listaObstaculos->getLen(); i++) 
+        {
+            temp = static_cast<Entidade*>(listaObstaculos->getItem(i));
+            temp->executar();
+            pGrafico->desenharElemento(temp->getBody());
         }
         pColisao->executar();
         pGrafico->mostrarElemento();
@@ -84,7 +97,7 @@ void GerenciadorEvento::executarFaseUm()
 
 void GerenciadorEvento::executar()
 {
-    pColisao->setListas(listaPersonagens, listaObstaculos);
+    pColisao->setListas(listaJogadores, listaInimigos, listaObstaculos);
     while (pGrafico->verificarJanela())
     {
         executarMenu();

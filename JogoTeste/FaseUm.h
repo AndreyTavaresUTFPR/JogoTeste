@@ -19,5 +19,6 @@ namespace Fases {
 		FaseUm(Jogador* j1, Jogador* j2);
 		~FaseUm();
 
+		void executar();
 	};
 } using namespace Fases;
