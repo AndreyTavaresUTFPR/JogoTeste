@@ -8,12 +8,18 @@ namespace Personagens {
 		protected:
 			sf::Vector2f vel;
 			int vida;
+			bool cair;
+			bool esquerda;
+			bool direita;
 
 		public:
 			Personagem();
 			~Personagem();
 
-
+			virtual void liberarGravidade();
+			virtual void liberarMovimento();
+			void conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraEnt);
+			virtual void mudarVelocidade(float fator) = 0;
 			virtual void move() = 0;
 			virtual void executar() = 0; 
 		};

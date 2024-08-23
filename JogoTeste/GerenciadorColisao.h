@@ -19,7 +19,10 @@ namespace Gerenciadores {
 
 		void setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst);
 
-		void repararColisao(Entidade* ent1, Entidade* ent2);
+		void conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim);
+		void conferirColisaoJogObst(Jogador* pJog, Obstaculo* pObst);
+		void conferirColisaoInimInim(Inimigo* pInim1, Inimigo* pInim2);
+		void conferirColisaoInimObst(Inimigo* pInim, Obstaculo* pObst);
 		void executar();
 	};
 } using namespace Gerenciadores;

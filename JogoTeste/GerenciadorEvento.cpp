@@ -33,13 +33,7 @@ void GerenciadorEvento::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* list
 
 void GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 {
-    //TO DO: Implementar interações do usuário
-    Entidade* ent;
-    /*for (int i = 0; i < listaPersonagens->LEs.getLen(); i++)
-    {
-        ent = listaPersonagens->LEs.getItem(i);
-        ent->executar();
-    }*/
+    //TO DO: Implementar interações do usuario
 }
 
 void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
@@ -76,19 +70,19 @@ void GerenciadorEvento::executarFaseUm()
         {
             temp = static_cast<Entidade*>(listaJogadores->getItem(i));
             temp->executar();
-            pGrafico->desenharElemento(temp->getBody());
+            pGrafico->desenharElemento(*temp->getBody());
         }
         for (i = 0; i < listaInimigos->getLen(); i++)
         {
             temp = static_cast<Entidade*>(listaInimigos->getItem(i));
             temp->executar();
-            pGrafico->desenharElemento(temp->getBody());
+            pGrafico->desenharElemento(*temp->getBody());
         }
         for (i = 0; i < listaObstaculos->getLen(); i++) 
         {
             temp = static_cast<Entidade*>(listaObstaculos->getItem(i));
             temp->executar();
-            pGrafico->desenharElemento(temp->getBody());
+            pGrafico->desenharElemento(*temp->getBody());
         }
         pColisao->executar();
         pGrafico->mostrarElemento();

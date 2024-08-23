@@ -13,12 +13,21 @@ Solo::~Solo()
 
 }
 
-void Solo::setBody(sf::Vector2f tam, sf::Vector2f pos)
+void Solo::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
 	body.setFillColor(sf::Color::Green);
-	body.setPosition(pos);
+}
+
+void Solo::afetarPersonagem(Jogador* pJog)
+{
+
+}
+
+void Solo::afetarPersonagem(Inimigo* pInim)
+{
+
 }
 
 void Solo::executar()

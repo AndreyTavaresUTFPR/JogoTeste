@@ -11,3 +11,7 @@ Obstaculos::Obstaculo::~Obstaculo()
 {
 }
 
+bool Obstaculo::ehSolido() const
+{
+	return solido;
+}

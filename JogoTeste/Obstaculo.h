@@ -1,5 +1,7 @@
 #pragma once
 #include "Entidade.h"
+#include "Jogador.h"
+#include "Inimigo.h"
 
 namespace Obstaculos {
 	class Obstaculo : public Entidade
@@ -12,6 +14,9 @@ namespace Obstaculos {
 		Obstaculo(bool dano, bool solidez);
 		virtual ~Obstaculo();
 
+		virtual void afetarPersonagem(Jogador* pJog) = 0;
+		virtual void afetarPersonagem(Inimigo* pInim) = 0;
+		bool ehSolido() const;
 		virtual void executar() = 0;
 	};
 } using namespace Obstaculos;

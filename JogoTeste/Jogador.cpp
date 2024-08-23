@@ -21,6 +21,13 @@ void Jogador::setBody(sf::Vector2f tam)
     body.setPosition(50.f, 50.f);
 }
 
+void Jogador::mudarVelocidade(float fator)
+{
+    vel.x = VEL_JOGADOR_X + fator;
+    vel.y = VEL_JOGADOR_Y + fator;
+}
+
+
 // Move o jogardor
 void Jogador::move()
 {

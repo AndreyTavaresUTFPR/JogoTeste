@@ -10,7 +10,9 @@ namespace Obstaculos {
 		Solo();
 		~Solo();
 
-		void setBody(sf::Vector2f tam, sf::Vector2f pos);
+		void setBody(sf::Vector2f tam);
+		void afetarPersonagem(Jogador* pJog);
+		void afetarPersonagem(Inimigo* pInim);
 		void executar();
 	};
 } using namespace Obstaculos;

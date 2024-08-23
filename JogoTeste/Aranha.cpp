@@ -11,10 +11,36 @@ Aranha::~Aranha()
 }
 
 
+void Aranha::liberarGravidade()
+{
+	cair = true;
+	vel.y = VELOCIDADE_PULO;
+}
+
+
+void Aranha::liberarMovimento()
+{
+	esquerda = true;
+	direita = true;
+	vel.x = VELOCIDADE_HORIZONTAL;
+}
+
+void Aranha::mudarVelocidade(float fator)
+{
+	vel.x += fator;
+	if (vel.x < 0.f)
+		vel.x = -vel.x;
+	vel.y += fator;
+	if (vel.y < 0.f)
+		vel.y = -vel.y;
+}
+
 void Aranha::pular()
 {
 	float tempo = timer_gravidade.getElapsedTime().asSeconds();
-	body.move(sf::Vector2f(pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo))));
+
+		body.move(sf::Vector2f(pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo))));
+		//body.move(sf::Vector2f(-pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo)))); PENSAR EM COMO IMPLEMENTAR O MOVIMENTO ALEATORIO
 }
 
 

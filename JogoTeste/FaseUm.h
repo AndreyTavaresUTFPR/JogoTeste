@@ -10,9 +10,11 @@ namespace Fases {
 	{
 	private:
 		Esqueleto* e1;
+		Esqueleto* e2;
 		Aranha* a1;
 		Solo* solo1;
 		Teia* obst1;
+		Teia* obst2;
 
 		void inicializaElementos();
 	public:
