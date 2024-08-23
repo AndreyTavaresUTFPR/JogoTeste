@@ -2,7 +2,7 @@
 
 
 Entidade::Entidade() :
-	cair(false), esquerda(false), direita(false)
+	Ente(),	cair(false), esquerda(false), direita(false)
 {
 
 }

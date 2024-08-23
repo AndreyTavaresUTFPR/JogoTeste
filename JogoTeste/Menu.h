@@ -1,4 +1,5 @@
 #pragma once
+#include "Ente.h"
 #include <SFML/Graphics.hpp>
 #include "Lista.h"
 #include "GerenciadorGrafico.h"
@@ -6,7 +7,7 @@
 using namespace std;
 
 namespace Menus{
-	class Menu {
+	class Menu : public Ente {
 	protected:
 		int n_opcoes;
 		sf::Font font;
@@ -15,8 +16,6 @@ namespace Menus{
 		float altura;
 		float largura;
 		int opcaoSelecionada;
-		
-		GerenciadorGrafico* pGrafico;
 
 	public:
 		Menu();

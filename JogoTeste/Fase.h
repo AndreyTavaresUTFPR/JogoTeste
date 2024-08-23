@@ -1,6 +1,8 @@
 #pragma once
+#include "Ente.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
+#include "Obstaculo.h"
 #include <SFML/Graphics.hpp>
 
 namespace Fases {
@@ -10,12 +12,11 @@ namespace Fases {
 		ListaEntidades* lPersonagens;
 		Lista<Obstaculo> lObstaculos;
 		Jogador* j1;
-		Jogador* j2;
 
 		virtual void inicializaElementos() = 0;
 
 	public:
-		Fase(Jogador* j1, Jogador* j2);
+		Fase(Jogador* j1);
 		virtual ~Fase();
 
 		

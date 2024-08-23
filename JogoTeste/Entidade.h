@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Ente.h"
 
 
 namespace Entidades {
-	class Entidade
+	class Entidade : public Ente
 	{
 	protected:
 		sf::RectangleShape body;

@@ -11,13 +11,13 @@ GerenciadorColisao::~GerenciadorColisao()
 
 }
 
-void GerenciadorColisao::setListas(ListaEntidades* pPers, ListaEntidades* pObst)
+void GerenciadorColisao::setListas(ListaEntidades* listaPers, Lista<Obstaculo>* listaObst)
 {
-	lPersonagens = pPers;
-	lObstaculos = pObst;
+	lPersonagens = listaPers;
+	lObstaculos = listaObst;
 }
 
-void GerenciadorColisao::repararColisao(Entidade* ent1, Entidade* ent2)
+void GerenciadorColisao::repararColisao(Entidade* ent1, Entidade* ent2) //Confere se houve colisão entre as Entidades, caso o if seja true, corrige as posições das entidades e seus movimentos.
 {
 	sf::Vector2f ds(fabsf(ent1->getCentro().x - ent2->getCentro().x), fabsf(ent1->getCentro().y - ent2->getCentro().y));
 
@@ -35,20 +35,25 @@ void GerenciadorColisao::executar()
 {
 	Entidade* ent1 = nullptr, *ent2 = nullptr;
 	int i = 0, j = 0;
+
 	for (i = 0; i < lPersonagens->LEs.getLen(); i++)
 	{
 		ent1 = lPersonagens->LEs.getItem(i);
 		ent1->liberarGravidade();
+		ent1->liberarMovimento();
+	}
+
+	for (i = 0; i < lPersonagens->LEs.getLen(); i++)
+	{
+		ent1 = lPersonagens->LEs.getItem(i);
 		for (j = i + 1; j < lPersonagens->LEs.getLen(); j++)
 		{
 			ent2 = lPersonagens->LEs.getItem(j);
-			ent1->liberarMovimento();
-			ent2->liberarMovimento();
 			repararColisao(ent1, ent2);
 		}
-		for (j = 0; j < lObstaculos->LEs.getLen(); j++)
+		for (j = 0; j < lObstaculos->getLen(); j++)
 		{
-			ent2 = lObstaculos->LEs.getItem(j);
+			ent2 = static_cast<Entidade*>(lObstaculos->getItem(j));
 			repararColisao(ent1, ent2);
 		}
 	}

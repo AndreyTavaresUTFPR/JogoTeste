@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Aranha.cpp" />
-    <ClCompile Include="Chefe.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
@@ -163,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aranha.h" />
-    <ClInclude Include="Chefe.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="FaseUm.h" />
     <ClInclude Include="GerenciadorColisao.h" />

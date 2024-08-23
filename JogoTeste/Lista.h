@@ -19,32 +19,22 @@ public:
 	TL* getItem(int posicao) {
 		Elemento<TL>* temp = pPrimeiro;
 
-		if (posicao == 0)
-		{
-			return temp->getItem();
-		}
-
 		for (int i = 0; i < posicao; i++)
 		{
-			temp = temp->getPProx();
+			temp = temp->getPProx(); //Só para diminuir um pouco o código, para posicao = 0 pula o loop e retorna o primeiro
 		}
 
 		return temp->getItem();
 	}
 
 	void push(TL* item) {
+		Elemento<TL>* temp = new Elemento<TL>();
+		temp->setItem(item);
 		if (pPrimeiro == nullptr)
-		{
-			pPrimeiro = new Elemento<TL>;
-			pPrimeiro->setItem(item);
-			pUltimo = pPrimeiro;
-
-		} else {
-			Elemento<TL>* temp = new Elemento<TL>;
-			temp->setItem(item);
+			pPrimeiro = temp;
+		else 
 			pUltimo->setPProx(temp);
-			pUltimo = temp;
-		}
+		pUltimo = temp;
 		len++;
 	}
 

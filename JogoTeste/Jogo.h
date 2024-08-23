@@ -13,7 +13,6 @@ private:
 	GerenciadorGrafico* pGrafico;
 	GerenciadorEvento* pEvento;
 	Jogador* jogador1;
-	Jogador* jogador2;
 	ListaEntidades* lPersonagens;
 	Lista<Obstaculo>* lObstaculos;
 	FaseUm* fase1;

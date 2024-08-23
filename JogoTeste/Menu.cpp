@@ -1,11 +1,11 @@
 #include "Menu.h"
 
 Menu::Menu() :
+    Ente(),
     altura(800.f),
     largura(800.f),
     opcaoSelecionada(0),
-    n_opcoes(3),
-    pGrafico(pGrafico->getGerenciadorGrafico())
+    n_opcoes(3)
 {
 
 }
