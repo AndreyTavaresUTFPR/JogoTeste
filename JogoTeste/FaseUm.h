@@ -20,5 +20,6 @@ namespace Fases {
 		~FaseUm();
 
 		void executar();
+		void criarMapa();
 	};
 } using namespace Fases;

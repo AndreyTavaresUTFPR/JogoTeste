@@ -41,11 +41,11 @@ void Personagens::Esqueleto::movimentoAleatorio() // Movimento aleatório do esqu
 {
 	if (moveAleatorio == 1 && direita) {
 		body.move(vel.x/2.f, 0.f);
-		esquerda = true;
+		if (body.getPosition().x + body.getSize().x > pGrafico->getWindow()->getSize().x)
+			body.setPosition((pGrafico->getWindow()->getSize().x - body.getSize().x), body.getPosition().y);
 	}
 	else if (moveAleatorio == 2 && esquerda) {
 		body.move(-vel.x/2.f, 0.f);
-		direita = true;
 	}
 	else {
 		body.move(0.f, 0.f);  // Pausas ocasionais no movimento

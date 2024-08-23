@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #define VEL_JOGADOR_X 0.15f
-#define VEL_JOGADOR_Y 0.15f
+#define VEL_JOGADOR_Y 0.2f
 
 
 namespace Personagens {
@@ -11,10 +11,11 @@ namespace Personagens {
     {
     private:
         sf::Clock timer;
+        static int n_players;
         int player;
 
     public:
-        Jogador(int player);
+        Jogador();
         ~Jogador();
 
         void setBody(sf::Vector2f tam);

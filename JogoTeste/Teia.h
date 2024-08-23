@@ -12,7 +12,7 @@ namespace Obstaculos {
 		Teia();
 		~Teia();
 
-		void setBody();
+		void setBody(sf::Vector2f pos);
 		void executar();
 	};
 

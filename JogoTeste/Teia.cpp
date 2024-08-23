@@ -7,7 +7,7 @@ Teia::Teia() :
 	Obstaculo(DANO, SOLIDEZ),
 	lentidao(LENTIDAO_TEIA)
 {
-	setBody();
+	setBody(sf::Vector2f(150.f, 725.f));
 }
 
 Teia::~Teia()
@@ -15,12 +15,12 @@ Teia::~Teia()
 
 }
 
-void Teia::setBody()
+void Teia::setBody(sf::Vector2f pos)
 {
 	sf::RectangleShape b(sf::Vector2f(50.f, 50.f));
 	body = b;
 	body.setFillColor(sf::Color::Blue);
-	body.move(sf::Vector2f(100.f, 700.f)); //Move para a parte inferior da jaenla;
+	body.move(pos); //Move para a parte inferior da jaenla;
 }
 
 void Teia::executar()

@@ -10,7 +10,7 @@ namespace Obstaculos {
 		Solo();
 		~Solo();
 
-		void setBody();
+		void setBody(sf::Vector2f tam, sf::Vector2f pos);
 		void executar();
 	};
 } using namespace Obstaculos;
