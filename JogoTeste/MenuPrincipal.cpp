@@ -2,7 +2,8 @@
 
 MenuPrincipal::MenuPrincipal() :
     Menu(), 
-    iniciar(false)
+    iniciar(false),
+    dois_jogadores(false)
 {
 
 
@@ -68,10 +69,13 @@ void MenuPrincipal::selecionarOpcao()
 {
     if (opcaoSelecionada == 0) //Iniciar Jogo
     {
+        dois_jogadores = false;
         iniciar = true;
     }
     else if (opcaoSelecionada == 1) //2 Jogadores
     {
+        dois_jogadores = true;
+        iniciar = true;
     }
     else if (opcaoSelecionada == 2) //Sair
         pGrafico->fecharJanela();
@@ -107,4 +111,8 @@ void MenuPrincipal::executar()
         else if (evento.type == sf::Event::Closed())
             pGrafico->fecharJanela();
     }
+}
+
+bool MenuPrincipal::getDoisJogadores() const {
+    return dois_jogadores;
 }

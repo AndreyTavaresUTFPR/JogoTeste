@@ -11,9 +11,10 @@ namespace Personagens {
     {
     private:
         sf::Clock timer;
+        int player;
 
     public:
-        Jogador();
+        Jogador(int player);
         ~Jogador();
 
         void setBody(sf::Vector2f tam);

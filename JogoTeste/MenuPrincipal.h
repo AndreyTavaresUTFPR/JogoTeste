@@ -8,6 +8,7 @@ namespace Menus {
 	{
 	private:
 		bool iniciar;
+		bool dois_jogadores;
 
 	public:
 		MenuPrincipal();
@@ -20,6 +21,7 @@ namespace Menus {
 		void voltarMenu();
 		bool getIniciar();
 		void executar();
+		bool getDoisJogadores() const;
 
 	};
 } using namespace Menus;
