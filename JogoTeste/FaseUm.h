@@ -16,7 +16,7 @@ namespace Fases {
 
 		void inicializaElementos();
 	public:
-		FaseUm(Jogador* j1);
+		FaseUm(Jogador* j1, Jogador* j2);
 		~FaseUm();
 
 	};

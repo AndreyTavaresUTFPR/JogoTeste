@@ -5,7 +5,7 @@ void Fase::inicializaElementos()
 	
 }
 
-Fase::Fase(Jogador* j1) :
+Fase::Fase(Jogador* j1, Jogador* j2) :
 	Ente(), lPersonagens(nullptr), lObstaculos()
 {
 	lPersonagens = new ListaEntidades();

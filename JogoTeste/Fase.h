@@ -12,11 +12,12 @@ namespace Fases {
 		ListaEntidades* lPersonagens;
 		Lista<Obstaculo> lObstaculos;
 		Jogador* j1;
+		Jogador* j2;
 
 		virtual void inicializaElementos() = 0;
 
 	public:
-		Fase(Jogador* j1);
+		Fase(Jogador* j1, Jogador* j2);
 		virtual ~Fase();
 
 		
