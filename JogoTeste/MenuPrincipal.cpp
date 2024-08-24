@@ -29,6 +29,20 @@ MenuPrincipal::MenuPrincipal() :
     temp->setString("Escolher Fase");
     opcoes.push(temp);
 
+    temp = new sf::Text();
+    temp->setString("Carregar Jogo");
+    opcoes.push(temp);
+
+    temp = new sf::Text();
+    temp->setString("Ranking");
+    opcoes.push(temp);
+
+    temp = new sf::Text();
+    temp->setString("Sair");
+    opcoes.push(temp);
+
+    n_opcoes = opcoes.getLen();
+
     for (int i = 1; i < n_opcoes; i++)
     {
         temp = opcoes.getItem(i);
@@ -93,11 +107,11 @@ void MenuPrincipal::selecionarOpcao()
         dois_jogadores = true;
         iniciar = true;
     }
-    else if (opcaoSelecionada == 2)
+    else if (opcaoSelecionada == 2) //Escolher Fase
         return;
-    else if (opcaoSelecionada == 3)
+    else if (opcaoSelecionada == 3) //Carregar Jogo
         return;
-    else if (opcaoSelecionada == 4)
+    else if (opcaoSelecionada == 4) //Ranking
         return;
     else if (opcaoSelecionada == 5) //Sair
         pGrafico->fecharJanela();

@@ -11,6 +11,8 @@ namespace Fases {
 	class FaseUm : public Fase
 	{
 	private:
+		Jogador* j1;
+		Jogador* j2;
 		Esqueleto* e1;
 		Esqueleto* e2;
 		Aranha* a1;

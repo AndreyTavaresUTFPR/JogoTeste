@@ -4,13 +4,13 @@ GerenciadorEvento* GerenciadorEvento::pEventos(NULL); // Atributo STATIC
 
 GerenciadorEvento::GerenciadorEvento() :
     pGrafico(pGrafico->getGerenciadorGrafico()),
-    pColisao(nullptr),
+    pColisao(pColisao->getGerenciadorColisao()),
     listaJogadores(nullptr),
     listaInimigos(nullptr),
     listaObstaculos(nullptr),
     menuPrincipal(menuPrincipal->getMenuPrincipal())
 {
-    pColisao = new GerenciadorColisao();
+
 }
 
 GerenciadorEvento::~GerenciadorEvento()
@@ -59,7 +59,7 @@ void GerenciadorEvento::executarFaseUm()
             if (event.type == sf::Event::KeyPressed)
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
                 {
-                    menuPrincipal->voltarMenu();
+                    
                     return;
                 }
             if (event.type == sf::Event::Closed)

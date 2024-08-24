@@ -1,5 +1,7 @@
 #include "GerenciadorColisao.h"
 
+GerenciadorColisao* GerenciadorColisao::pColisao(nullptr);
+
 GerenciadorColisao::GerenciadorColisao() :
 	listaJogadores(nullptr), listaInimigos(nullptr), listaObstaculos(nullptr)
 {
@@ -9,6 +11,13 @@ GerenciadorColisao::GerenciadorColisao() :
 GerenciadorColisao::~GerenciadorColisao()
 {
 
+}
+
+GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
+{
+	if (pColisao == nullptr)
+		pColisao = new GerenciadorColisao();
+	return pColisao;
 }
 
 void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)

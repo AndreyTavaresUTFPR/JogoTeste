@@ -6,12 +6,14 @@ namespace Menus {
 	{
 	private:
 		bool pausar;
+		bool voltarInicio;
 
 	public:
 		MenuPausa();
 		~MenuPausa();
 
 		bool getPausa() const;
+		bool getVoltarInicio() const;
 		void desenharMenu();
 		void selecionarOpcao();
 		void executar();

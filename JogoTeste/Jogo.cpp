@@ -19,7 +19,7 @@ Jogo::~Jogo()
 
 void Jogo::criarJogadores()
 {
-    for (int i = 0; i < n_jogadores; i++)
+    for (int i = listaJogadores.getLen(); i < n_jogadores; i++)
     {
         Jogador* temp = new Jogador();
         temp->getBody()->setPosition(50.f, 50.f);
@@ -31,20 +31,24 @@ void Jogo::criarJogadores()
 void Jogo::criarFaseUm()
 {
     fase1 = new FaseUm(&listaJogadores);
-    listaInimigos = fase1->getListaInimigos();
-    listaObstaculos = fase1->getListaObstaculos();
+    fase1->executar();
+    delete fase1;
+    pGrafico->limparJanela();
+    //listaInimigos = fase1->getListaInimigos();
+    //listaObstaculos = fase1->getListaObstaculos();
 }
 
 void Jogo::executar()
 {
-    pEvento->executarMenuPrincipal();
-    if (menuPrincipal->getDoisJogadores())
-        n_jogadores = 2;
-    criarJogadores();
-    //Conferir qual a fase a ser executada 
-    
-    criarFaseUm();
+    menuPrincipal->executar();
+    while (pGrafico->verificarJanela()) 
+    {
+        if (menuPrincipal->getDoisJogadores())
+            n_jogadores = 2;
+        criarJogadores();
+        //Conferir qual a fase a ser executada 
 
-    pEvento->setListas(&listaJogadores, listaInimigos, listaObstaculos);
-    pEvento->executar();
+        criarFaseUm();
+        menuPrincipal->voltarMenu();
+    }
 }

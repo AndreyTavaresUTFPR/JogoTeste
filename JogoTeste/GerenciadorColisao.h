@@ -12,11 +12,13 @@ namespace Gerenciadores {
 		Lista<Jogador>* listaJogadores;
 		Lista<Inimigo>* listaInimigos;
 		Lista<Obstaculo>* listaObstaculos;
-
-	public:
+		
+		static GerenciadorColisao* pColisao;
 		GerenciadorColisao();
+	public:
 		~GerenciadorColisao();
 
+		static GerenciadorColisao* getGerenciadorColisao();
 		void setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst);
 
 		void conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim);
