@@ -1,7 +1,7 @@
 #pragma once
 #include "Ente.h"
 #include "Jogador.h"
-#include "ListaJogadores.h"
+#include "ListaEntidades.h"
 #include "Obstaculo.h"
 #include "Inimigo.h"
 #include <SFML/Graphics.hpp>
@@ -10,7 +10,7 @@ namespace Fases {
 	class Fase : public Ente
 	{
 	protected:
-		ListaJogadores listaJogadores;
+		Lista<Jogador> listaJogadores;
 		Lista<Inimigo> listaInimigos;
 		Lista<Obstaculo> listaObstaculos;
 		Jogador* j1;
@@ -22,7 +22,7 @@ namespace Fases {
 		Fase(Jogador* j1, Jogador* j2);
 		virtual ~Fase();
 
-		ListaJogadores* getListaJogadores();
+		Lista<Jogador>* getListaJogadores();
 		Lista<Inimigo>* getListaInimigos();
 		Lista<Obstaculo>* getListaObstaculos();
 		void executar() = 0;

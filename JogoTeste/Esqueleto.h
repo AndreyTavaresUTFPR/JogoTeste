@@ -1,7 +1,6 @@
 #pragma once
 #include "Inimigo.h"
 #include "Jogador.h"
-#include "ListaJogadores.h"
 
 #define VIDA_ESQUELETO 100
 
@@ -16,14 +15,12 @@ namespace Personagens {
 	class Esqueleto : public Inimigo
 	{
 	private:
-		ListaJogadores* LJogs;
 		Jogador* jogador; // Ponteiro para jogador
-		Jogador* jogador2;
 		sf::Clock relogio;
 		int moveAleatorio;
 
 	public:
-		Esqueleto(ListaJogadores* listaJogadores);
+		Esqueleto(Jogador* jogador);
 		~Esqueleto();
 
 		virtual void setBody(sf::Vector2f tam);
