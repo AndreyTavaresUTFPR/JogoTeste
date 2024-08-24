@@ -1,8 +1,8 @@
 #include "Esqueleto.h"
 
 
-Esqueleto::Esqueleto(Jogador* jogador):
-	Inimigo(), jogador(jogador), moveAleatorio(rand()%5)
+Esqueleto::Esqueleto(ListaJogadores* LJogs):
+	Inimigo(), moveAleatorio(rand()%5), jogador(nullptr), jogador2(nullptr), LJogs(LJogs)
 {
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
@@ -15,6 +15,7 @@ Esqueleto::~Esqueleto()
 {
 }
 
+
 void Esqueleto::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
@@ -22,6 +23,7 @@ void Esqueleto::setBody(sf::Vector2f tam)
 	body.setFillColor(sf::Color::Magenta);
 	body.setPosition(sf::Vector2f(400.f, 250.f));
 }
+
 
 void Esqueleto::liberarGravidade()
 {
@@ -37,11 +39,13 @@ void Esqueleto::liberarMovimento()
 	vel.x = VEL_ESQUELETO_X;
 }
 
+
 void Esqueleto::mudarVelocidade(float fator)
 {
 	vel.x = VEL_ESQUELETO_X + fator;
 	vel.y = VEL_ESQUELETO_Y + fator;
 }
+
 
 void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) // Persegue o jogador se o mesmo entrar no aggro
 {
@@ -81,8 +85,18 @@ void Personagens::Esqueleto::movimentoAleatorio() // Movimento aleatório do esqu
 
 void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 {
-	sf::Vector2f posJogador = jogador->getCentro();
+	sf::Vector2f posJogador = LJogs->LJogs.getItem(0)->getCentro();
 	sf::Vector2f posEsqueleto = getCentro();
+
+	if (LJogs->LJogs.getLen() == 2){
+		sf::Vector2f posJogador2(LJogs->LJogs.getItem(1)->getCentro());
+		if (fabsf(posJogador2.x - posEsqueleto.x) < fabsf(posJogador.x - posEsqueleto.x) && fabsf(posJogador2.y - posEsqueleto.y) < fabsf(posJogador.y - posEsqueleto.y)) {
+				posJogador = posJogador2;
+		}
+
+	}
+
+
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 
@@ -101,4 +115,4 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 }
 
 
-void Esqueleto::executar() { move(); } // Move o esqqueleto corretamente
+void Esqueleto::executar() { move(); } // Move o esqueleto corretamente
