@@ -40,9 +40,9 @@ void Jogo::criarFaseUm()
 
 void Jogo::executar()
 {
-    menuPrincipal->executar();
     while (pGrafico->verificarJanela()) 
     {
+        menuPrincipal->executar();
         if (menuPrincipal->getDoisJogadores())
             n_jogadores = 2;
         criarJogadores();

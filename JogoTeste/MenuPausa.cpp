@@ -66,7 +66,10 @@ void MenuPausa::selecionarOpcao()
     if (opcaoSelecionada == 0) //Continuar o Jogo
         pausar = false;
     else if (opcaoSelecionada == 1) //Voltar ao Menu Principal
+    {
+        pausar = false;
         voltarInicio = true;
+    }
     //Poderia ser implementado uma opção 'Reiniciar Fase'
 }
 
@@ -90,6 +93,8 @@ void MenuPausa::executar()
             }
             else if (evento.type == sf::Event::Closed)
                 pGrafico->fecharJanela();
+            if (!pausar)
+                return;
         }
         
     }
