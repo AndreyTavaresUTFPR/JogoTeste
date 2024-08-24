@@ -1,7 +1,7 @@
 #include "Espinhos.h"
 
 Espinhos::Espinhos() :
-	Obstaculo(DANO, SOLIDEZ)
+	Obstaculo(DANO_ESPINHOS, SOLIDEZ_ESPINHOS)
 {
 	setBody(sf::Vector2f(0.f, 0.f));
 }

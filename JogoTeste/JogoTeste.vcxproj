@@ -155,6 +155,7 @@
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuPausa.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Teia.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuPausa.h" />
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Teia.h" />

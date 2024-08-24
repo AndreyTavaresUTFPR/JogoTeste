@@ -32,8 +32,6 @@ FaseUm::~FaseUm()
 
 void FaseUm::inicializaElementos()
 {
-	listaJogadores.push(j1);
-	listaJogadores.push(j2);
 	listaInimigos.push(static_cast<Inimigo*>(e1));
 	if (listaJogadores->getLen() == 2)
 		listaInimigos.push(static_cast<Inimigo*>(e2));
@@ -55,7 +53,7 @@ void FaseUm::criarMapa()
 
 	//Criando as paredes
 	sf::Vector2f tam(25.f, 800.f);
-	sf::Vector2f pos(0.f, 0.f);
+	sf::Vector2f pos(0.f, -150.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
 	listaObstaculos.push(static_cast<Obstaculo*>(temp));

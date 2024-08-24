@@ -28,6 +28,11 @@ void Jogo::criarJogadores()
     }
 }
 
+void Jogo::criarFaseUm()
+{
+    fase1 = new FaseUm(&listaJogadores);
+    listaInimigos = fase1->getListaInimigos();
+    listaObstaculos = fase1->getListaObstaculos();
 }
 
 void Jogo::executar()

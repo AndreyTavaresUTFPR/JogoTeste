@@ -10,16 +10,14 @@ namespace Fases {
 	class Fase : public Ente
 	{
 	protected:
-		Lista<Jogador> listaJogadores;
+		Lista<Jogador>* listaJogadores;
 		Lista<Inimigo> listaInimigos;
 		Lista<Obstaculo> listaObstaculos;
-		Jogador* j1;
-		Jogador* j2;
 
 		virtual void inicializaElementos() = 0;
 
 	public:
-		Fase(Jogador* j1, Jogador* j2);
+		Fase(Lista<Jogador>* listaJog);
 		virtual ~Fase();
 
 		Lista<Jogador>* getListaJogadores();
