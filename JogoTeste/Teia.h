@@ -1,8 +1,8 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Obstaculo.h"
-#define DANO_TEIA false
-#define SOLIDEZ_TEIA false
+#define DANO false
+#define SOLIDEZ false
 #define LENTIDAO_TEIA -0.1f
 
 namespace Obstaculos {

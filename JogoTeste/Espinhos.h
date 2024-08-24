@@ -1,7 +1,7 @@
 #pragma once
 #include "Obstaculo.h"
-#define DANO_ESPINHOS true
-#define SOLIDEZ_ESPINHOS true
+#define DANO true
+#define SOLIDEZ true
 
 namespace Obstaculos {
 	class Espinhos : public Obstaculo 

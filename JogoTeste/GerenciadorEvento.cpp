@@ -7,8 +7,7 @@ GerenciadorEvento::GerenciadorEvento() :
     pColisao(nullptr),
     listaJogadores(nullptr),
     listaInimigos(nullptr),
-    listaObstaculos(nullptr),
-    menuPrincipal(menuPrincipal->getMenuPrincipal())
+    listaObstaculos(nullptr)
 {
     pColisao = new GerenciadorColisao();
 }
@@ -42,9 +41,9 @@ void GerenciadorEvento::verificaTeclaSolta(sf::Keyboard::Key tecla)
     //TO DO: Implementar interações do usuário
 }
 
-void GerenciadorEvento::executarMenuPrincipal(MenuPrincipal* menuPrincipal)
+void GerenciadorEvento::executarMenu()
 {
-    menuPrincipal->executar();
+    menujogo.desenharMenu();
 }
 
 void GerenciadorEvento::executarFaseUm()
@@ -59,11 +58,11 @@ void GerenciadorEvento::executarFaseUm()
             if (event.type == sf::Event::KeyPressed)
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
                 {
-                    menuPrincipal->voltarMenu();
+                    menujogo.voltarMenu();
                     return;
                 }
             if (event.type == sf::Event::Closed)
-                pGrafico->fecharJanela();
+                    pGrafico->fecharJanela();
         }
 
         pGrafico->limparJanela();
@@ -86,7 +85,7 @@ void GerenciadorEvento::executarFaseUm()
             pGrafico->desenharElemento(*temp->getBody());
         }
         pColisao->executar();
-        pGrafico->mostrarElementos();
+        pGrafico->mostrarElemento();
     }
 }
 
@@ -95,7 +94,8 @@ void GerenciadorEvento::executar()
     pColisao->setListas(listaJogadores, listaInimigos, listaObstaculos);
     while (pGrafico->verificarJanela())
     {
-        if (menuPrincipal->getIniciar())
+        executarMenu();
+        if (menujogo.getIniciar())
             executarFaseUm();
     }
     

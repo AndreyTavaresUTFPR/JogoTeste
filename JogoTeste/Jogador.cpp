@@ -7,7 +7,6 @@ Jogador::Jogador() :
 {
     vel.x = VEL_JOGADOR_X;
     vel.y = VEL_JOGADOR_Y;
-    setBody(sf::Vector2f (30.f, 60.f));
 }
 
 Jogador::~Jogador()
