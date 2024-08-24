@@ -1,5 +1,7 @@
 #include "MenuPrincipal.h"
 
+MenuPrincipal* MenuPrincipal::pMenuPrincipal(nullptr);
+
 MenuPrincipal::MenuPrincipal() :
     Menu(), 
     iniciar(false),
@@ -13,24 +15,49 @@ MenuPrincipal::MenuPrincipal() :
 
     titulo.setFont(font);
     titulo.setFillColor(sf::Color::Yellow);
-    titulo.setString("Titulo do Jogo");
-    titulo.setPosition(sf::Vector2f(largura / 2 - titulo.getLocalBounds().width / 2, 100.f));
+    titulo.setString("MaisMaisMorra");
+    titulo.setCharacterSize(100);
+    titulo.setPosition(sf::Vector2f(largura / 2 - titulo.getLocalBounds().width / 2, 80.f));
 
-    opcoes[0].setFont(font);
-    opcoes[0].setFillColor(sf::Color::Red); // A primeira opção está selecionada inicialmente
-    opcoes[0].setString("Iniciar Jogo");
-    opcoes[0].setPosition(sf::Vector2f(largura / 2 - opcoes[0].getLocalBounds().width / 2, altura / (n_opcoes + 1)));
+    sf::Text* temp = new sf::Text();
+    temp->setString("Iniciar Jogo");
+    opcoes.push(temp);
+    
+    temp = new sf::Text();
+    temp->setString("2 Jogadores");
+    opcoes.push(temp);
 
-    opcoes[1].setFont(font);
-    opcoes[1].setFillColor(sf::Color::White);
-    opcoes[1].setString("2 Jogadores");
-    opcoes[1].setPosition(sf::Vector2f(largura / 2 - opcoes[1].getLocalBounds().width / 2, altura / (n_opcoes + 1) * 2));
+    temp = new sf::Text();
+    temp->setString("Escolher Fase");
+    opcoes.push(temp);
 
-    opcoes[2].setFont(font);
-    opcoes[2].setFillColor(sf::Color::White);
-    opcoes[2].setString("Sair");
-    opcoes[2].setPosition(sf::Vector2f(largura / 2 - opcoes[2].getLocalBounds().width / 2, altura / (n_opcoes + 1) * 3));
+    temp = new sf::Text();
+    temp->setString("Carregar Jogo");
+    opcoes.push(temp);
 
+    temp = new sf::Text();
+    temp->setString("Ranking");
+    opcoes.push(temp);
+
+    temp = new sf::Text();
+    temp->setString("Sair");
+    opcoes.push(temp);
+
+    n_opcoes = opcoes.getLen();
+
+    for (int i = 1; i < n_opcoes; i++)
+    {
+        temp = opcoes.getItem(i);
+        temp->setFont(font);
+        temp->setFillColor(sf::Color::White);
+        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, (altura - 300.f) / (n_opcoes + 1) * (i + 1) + 250.f));
+    }
+
+    temp = opcoes.getItem(0);
+    temp->setFont(font);
+    temp->setFillColor(sf::Color::Cyan);
+    temp->setCharacterSize(50);
+    temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, (altura - 300.f) / (n_opcoes + 1) + 245.f));
 }
 
 MenuPrincipal::~MenuPrincipal()
@@ -38,31 +65,35 @@ MenuPrincipal::~MenuPrincipal()
 
 }
 
+MenuPrincipal* MenuPrincipal::getMenuPrincipal()
+{
+    if (pMenuPrincipal == nullptr)
+        pMenuPrincipal = new MenuPrincipal();
+    return pMenuPrincipal;
+}
+
+void MenuPrincipal::voltarMenu()
+{
+    executar();
+    iniciar = false;
+}
+
+bool MenuPrincipal::getIniciar() const
+{
+    return iniciar;
+}
+
+bool MenuPrincipal::getDoisJogadores() const {
+    return dois_jogadores;
+}
+
 void MenuPrincipal::desenharMenu()
 {
-    pGrafico->getWindow()->clear();
-    pGrafico->getWindow()->draw(titulo);
-    pGrafico->desenharMenu(opcoes, n_opcoes);
-}
-
-void MenuPrincipal::opcaoAcima()
-{
-    if (opcaoSelecionada > 0)
-    {
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
-        opcaoSelecionada--;
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-    }
-}
-
-void MenuPrincipal::opcaoAbaixo()
-{
-    if (opcaoSelecionada < n_opcoes - 1)
-    {
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
-        opcaoSelecionada++;
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-    }
+    pGrafico->limparJanela();
+    pGrafico->desenharElemento(titulo);
+    for (int i = 0; i < n_opcoes; i++)
+        pGrafico->desenharElemento(*opcoes.getItem(i));
+    pGrafico->mostrarElementos();
 }
 
 void MenuPrincipal::selecionarOpcao()
@@ -77,42 +108,37 @@ void MenuPrincipal::selecionarOpcao()
         dois_jogadores = true;
         iniciar = true;
     }
-    else if (opcaoSelecionada == 2) //Sair
+    else if (opcaoSelecionada == 2)
+        return;
+    else if (opcaoSelecionada == 3)
+        return;
+    else if (opcaoSelecionada == 4)
+        return;
+    else if (opcaoSelecionada == 5) //Sair
         pGrafico->fecharJanela();
-}
-
-void MenuPrincipal::voltarMenu()
-{
-    iniciar = false;
-}
-
-bool MenuPrincipal::getIniciar()
-{
-    executar();
-    return iniciar;
 }
 
 void MenuPrincipal::executar()
 {
-    sf::Event evento;
-    if (pGrafico->getWindow()->pollEvent(evento))
+    while (iniciar == false && pGrafico->verificarJanela())
     {
-        if (evento.type == sf::Event::KeyPressed)
+        desenharMenu();
+        sf::Event evento;
+        if (pGrafico->getWindow()->pollEvent(evento))
         {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-                selecionarOpcao();
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                opcaoAcima();
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-                opcaoAbaixo();
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                iniciar = false;
+            if (evento.type == sf::Event::KeyPressed)
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+                    selecionarOpcao();
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+                    opcaoAcima();
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                    opcaoAbaixo();
+                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                    iniciar = false;
+            }
+            else if (evento.type == sf::Event::Closed)
+                pGrafico->fecharJanela();
         }
-        else if (evento.type == sf::Event::Closed())
-            pGrafico->fecharJanela();
     }
-}
-
-bool MenuPrincipal::getDoisJogadores() const {
-    return dois_jogadores;
 }

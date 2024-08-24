@@ -8,6 +8,7 @@ Esqueleto::Esqueleto(Jogador* jogador):
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
 	relogio.restart();
+	setBody(sf::Vector2f(30.f, 60.f));
 }
 
 

@@ -1,18 +1,18 @@
 #include "FaseUm.h"
 
-FaseUm::FaseUm(Jogador* j1, Jogador* j2) :
-	Fase(j1, j2)
+FaseUm::FaseUm(Lista<Jogador>* listaJog) :
+	Fase(listaJog)
 {
-	sf::Vector2f tamEsqueleto(30.f, 60.f);
 	sf::Vector2f tamAranha(30.f, 30.f);
-	this->j1 = j1;
-	this->j2 = j2;
+	this->j1 = listaJogadores->getItem(0);
 	e1 = new Esqueleto(j1);
-	e1->setBody(tamEsqueleto);
 	e1->getBody()->setPosition(sf::Vector2f(200.f, 345.f));
-	e2 = new Esqueleto(j2);
-	e2->setBody(tamEsqueleto);
-	e2->getBody()->setPosition(sf::Vector2f(750.f, 100.f));
+	if (listaJogadores->getLen() == 2)
+	{
+		this->j2 = listaJogadores->getItem(1);
+		e2 = new Esqueleto(j2);
+		e2->getBody()->setPosition(sf::Vector2f(750.f, 100.f));
+	}
 	a1 = new Aranha();
 	a1->setBody(tamAranha);
 	obst1 = new Teia();
@@ -32,10 +32,9 @@ FaseUm::~FaseUm()
 
 void FaseUm::inicializaElementos()
 {
-	listaJogadores.push(j1);
-	listaJogadores.push(j2);
 	listaInimigos.push(static_cast<Inimigo*>(e1));
-	listaInimigos.push(static_cast<Inimigo*>(e2));
+	if (listaJogadores->getLen() == 2)
+		listaInimigos.push(static_cast<Inimigo*>(e2));
 	listaInimigos.push(static_cast<Inimigo*>(a1));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst1));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst2));
@@ -54,7 +53,7 @@ void FaseUm::criarMapa()
 
 	//Criando as paredes
 	sf::Vector2f tam(25.f, 800.f);
-	sf::Vector2f pos(0.f, 0.f);
+	sf::Vector2f pos(0.f, -150.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
 	listaObstaculos.push(static_cast<Obstaculo*>(temp));
