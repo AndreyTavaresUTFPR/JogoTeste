@@ -1,7 +1,7 @@
 #include "Teia.h"
 
 Teia::Teia() :
-	Obstaculo(DANO, SOLIDEZ),
+	Obstaculo(DANO_TEIA, SOLIDEZ_TEIA),
 	lentidao(LENTIDAO_TEIA)
 {
 	setBody(sf::Vector2f(150.f, 150.f));

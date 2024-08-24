@@ -17,7 +17,7 @@ namespace Gerenciadores
 		Lista<Jogador>* listaJogadores;
 		Lista<Inimigo>* listaInimigos;
 		Lista<Obstaculo>* listaObstaculos;
-		MenuPrincipal menujogo;
+		MenuPrincipal*  menuPrincipal;
 		
 
 		static GerenciadorEvento* pEventos;
@@ -28,7 +28,7 @@ namespace Gerenciadores
 		void setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst);
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
-		void executarMenu();
+		void executarMenuPrincipal(MenuPrincipal* menuPrincipal);
 		void executarFaseUm();
 		void executar();
 	};

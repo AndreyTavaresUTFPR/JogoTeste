@@ -37,9 +37,7 @@ void GerenciadorGrafico::limparJanela()
 
 void GerenciadorGrafico::desenharMenu(sf::Text text[], int nMenus)
 {
-	for (int i = 0; i < nMenus; i++)
-		window->draw(text[i]);
-	window->display();
+	
 }
 
 void GerenciadorGrafico::desenharElemento(sf::RectangleShape corpo)
@@ -47,7 +45,12 @@ void GerenciadorGrafico::desenharElemento(sf::RectangleShape corpo)
 	window->draw(corpo);
 }
 
-void GerenciadorGrafico::mostrarElemento()
+void GerenciadorGrafico::desenharElemento(sf::Text& text)
+{
+	window->draw(text);
+}
+
+void GerenciadorGrafico::mostrarElementos()
 {
 	window->display();
 }

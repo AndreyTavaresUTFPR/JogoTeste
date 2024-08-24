@@ -10,13 +10,13 @@ namespace Menus {
 		bool iniciar;
 		bool dois_jogadores;
 
-	public:
+		static MenuPrincipal* pMenuPrincipal;
 		MenuPrincipal();
+	public:
 		~MenuPrincipal();
 		
+		static MenuPrincipal* getMenuPrincipal();
 		void desenharMenu();
-		void opcaoAcima();
-		void opcaoAbaixo();
 		void selecionarOpcao();
 		void voltarMenu();
 		bool getIniciar();

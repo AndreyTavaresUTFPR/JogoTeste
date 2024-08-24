@@ -22,7 +22,8 @@ namespace Gerenciadores {
 		void limparJanela();
 		void desenharMenu(sf::Text text[], int nMenus);
 		void desenharElemento(sf::RectangleShape corpo);
-		void mostrarElemento();
+		void desenharElemento(sf::Text& text);
+		void mostrarElementos();
 		void fecharJanela();
 		bool verificarJanela() const;
 	};

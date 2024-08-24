@@ -5,8 +5,8 @@ void Fase::inicializaElementos()
 	
 }
 
-Fase::Fase(Jogador* j1, Jogador* j2) :
-	Ente(), listaJogadores(), listaInimigos(), listaObstaculos()
+Fase::Fase(Lista<Jogador>* listaJog) :
+	Ente(), listaJogadores(listaJog), listaInimigos(), listaObstaculos()
 {
 
 }
@@ -17,7 +17,7 @@ Fase::~Fase()
 
 Lista<Jogador>* Fase::getListaJogadores()
 {
-	return &listaJogadores;
+	return listaJogadores;
 }
 
 Lista<Inimigo>* Fase::getListaInimigos() 
