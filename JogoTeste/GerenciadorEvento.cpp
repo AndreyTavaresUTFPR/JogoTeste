@@ -24,7 +24,7 @@ GerenciadorEvento* GerenciadorEvento::getGerenciadorEvento()
     return pEventos;
 }
 
-void GerenciadorEvento::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
+void GerenciadorEvento::setListas(ListaJogadores* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
 {
     listaJogadores = listaJog;
     listaInimigos = listaInim;
@@ -66,9 +66,9 @@ void GerenciadorEvento::executarFaseUm()
         }
 
         pGrafico->limparJanela();
-        for (i = 0; i < listaJogadores->getLen(); i++) 
+        for (i = 0; i < listaJogadores->LJogs.getLen(); i++) 
         {
-            temp = static_cast<Entidade*>(listaJogadores->getItem(i));
+            temp = static_cast<Entidade*>(listaJogadores->LJogs.getItem(i));
             temp->executar();
             pGrafico->desenharElemento(*temp->getBody());
         }

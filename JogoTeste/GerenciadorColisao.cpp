@@ -11,7 +11,7 @@ GerenciadorColisao::~GerenciadorColisao()
 
 }
 
-void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
+void GerenciadorColisao::setListas(ListaJogadores* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
 {
 	listaJogadores = listaJog;
 	listaInimigos = listaInim;
@@ -88,9 +88,9 @@ void GerenciadorColisao::executar()
 
 	int i = 0, j = 0;
 
-	for (i = 0; i < listaJogadores->getLen(); i++)
+	for (i = 0; i < listaJogadores->LJogs.getLen(); i++)
 	{
-		pJog = listaJogadores->getItem(i);
+		pJog = listaJogadores->LJogs.getItem(i);
 		pJog->liberarGravidade();
 		pJog->liberarMovimento();
 	}
@@ -102,9 +102,9 @@ void GerenciadorColisao::executar()
 		pInim1->liberarMovimento();
 	}
 
-	for (i = 0; i < listaJogadores->getLen(); i++)
+	for (i = 0; i < listaJogadores->LJogs.getLen(); i++)
 	{
-		pJog = listaJogadores->getItem(i);
+		pJog = listaJogadores->LJogs.getItem(i);
 		for (j = 0; j < listaInimigos->getLen(); j++)
 		{
 			pInim1 = listaInimigos->getItem(j);
