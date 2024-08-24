@@ -20,7 +20,7 @@ namespace Fases {
 
 		void inicializaElementos();
 	public:
-		FaseUm(Lista<Jogador>* listaJog);
+		FaseUm(Jogador* j1, Jogador* j2);
 		~FaseUm();
 
 		void executar();

@@ -2,13 +2,10 @@
 
 Menu::Menu() :
     Ente(),
-    font(),
-    titulo(),
-    opcoes(),
-    n_opcoes(0),
+    altura(800.f),
+    largura(800.f),
     opcaoSelecionada(0),
-    altura(HEIGHT),
-    largura(WIDTH)
+    n_opcoes(3)
 {
 
 }
@@ -18,19 +15,20 @@ Menu::~Menu()
 
 }
 
+void Menu::desenharMenu()
+{
+    pGrafico->getWindow()->clear();
+    pGrafico->getWindow()->draw(titulo);
+    pGrafico->desenharMenu(opcoes, n_opcoes);
+}
+
 void Menu::opcaoAcima()
 {
     if (opcaoSelecionada > 0)
     {
-        sf::Text* temp = opcoes.getItem(opcaoSelecionada);
-        temp->setFillColor(sf::Color::White);
-        temp->setCharacterSize(30);
-        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
         opcaoSelecionada--;
-        temp = opcoes.getItem(opcaoSelecionada);
-        temp->setFillColor(sf::Color::Cyan);
-        temp->setCharacterSize(50);
-        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
     }
 }
 
@@ -38,15 +36,26 @@ void Menu::opcaoAbaixo()
 {
     if (opcaoSelecionada < n_opcoes - 1)
     {
-        sf::Text* temp = opcoes.getItem(opcaoSelecionada);
-        temp->setFillColor(sf::Color::White);
-        temp->setCharacterSize(30);
-        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
         opcaoSelecionada++;
-        temp = opcoes.getItem(opcaoSelecionada);
-        temp->setFillColor(sf::Color::Cyan);
-        temp->setCharacterSize(50);
-        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
     }
+}
+
+void Menu::selecionarOpcao()
+{
+    
+}
+
+void Menu::voltarMenu()
+{
+
+}
+
+
+
+void Menu::executar()
+{
+    
 }
 

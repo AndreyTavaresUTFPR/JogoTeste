@@ -1,7 +1,5 @@
 #include "MenuPrincipal.h"
 
-MenuPrincipal* MenuPrincipal::pMenuPrincipal(nullptr);
-
 MenuPrincipal::MenuPrincipal() :
     Menu(), 
     iniciar(false),
@@ -15,9 +13,8 @@ MenuPrincipal::MenuPrincipal() :
 
     titulo.setFont(font);
     titulo.setFillColor(sf::Color::Yellow);
-    titulo.setString("MaisMaisMorra");
-    titulo.setCharacterSize(100);
-    titulo.setPosition(sf::Vector2f(largura / 2 - titulo.getLocalBounds().width / 2, 80.f));
+    titulo.setString("Titulo do Jogo");
+    titulo.setPosition(sf::Vector2f(largura / 2 - titulo.getLocalBounds().width / 2, 100.f));
 
     sf::Text* temp = new sf::Text();
     temp->setString("Iniciar Jogo");
@@ -27,23 +24,10 @@ MenuPrincipal::MenuPrincipal() :
     temp->setString("2 Jogadores");
     opcoes.push(temp);
 
-    temp = new sf::Text();
-    temp->setString("Escolher Fase");
-    opcoes.push(temp);
-
-    temp = new sf::Text();
-    temp->setString("Carregar Jogo");
-    opcoes.push(temp);
-
-    temp = new sf::Text();
-    temp->setString("Ranking");
-    opcoes.push(temp);
-
-    temp = new sf::Text();
-    temp->setString("Sair");
-    opcoes.push(temp);
-
-    n_opcoes = opcoes.getLen();
+    opcoes[2].setFont(font);
+    opcoes[2].setFillColor(sf::Color::White);
+    opcoes[2].setString("Sair");
+    opcoes[2].setPosition(sf::Vector2f(largura / 2 - opcoes[2].getLocalBounds().width / 2, altura / (n_opcoes + 1) * 3));
 
     for (int i = 1; i < n_opcoes; i++)
     {
@@ -60,16 +44,21 @@ MenuPrincipal::MenuPrincipal() :
     temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, (altura - 300.f) / (n_opcoes + 1) + 245.f));
 }
 
-MenuPrincipal::~MenuPrincipal()
+void MenuPrincipal::desenharMenu()
 {
-
+    pGrafico->getWindow()->clear();
+    pGrafico->getWindow()->draw(titulo);
+    pGrafico->desenharMenu(opcoes, n_opcoes);
 }
 
-MenuPrincipal* MenuPrincipal::getMenuPrincipal()
+void MenuPrincipal::opcaoAcima()
 {
-    if (pMenuPrincipal == nullptr)
-        pMenuPrincipal = new MenuPrincipal();
-    return pMenuPrincipal;
+    if (opcaoSelecionada > 0)
+    {
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
+        opcaoSelecionada--;
+        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+    }
 }
 
 void MenuPrincipal::voltarMenu()
@@ -108,13 +97,7 @@ void MenuPrincipal::selecionarOpcao()
         dois_jogadores = true;
         iniciar = true;
     }
-    else if (opcaoSelecionada == 2)
-        return;
-    else if (opcaoSelecionada == 3)
-        return;
-    else if (opcaoSelecionada == 4)
-        return;
-    else if (opcaoSelecionada == 5) //Sair
+    else if (opcaoSelecionada == 2) //Sair
         pGrafico->fecharJanela();
 }
 
