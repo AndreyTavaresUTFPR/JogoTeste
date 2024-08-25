@@ -3,20 +3,11 @@
 
 Jogo::Jogo() :
     pGrafico(pGrafico->getGerenciadorGrafico()),
-    pEvento(pEvento->getGerenciadorEvento())
-{
-    sf::Vector2f tam(30.f, 60.f);
-    jogador1 = new Jogador();
-    jogador1->setBody(tam);
-    jogador2 = new Jogador();
-    jogador2->setBody(tam);
-    fase1 = new FaseUm(jogador1, jogador2);
-    jogador1->getBody()->setPosition(50.f, 0.f);
-    jogador2->getBody()->setPosition(50.f, 0.f);
-    listaJogadores = fase1->getListaJogadores();
-    listaInimigos = fase1->getListaInimigos();
-    listaObstaculos = fase1->getListaObstaculos();
-   
+    pEvento(pEvento->getGerenciadorEvento()),
+    n_jogadores(1),
+    listaJogadores(),
+    menuPrincipal(menuPrincipal->getMenuPrincipal())
+{   
     executar();
 }
 
@@ -26,10 +17,38 @@ Jogo::~Jogo()
 
 }
 
+void Jogo::criarJogadores()
+{
+    for (int i = listaJogadores.getLen(); i < n_jogadores; i++)
+    {
+        Jogador* temp = new Jogador();
+        temp->getBody()->setPosition(50.f, 50.f);
+        if (temp != nullptr)
+            listaJogadores.push(temp);
+    }
+}
+
+void Jogo::criarFaseUm()
+{
+    fase1 = new FaseUm(&listaJogadores);
+    fase1->executar();
+    delete fase1;
+    pGrafico->limparJanela();
+    //listaInimigos = fase1->getListaInimigos();
+    //listaObstaculos = fase1->getListaObstaculos();
+}
+
 void Jogo::executar()
 {
-    //Conferir qual a fase a ser executada  
-        pEvento->setListas(listaJogadores, listaInimigos, listaObstaculos);
-        pEvento->executar();
+    while (pGrafico->verificarJanela()) 
+    {
+        menuPrincipal->executar();
+        if (menuPrincipal->getDoisJogadores())
+            n_jogadores = 2;
+        criarJogadores();
+        //Conferir qual a fase a ser executada 
 
+        criarFaseUm();
+        menuPrincipal->voltarMenu();
+    }
 }
