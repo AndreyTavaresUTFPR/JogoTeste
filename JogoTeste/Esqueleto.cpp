@@ -7,6 +7,7 @@ Esqueleto::Esqueleto(ListaJogadores* LJogs):
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
+	nivel_maldade = 1;
 	relogio.restart();
 }
 
@@ -95,7 +96,6 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 		}
 
 	}
-
 
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {

@@ -4,6 +4,7 @@
 #include "ListaJogadores.h"
 #include "Obstaculo.h"
 #include "Inimigo.h"
+#include "Projetil.h"
 #include <SFML/Graphics.hpp>
 
 namespace Fases {
@@ -13,6 +14,7 @@ namespace Fases {
 		ListaJogadores listaJogadores;
 		Lista<Inimigo> listaInimigos;
 		Lista<Obstaculo> listaObstaculos;
+		Lista<Projetil> listaProjetil;
 		Jogador* j1;
 		Jogador* j2;
 

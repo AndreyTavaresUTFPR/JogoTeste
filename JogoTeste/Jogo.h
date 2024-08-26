@@ -16,6 +16,7 @@ private:
 	GerenciadorEvento* pEvento;
 	Jogador* jogador1;
 	Jogador* jogador2;
+	Lista<Projetil> listaProjetil;
 	ListaJogadores* listaJogadores;
 	Lista<Inimigo>* listaInimigos;
 	Lista<Obstaculo>* listaObstaculos;

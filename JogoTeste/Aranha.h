@@ -1,8 +1,8 @@
 #pragma once
 #include "Inimigo.h"
 
-#define VELOCIDADE_PULO -0.1f  //Diminui o pulo da aranha para ficar mais facil acompanhar
-#define VELOCIDADE_HORIZONTAL -0.15f
+#define VELOCIDADE_PULO -0.3f  //Diminui o pulo da aranha para ficar mais facil acompanhar
+#define VELOCIDADE_HORIZONTAL -0.07f
 
 
 class Aranha :

@@ -5,6 +5,8 @@ FaseUm::FaseUm(Jogador* j1, Jogador* j2) :
 {
 	sf::Vector2f tamEsqueleto(30.f, 60.f);
 	sf::Vector2f tamAranha(30.f, 30.f);
+	sf::Vector2f tamMago(60.f, 120.f);
+
 	this->j1 = j1;
 	this->j2 = j2;
 	e1 = new Esqueleto(&listaJogadores);
@@ -21,8 +23,12 @@ FaseUm::FaseUm(Jogador* j1, Jogador* j2) :
 	obst2->getBody()->setPosition(sf::Vector2f(200.f, 150.f));
 	obst3 = new Espinhos();
 	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
+	mago = new Chefe(); // criar listaEntidades ou listaProjetil
+	mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
 
 	inicializaElementos();
+	mago->setJogador(j1);
+	mago->setLProj(&listaProjetil);
 }
 
 FaseUm::~FaseUm()
@@ -37,6 +43,7 @@ void FaseUm::inicializaElementos()
 	listaInimigos.push(static_cast<Inimigo*>(e1));
 	listaInimigos.push(static_cast<Inimigo*>(e2));
 	listaInimigos.push(static_cast<Inimigo*>(a1));
+	listaInimigos.push(static_cast<Inimigo*>(mago));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst1));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst2));
 	listaObstaculos.push(static_cast<Obstaculo*>(obst3));
