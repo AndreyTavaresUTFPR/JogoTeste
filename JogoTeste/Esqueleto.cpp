@@ -7,6 +7,7 @@ Esqueleto::Esqueleto(Jogador* jogador):
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
+	nivel_maldade = 1;
 	relogio.restart();
 	setBody(sf::Vector2f(30.f, 60.f));
 }

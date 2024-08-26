@@ -2,6 +2,7 @@
 #include "Fase.h"
 #include "Esqueleto.h"
 #include "Aranha.h"
+#include "Chefe.h"
 #include "Solo.h"
 #include "Teia.h"
 #include "Espinhos.h"
@@ -20,6 +21,8 @@ namespace Fases {
 		Teia* obst1;
 		Teia* obst2;
 		Espinhos* obst3;
+		Chefe* mago;
+
 		MenuPausa pausa;
 
 		void inicializaElementos();

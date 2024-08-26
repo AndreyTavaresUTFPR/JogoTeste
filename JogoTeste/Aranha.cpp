@@ -4,6 +4,7 @@ Aranha::Aranha():
 	Inimigo(), pulo(VELOCIDADE_HORIZONTAL, VELOCIDADE_PULO)
 {
 	timer_gravidade.restart();
+	nivel_maldade = 2;
 	setBody(sf::Vector2f(30.f, 30.f));
 }
 
