@@ -1,7 +1,7 @@
 #pragma once
 #include "Inimigo.h"
 #include "Projetil.h"
-#include "ListaJogadores.h"
+#include "Jogador.h"
 #include "ListaEntidades.h"
         
 #define DELAY 4
@@ -11,7 +11,7 @@ class Chefe : public Inimigo
 private:
     int tempo_ataque;
     sf::Clock delay;
-    ListaJogadores* listaJogadores;
+    Lista<Jogador>* listaJogadores;
     Jogador* pJogador;
     Lista<Projetil>* listaProjetil;
 

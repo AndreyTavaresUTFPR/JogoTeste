@@ -19,7 +19,8 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	obst2->getBody()->setPosition(sf::Vector2f(200.f, 150.f));
 	obst3 = new Espinhos();
 	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
-	mago = new Chefe(); // criar listaEntidades ou listaProjetil
+
+	mago = new Chefe();
 	mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
 
 	inicializaElementos();
