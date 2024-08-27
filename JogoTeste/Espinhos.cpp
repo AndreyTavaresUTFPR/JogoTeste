@@ -13,9 +13,11 @@ Espinhos::~Espinhos()
 
 void Espinhos::setBody(sf::Vector2f pos)
 {
-	sf::RectangleShape b(sf::Vector2f(75.f, 20.f));
+	sf::RectangleShape b(sf::Vector2f(40.f, 20.f));
 	body = b;
-	body.setFillColor(sf::Color::Red);
+	//body.setFillColor(sf::Color::Red);
+	textura.loadFromFile("../Imagens/Espinhos.png");
+	body.setTexture(&textura);
 	body.move(pos); //Move para a parte inferior da jaenla;
 }
 
