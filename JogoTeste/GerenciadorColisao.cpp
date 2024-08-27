@@ -54,7 +54,7 @@ void GerenciadorColisao::conferirColisaoJogObst(Jogador* pJog, Obstaculo* pObst)
 	{
 		if (pObst->ehSolido())
 			pJog->conferirColisao(colisao, pObst->getCentro());
-		pObst->afetarPersonagem(pJog);
+		pObst->obstacular(pJog);
 	}
 }
 
@@ -84,7 +84,7 @@ void GerenciadorColisao::conferirColisaoInimObst(Inimigo* pInim, Obstaculo* pObs
 	if (pObst->ehSolido())
 		if (colisao.x > 0.f && colisao.y > 0.f)
 			pInim->conferirColisao(colisao, pObst->getCentro());
-	pObst->afetarPersonagem(pInim);
+	pObst->obstacular(pInim);
 }
 
 

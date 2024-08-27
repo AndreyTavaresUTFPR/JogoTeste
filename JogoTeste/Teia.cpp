@@ -20,12 +20,12 @@ void Teia::setBody(sf::Vector2f pos)
 	body.move(pos); //Move para a parte inferior da jaenla;
 }
 
-void Teia::afetarPersonagem(Jogador* pJog)
+void Teia::obstacular(Jogador* pJog)
 {
 	pJog->mudarVelocidade(LENTIDAO_TEIA);
 }
 
-void Teia::afetarPersonagem(Inimigo* pInim)
+void Teia::obstacular(Inimigo* pInim)
 {
 	pInim->mudarVelocidade(LENTIDAO_TEIA);
 }

@@ -20,12 +20,12 @@ void Solo::setBody(sf::Vector2f tam)
 	body.setFillColor(sf::Color::Green);
 }
 
-void Solo::afetarPersonagem(Jogador* pJog)
+void Solo::obstacular(Jogador* pJog)
 {
 
 }
 
-void Solo::afetarPersonagem(Inimigo* pInim)
+void Solo::obstacular(Inimigo* pInim)
 {
 
 }

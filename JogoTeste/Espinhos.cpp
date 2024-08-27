@@ -19,12 +19,12 @@ void Espinhos::setBody(sf::Vector2f pos)
 	body.move(pos); //Move para a parte inferior da jaenla;
 }
 
-void Espinhos::afetarPersonagem(Jogador* pJog)
+void Espinhos::obstacular(Jogador* pJog)
 {
 
 }
 
-void Espinhos::afetarPersonagem(Inimigo* pInim)
+void Espinhos::obstacular(Inimigo* pInim)
 {
 
 }

@@ -59,6 +59,11 @@ void Chefe::mudarVelocidade(float fator)
 	vel.y = 0.f + fator;
 }
 
+void Chefe::danificar()
+{
+
+}
+
 void Chefe::setJogador(Jogador* jogador)
 {
 	this->pJogador = jogador;
@@ -68,3 +73,4 @@ void Chefe::setLProj(Lista<Projetil>* listaProjetil)
 {
 	this->listaProjetil = listaProjetil;
 }
+

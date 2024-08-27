@@ -11,8 +11,8 @@ namespace Obstaculos {
 		~Solo();
 
 		void setBody(sf::Vector2f tam);
-		void afetarPersonagem(Jogador* pJog);
-		void afetarPersonagem(Inimigo* pInim);
+		void obstacular(Jogador* pJog);
+		void obstacular(Inimigo* pInim);
 		void executar();
 	};
 } using namespace Obstaculos;

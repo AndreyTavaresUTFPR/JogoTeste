@@ -45,6 +45,11 @@ void Esqueleto::mudarVelocidade(float fator)
 	vel.y = VEL_ESQUELETO_Y + fator;
 }
 
+void Esqueleto::danificar()
+{
+
+}
+
 void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) // Persegue o jogador se o mesmo entrar no aggro
 {
 	if (posJogador.x - posEsqueleto.x > 0.0f) {

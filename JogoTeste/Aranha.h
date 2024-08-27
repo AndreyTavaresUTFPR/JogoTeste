@@ -19,7 +19,8 @@ public:
     void setBody(sf::Vector2f tam);
     void liberarGravidade();
     void liberarMovimento();
-    void mudarVelocidade(float fator);
+    void mudarVelocidade(float fator); 
+    void danificar();
 
     void pular();
 

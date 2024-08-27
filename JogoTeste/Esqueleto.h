@@ -27,6 +27,7 @@ namespace Personagens {
 		void liberarGravidade();
 		void liberarMovimento();
 		void mudarVelocidade(float fator);
+		void danificar();
 		void perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto);
 		void movimentoAleatorio();
 		void move();
