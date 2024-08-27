@@ -14,6 +14,10 @@ private:
 	GerenciadorEvento* pEvento;
 	int n_jogadores;
 	Lista<Jogador> listaJogadores;
+	Lista<Projetil> listaProjetil;
+	//ListaJogadores* listaJogadores;
+	Lista<Inimigo>* listaInimigos;
+	Lista<Obstaculo>* listaObstaculos;
 	FaseUm* fase1;
 	MenuPrincipal* menuPrincipal;
 

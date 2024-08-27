@@ -4,6 +4,7 @@
 #include "ListaEntidades.h"
 #include "Obstaculo.h"
 #include "Inimigo.h"
+#include "Projetil.h"
 #include "GerenciadorColisao.h"
 #include "MenuPausa.h"
 #include <SFML/Graphics.hpp>
@@ -17,6 +18,9 @@ namespace Fases {
 		Lista<Obstaculo> listaObstaculos;
 		GerenciadorColisao* pColisao;
 		MenuPausa menuPausa;
+		Lista<Projetil> listaProjetil;
+		Jogador* j1;
+		Jogador* j2;
 
 		virtual void inicializaElementos() = 0;
 
