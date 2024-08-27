@@ -5,6 +5,7 @@
 #include "Solo.h"
 #include "Teia.h"
 #include "Espinhos.h"
+#include "MenuPausa.h"
 
 namespace Fases {
 	class FaseUm : public Fase
@@ -22,8 +23,9 @@ namespace Fases {
 
 		void inicializaElementos();
 	public:
-		FaseUm(Jogador* j1, Jogador* j2);
+		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
+
 
 		void executar();
 		void criarMapa();

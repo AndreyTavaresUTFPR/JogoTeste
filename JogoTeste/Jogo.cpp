@@ -7,7 +7,7 @@ Jogo::Jogo() :
     n_jogadores(1),
     listaJogadores(),
     menuPrincipal(menuPrincipal->getMenuPrincipal())
-{   
+{
     executar();
 }
 
@@ -34,13 +34,11 @@ void Jogo::criarFaseUm()
     fase1->executar();
     delete fase1;
     pGrafico->limparJanela();
-    //listaInimigos = fase1->getListaInimigos();
-    //listaObstaculos = fase1->getListaObstaculos();
 }
 
 void Jogo::executar()
 {
-    while (pGrafico->verificarJanela()) 
+    while (pGrafico->verificarJanela())
     {
         menuPrincipal->executar();
         if (menuPrincipal->getDoisJogadores())

@@ -7,7 +7,7 @@ protected:
 
 public:
 	Inimigo();
-	~Inimigo();
+	virtual ~Inimigo();
 
 	virtual void liberarGravidade() = 0;
 	virtual void liberarMovimento() = 0;

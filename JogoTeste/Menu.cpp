@@ -2,10 +2,13 @@
 
 Menu::Menu() :
     Ente(),
-    altura(800.f),
-    largura(800.f),
+    font(),
+    titulo(),
+    opcoes(),
+    n_opcoes(0),
     opcaoSelecionada(0),
-    n_opcoes(3)
+    altura(HEIGHT),
+    largura(WIDTH)
 {
 
 }
@@ -15,20 +18,19 @@ Menu::~Menu()
 
 }
 
-void Menu::desenharMenu()
-{
-    pGrafico->getWindow()->clear();
-    pGrafico->getWindow()->draw(titulo);
-    pGrafico->desenharMenu(opcoes, n_opcoes);
-}
-
 void Menu::opcaoAcima()
 {
     if (opcaoSelecionada > 0)
     {
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
+        sf::Text* temp = opcoes.getItem(opcaoSelecionada);
+        temp->setFillColor(sf::Color::White);
+        temp->setCharacterSize(30);
+        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
         opcaoSelecionada--;
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+        temp = opcoes.getItem(opcaoSelecionada);
+        temp->setFillColor(sf::Color::Cyan);
+        temp->setCharacterSize(50);
+        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
     }
 }
 
@@ -36,26 +38,14 @@ void Menu::opcaoAbaixo()
 {
     if (opcaoSelecionada < n_opcoes - 1)
     {
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::White);
+        sf::Text* temp = opcoes.getItem(opcaoSelecionada);
+        temp->setFillColor(sf::Color::White);
+        temp->setCharacterSize(30);
+        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
         opcaoSelecionada++;
-        opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+        temp = opcoes.getItem(opcaoSelecionada);
+        temp->setFillColor(sf::Color::Cyan);
+        temp->setCharacterSize(50);
+        temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
     }
 }
-
-void Menu::selecionarOpcao()
-{
-    
-}
-
-void Menu::voltarMenu()
-{
-
-}
-
-
-
-void Menu::executar()
-{
-    
-}
-

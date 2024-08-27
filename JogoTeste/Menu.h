@@ -6,26 +6,25 @@
 #include <iostream>
 using namespace std;
 
-namespace Menus{
+namespace Menus {
 	class Menu : public Ente {
 	protected:
-		int n_opcoes;
 		sf::Font font;
 		sf::Text titulo;
-		sf::Text opcoes[3];
+		Lista<sf::Text> opcoes;
+		int n_opcoes;
+		int opcaoSelecionada;
 		float altura;
 		float largura;
-		int opcaoSelecionada;
 
 	public:
 		Menu();
 		virtual ~Menu();
 
-		virtual void desenharMenu();
-		virtual void opcaoAcima();
-		virtual void opcaoAbaixo();
-		virtual void selecionarOpcao();
-		virtual void voltarMenu();
-		virtual void executar();
+		void opcaoAcima();
+		void opcaoAbaixo();
+		virtual void desenharMenu() = 0;
+		virtual void selecionarOpcao() = 0;
+		virtual void executar() = 0;
 	};
 } using namespace Menus;

@@ -9,20 +9,19 @@
 
 class Jogo
 {
-private:	
+private:
 	GerenciadorGrafico* pGrafico;
 	GerenciadorEvento* pEvento;
-	Jogador* jogador1;
-	Jogador* jogador2;
-	Lista<Jogador>* listaJogadores;
-	Lista<Inimigo>* listaInimigos;
-	Lista<Obstaculo>* listaObstaculos;
+	int n_jogadores;
+	Lista<Jogador> listaJogadores;
 	FaseUm* fase1;
+	MenuPrincipal* menuPrincipal;
 
 public:
 	Jogo();
 	~Jogo();
 
+	void criarJogadores();
+	void criarFaseUm();
 	void executar();
 };
-
