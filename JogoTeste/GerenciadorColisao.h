@@ -1,17 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <list>
 #include "Lista.h"
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "Obstaculo.h"
+using namespace std;
 
 
 namespace Gerenciadores {
 	class GerenciadorColisao {
 	private:
 		Lista<Jogador>* listaJogadores;
-		Lista<Inimigo>* listaInimigos;
-		Lista<Obstaculo>* listaObstaculos;
+		vector<Inimigo*> listaInimigos;
+		list<Obstaculo*> listaObstaculos;
 		
 		static GerenciadorColisao* pColisao;
 		GerenciadorColisao();

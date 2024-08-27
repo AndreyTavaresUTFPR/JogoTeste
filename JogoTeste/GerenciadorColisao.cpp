@@ -3,7 +3,7 @@
 GerenciadorColisao* GerenciadorColisao::pColisao(nullptr);
 
 GerenciadorColisao::GerenciadorColisao() :
-	listaJogadores(nullptr), listaInimigos(nullptr), listaObstaculos(nullptr)
+	listaJogadores(nullptr), listaInimigos(), listaObstaculos()
 {
 	
 }
@@ -23,8 +23,18 @@ GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
 void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
 {
 	listaJogadores = listaJog;
-	listaInimigos = listaInim;
-	listaObstaculos = listaObst;
+
+	for (int i = 0; i < listaInim->getLen(); i++)
+	{
+		Inimigo* pInim = listaInim->getItem(i);
+		listaInimigos.push_back(pInim);
+	}
+
+	for (int i = 0; i < listaObst->getLen(); i++)
+	{
+		Obstaculo* pObst = listaObst->getItem(i);
+		listaObstaculos.push_back(pObst);
+	}
 }
 
 //Confere Colisão entre Jogador e Inimigo
@@ -94,6 +104,7 @@ void GerenciadorColisao::executar()
 	Inimigo* pInim1 = nullptr;
 	Inimigo* pInim2 = nullptr;
 	Obstaculo* pObst = nullptr;
+	list<Obstaculo*>::iterator it;
 
 	int i = 0, j = 0;
 
@@ -104,9 +115,9 @@ void GerenciadorColisao::executar()
 		pJog->liberarMovimento();
 	}
 
-	for (i = 0; i < listaInimigos->getLen(); i++)
+	for (i = 0; i < listaInimigos.size(); i++)
 	{
-		pInim1 = listaInimigos->getItem(i);
+		pInim1 = listaInimigos[i];
 		pInim1->liberarGravidade();
 		pInim1->liberarMovimento();
 	}
@@ -114,29 +125,29 @@ void GerenciadorColisao::executar()
 	for (i = 0; i < listaJogadores->getLen(); i++)
 	{
 		pJog = listaJogadores->getItem(i);
-		for (j = 0; j < listaInimigos->getLen(); j++)
+		for (j = 0; j < listaInimigos.size(); j++)
 		{
-			pInim1 = listaInimigos->getItem(j);
+			pInim1 = listaInimigos[j];
 			conferirColisaoJogInim(pJog, pInim1);
 		}
-		for (j = 0; j < listaObstaculos->getLen(); j++)
+		for (it = listaObstaculos.begin(); it != listaObstaculos.end(); it++)
 		{
-			pObst = listaObstaculos->getItem(j);
+			pObst = (*it);
 			conferirColisaoJogObst(pJog, pObst);
 		}
 	}
 
-	for (i = 0; i < listaInimigos->getLen(); i++)
+	for (i = 0; i < listaInimigos.size(); i++)
 	{
-		pInim1 = listaInimigos->getItem(i);
-		for (j = i + 1; j < listaInimigos->getLen(); j++)
+		pInim1 = listaInimigos[i];
+		for (j = i + 1; j < listaInimigos.size(); j++)
 		{
-			pInim2 = listaInimigos->getItem(j);
+			pInim2 = listaInimigos[j];
 			conferirColisaoInimInim(pInim1, pInim2);
 		}
-		for (j = 0; j < listaObstaculos->getLen(); j++)
+		for (it = listaObstaculos.begin(); it != listaObstaculos.end(); it++)
 		{
-			pObst = listaObstaculos->getItem(j);
+			pObst = (*it);
 			conferirColisaoInimObst(pInim1, pObst);
 
 		}
