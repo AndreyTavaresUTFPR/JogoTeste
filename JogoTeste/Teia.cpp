@@ -16,12 +16,9 @@ void Teia::setBody(sf::Vector2f pos)
 {
 	sf::RectangleShape b(sf::Vector2f(50.f, 50.f));
 	body = b;
-	body.setFillColor(sf::Color::White);
-	textura.loadFromFile("../Imagens/Teia.png");
+	if (!textura.loadFromFile("../Imagens/Teia.png"))
+		cout << "Erro ao carregar Teia" << endl;
 	body.setTexture(&textura);
-	body.setFillColor(sf::Color::White);
-	body.move(pos); //Move para a parte inferior da jaenla;
-
 }
 
 void Teia::obstacular(Jogador* pJog)

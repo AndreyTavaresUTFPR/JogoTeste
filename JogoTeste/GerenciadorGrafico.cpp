@@ -5,6 +5,7 @@ GerenciadorGrafico* GerenciadorGrafico::pGrafico(nullptr);
 GerenciadorGrafico::GerenciadorGrafico()
 {
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo");
+	window->setFramerateLimit(240);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()

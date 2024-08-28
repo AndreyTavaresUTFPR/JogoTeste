@@ -30,6 +30,10 @@ namespace Fases {
 		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
 
+		void criarInimigosFaceis();
+		void criarInimigosMedios();
+		void criarObstaculosFaceis();
+		void criarObstaculosMedios();
 
 		void executar();
 		void criarMapa();

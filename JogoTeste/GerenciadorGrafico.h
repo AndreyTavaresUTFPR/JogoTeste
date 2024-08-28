@@ -10,7 +10,7 @@ namespace Gerenciadores {
 	{
 	private:
 		sf::RenderWindow* window;
-
+		sf::Clock timer;
 
 		static GerenciadorGrafico* pGrafico;
 		GerenciadorGrafico();

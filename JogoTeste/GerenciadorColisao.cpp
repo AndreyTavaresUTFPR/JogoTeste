@@ -20,21 +20,11 @@ GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
 	return pColisao;
 }
 
-void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst)
+void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, vector<Inimigo*>* listaInim, list<Obstaculo*>* listaObst)
 {
 	listaJogadores = listaJog;
-
-	for (int i = 0; i < listaInim->getLen(); i++)
-	{
-		Inimigo* pInim = listaInim->getItem(i);
-		listaInimigos.push_back(pInim);
-	}
-
-	for (int i = 0; i < listaObst->getLen(); i++)
-	{
-		Obstaculo* pObst = listaObst->getItem(i);
-		listaObstaculos.push_back(pObst);
-	}
+	listaInimigos = listaInim;
+	listaObstaculos = listaObst;
 }
 
 //Confere Colisão entre Jogador e Inimigo
@@ -49,6 +39,8 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 	{
 		pJog->conferirColisao(colisao, pInim->getCentro());
 		pInim->conferirColisao(colisao, pJog->getCentro());
+		if (pJog->getAtacando())
+			pInim->receberDano();
 	}
 }
 
@@ -104,7 +96,9 @@ void GerenciadorColisao::executar()
 	Inimigo* pInim1 = nullptr;
 	Inimigo* pInim2 = nullptr;
 	Obstaculo* pObst = nullptr;
-	list<Obstaculo*>::iterator it;
+	vector<Inimigo*>::iterator itInim;
+	vector<Inimigo*>::iterator itInim2;
+	list<Obstaculo*>::iterator itObst;
 
 	int i = 0, j = 0;
 
@@ -115,9 +109,9 @@ void GerenciadorColisao::executar()
 		pJog->liberarMovimento();
 	}
 
-	for (i = 0; i < listaInimigos.size(); i++)
+	for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
 	{
-		pInim1 = listaInimigos[i];
+		pInim1 = (*itInim);
 		pInim1->liberarGravidade();
 		pInim1->liberarMovimento();
 	}
@@ -125,31 +119,36 @@ void GerenciadorColisao::executar()
 	for (i = 0; i < listaJogadores->getLen(); i++)
 	{
 		pJog = listaJogadores->getItem(i);
-		for (j = 0; j < listaInimigos.size(); j++)
+		for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
 		{
-			pInim1 = listaInimigos[j];
+			pInim1 = (*itInim);
+			if (pInim1->getVivo())
 			conferirColisaoJogInim(pJog, pInim1);
 		}
-		for (it = listaObstaculos.begin(); it != listaObstaculos.end(); it++)
+		for (itObst = listaObstaculos->begin(); itObst != listaObstaculos->end(); itObst++)
 		{
-			pObst = (*it);
+			pObst = (*itObst);
 			conferirColisaoJogObst(pJog, pObst);
 		}
 	}
 
-	for (i = 0; i < listaInimigos.size(); i++)
+	for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
 	{
-		pInim1 = listaInimigos[i];
-		for (j = i + 1; j < listaInimigos.size(); j++)
-		{
-			pInim2 = listaInimigos[j];
-			conferirColisaoInimInim(pInim1, pInim2);
-		}
-		for (it = listaObstaculos.begin(); it != listaObstaculos.end(); it++)
-		{
-			pObst = (*it);
-			conferirColisaoInimObst(pInim1, pObst);
+		pInim1 = (*itInim);
+		if (pInim1->getVivo()) {
+			for (itInim2 = listaInimigos->begin(); itInim2 != listaInimigos->end(); itInim2++)
+			{
+				pInim2 = (*itInim2);
+				if (pInim2->getVivo())
+					if (pInim1 != pInim2)
+						conferirColisaoInimInim(pInim1, pInim2);
+			}
+			for (itObst = listaObstaculos->begin(); itObst != listaObstaculos->end(); itObst++)
+			{
+				pObst = (*itObst);
+				conferirColisaoInimObst(pInim1, pObst);
 
+			}
 		}
 	}
 }

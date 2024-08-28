@@ -92,7 +92,7 @@ void GerenciadorEvento::executarFaseUm()
 
 void GerenciadorEvento::executar()
 {
-    pColisao->setListas(listaJogadores, listaInimigos, listaObstaculos);
+    //pColisao->setListas(listaJogadores, listaInimigos, listaObstaculos);
     while (pGrafico->verificarJanela())
     {
         executarMenuPrincipal();

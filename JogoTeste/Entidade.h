@@ -7,7 +7,7 @@ namespace Entidades {
 	class Entidade : public Ente
 	{
 	protected:
-		sf::RectangleShape body;
+
 
 	public:
 		Entidade();

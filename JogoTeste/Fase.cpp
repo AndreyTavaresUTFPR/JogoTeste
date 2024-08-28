@@ -20,12 +20,12 @@ Lista<Jogador>* Fase::getListaJogadores()
 	return listaJogadores;
 }
 
-Lista<Inimigo>* Fase::getListaInimigos()
+vector<Inimigo*>* Fase::getListaInimigos()
 {
 	return &listaInimigos;
 }
 
-Lista<Obstaculo>* Fase::getListaObstaculos()
+list<Obstaculo*>* Fase::getListaObstaculos()
 {
 	return &listaObstaculos;
 }

@@ -8,6 +8,7 @@ Esqueleto::Esqueleto(Jogador* jogador) :
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
 	nivel_maldade = 1;
+	vida = 1;
 	relogio.restart();
 	setBody(sf::Vector2f(30.f, 60.f));
 }
@@ -21,7 +22,9 @@ void Esqueleto::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
-	body.setFillColor(sf::Color::Magenta);
+	textura.loadFromFile("../Imagens/Esqueleto.png");
+	body.setTexture(&textura);
+	//body.setFillColor(sf::Color::Magenta);
 	body.setPosition(sf::Vector2f(400.f, 250.f));
 }
 
@@ -104,8 +107,10 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 		movimentoAleatorio();
 	}
 	if (cair) {
-		body.move(sf::Vector2f(0, 9.8f * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
+		body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
 	}
+	else
+		tempo_queda.restart();
 
 }
 

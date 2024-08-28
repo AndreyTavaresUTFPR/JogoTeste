@@ -11,6 +11,7 @@ namespace Personagens {
 			bool cair;
 			bool esquerda;
 			bool direita;
+			bool vivo;
 
 		public:
 			Personagem();
@@ -20,6 +21,9 @@ namespace Personagens {
 			virtual void liberarMovimento();
 			void conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraEnt);
 			virtual void mudarVelocidade(float fator) = 0;
+			void receberDano();
+			int getVida() const;
+			bool getVivo() const;
 			virtual void move() = 0;
 			virtual void executar() = 0; 
 		};
