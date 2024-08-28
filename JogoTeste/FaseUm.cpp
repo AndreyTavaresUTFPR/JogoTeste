@@ -20,12 +20,10 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	obst3 = new Espinhos();
 	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
 
-	mago = new Chefe();
+	mago = new Chefe(j1, &listaProjetil);
 	mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
 
 	inicializaElementos();
-	mago->setJogador(j1);
-	mago->setLProj(&listaProjetil);
 }
 
 FaseUm::~FaseUm()

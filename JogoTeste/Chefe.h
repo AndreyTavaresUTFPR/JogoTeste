@@ -11,13 +11,12 @@ class Chefe : public Inimigo
 private:
     int tempo_ataque;
     sf::Clock delay;
-    Lista<Jogador>* listaJogadores;
     Jogador* pJogador;
     Lista<Projetil>* listaProjetil;
 
 
 public:
-    Chefe();
+    Chefe(Jogador* jogador, Lista<Projetil>* listaProjetil);
     ~Chefe();
 
     void atacarProjetil();
@@ -26,6 +25,4 @@ public:
     void liberarGravidade();
     void liberarMovimento();
     void mudarVelocidade(float fator);
-    void setJogador(Jogador* jogador);
-    void setLProj(Lista<Projetil>* listaProjetil);
 };

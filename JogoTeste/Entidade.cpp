@@ -26,7 +26,7 @@ void Entidade::setBody(sf::Vector2f tam)
 
 sf::Vector2f Entidade::getCentro()
 {
-	sf::Vector2f centro((body.getPosition().x + body.getSize().x / 2.f), (body.getPosition().y + body.getSize().y / 2));
+	sf::Vector2f centro((body.getPosition().x + body.getSize().x / 2.f), (body.getPosition().y + body.getSize().y / 2.f));
 	return centro;
 }
 

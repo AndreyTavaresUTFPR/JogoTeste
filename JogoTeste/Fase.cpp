@@ -6,7 +6,7 @@ void Fase::inicializaElementos()
 }
 
 Fase::Fase(Lista<Jogador>* listaJog) :
-	Ente(), listaJogadores(listaJog), listaInimigos(), listaObstaculos(), pColisao(pColisao->getGerenciadorColisao())
+	Ente(), listaJogadores(listaJog), listaInimigos(), listaObstaculos(), listaProjetil(), pColisao(pColisao->getGerenciadorColisao())
 {
 
 }

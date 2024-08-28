@@ -1,6 +1,6 @@
 #include "Chefe.h"
 
-Chefe::Chefe():
+Chefe::Chefe(Jogador* jogador, Lista<Projetil>* listaProjetil):
 	tempo_ataque(DELAY)
 {
 	vel.x = 0.f;
@@ -9,8 +9,7 @@ Chefe::Chefe():
 	nivel_maldade = 3;
 	delay.restart();
 	pJogador = nullptr;
-	listaProjetil = nullptr;
-
+	this->listaProjetil = listaProjetil;
 }
 
 
@@ -21,7 +20,8 @@ Chefe::~Chefe()
 void Chefe::atacarProjetil()
 {
 	sf::Vector2f tamProjetil(10.f, 10.f);
-	listaProjetil->push(new Projetil(tamProjetil, pJogador));
+	listaProjetil->push(new Projetil(tamProjetil, getCentro(), pJogador));
+	
 }
 
 void Chefe::move()
@@ -31,7 +31,7 @@ void Chefe::move()
 void Chefe::executar()
 {
 	if (delay.getElapsedTime().asSeconds() >= DELAY) {
-		atacarProjetil();
+		//atacarProjetil();
 		delay.restart();
 	}
 	move();
@@ -41,7 +41,7 @@ void Chefe::executar()
 void Chefe::liberarGravidade()
 {
 	cair = true;
-	vel.y = 0.f;
+	vel.y = 10.f;
 }
 
 
@@ -57,14 +57,4 @@ void Chefe::mudarVelocidade(float fator)
 {
 	vel.x = 0.f + fator;
 	vel.y = 0.f + fator;
-}
-
-void Chefe::setJogador(Jogador* jogador)
-{
-	this->pJogador = jogador;
-}
-
-void Chefe::setLProj(Lista<Projetil>* listaProjetil)
-{
-	this->listaProjetil = listaProjetil;
 }
