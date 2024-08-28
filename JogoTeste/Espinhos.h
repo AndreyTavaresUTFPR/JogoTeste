@@ -14,8 +14,8 @@ namespace Obstaculos {
 		~Espinhos();
 
 		void setBody(sf::Vector2f pos);
-		void afetarPersonagem(Jogador* pJog);
-		void afetarPersonagem(Inimigo* pInim);
+		void obstacular(Jogador* pJog);
+		void obstacular(Inimigo* pInim);
 		void executar();
 	};
 

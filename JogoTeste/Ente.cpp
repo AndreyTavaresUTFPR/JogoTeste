@@ -1,7 +1,8 @@
 #include "Ente.h"
 
 Ente::Ente() :
-	pGrafico(pGrafico->getGerenciadorGrafico())
+	pGrafico(pGrafico->getGerenciadorGrafico()),
+	textura(), figura()
 {
 
 }

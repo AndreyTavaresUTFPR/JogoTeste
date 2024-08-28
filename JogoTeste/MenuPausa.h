@@ -2,7 +2,7 @@
 #include "Menu.h"
 
 namespace Menus {
-	class MenuPausa: public Menu 
+	class MenuPausa : public Menu
 	{
 	private:
 		bool pausar;

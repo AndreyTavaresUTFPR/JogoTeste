@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-namespace Menus{
+namespace Menus {
 	class Menu : public Ente {
 	protected:
 		sf::Font font;

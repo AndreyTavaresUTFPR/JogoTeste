@@ -12,6 +12,14 @@ Aranha::~Aranha()
 {
 }
 
+void Aranha::setBody(sf::Vector2f tam)
+{
+	sf::RectangleShape b(tam);
+	body = b;
+	body.setFillColor(sf::Color::Yellow);
+	body.setPosition(sf::Vector2f(700.f, 250.f));
+}
+
 
 void Aranha::liberarGravidade()
 {
@@ -35,6 +43,11 @@ void Aranha::mudarVelocidade(float fator)
 	vel.y += fator;
 	if (vel.y < 0.f)
 		vel.y = -vel.y;
+}
+
+void Aranha::danificar()
+{
+
 }
 
 void Aranha::pular()
@@ -63,10 +76,3 @@ void Aranha::executar()
 	move();
 }
 
-void Aranha::setBody(sf::Vector2f tam)
-{
-	sf::RectangleShape b(tam);
-	body = b;
-	body.setFillColor(sf::Color::Yellow);
-	body.setPosition(sf::Vector2f(700.f, 250.f));
-}

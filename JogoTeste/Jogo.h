@@ -9,7 +9,7 @@
 
 class Jogo
 {
-private:	
+private:
 	GerenciadorGrafico* pGrafico;
 	GerenciadorEvento* pEvento;
 	int n_jogadores;
@@ -28,4 +28,3 @@ public:
 	void criarFaseUm();
 	void executar();
 };
-

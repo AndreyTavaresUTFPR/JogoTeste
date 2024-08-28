@@ -1,8 +1,8 @@
 #include "Esqueleto.h"
 
 
-Esqueleto::Esqueleto(Jogador* jogador):
-	Inimigo(), jogador(jogador), moveAleatorio(rand()%5)
+Esqueleto::Esqueleto(Jogador* jogador) :
+	Inimigo(), jogador(jogador), moveAleatorio(rand() % 5)
 {
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
@@ -45,13 +45,19 @@ void Esqueleto::mudarVelocidade(float fator)
 	vel.y = VEL_ESQUELETO_Y + fator;
 }
 
+void Esqueleto::danificar()
+{
+
+}
+
 void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) // Persegue o jogador se o mesmo entrar no aggro
 {
 	if (posJogador.x - posEsqueleto.x > 0.0f) {
 		if (direita)
 			body.move(vel.x, 0.0f);
 		esquerda = true;
-	} else {
+	}
+	else {
 		if (esquerda)
 			body.move(-vel.x, 0.0f);
 		direita = true;
@@ -88,18 +94,19 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 
-			perseguir(posJogador, posEsqueleto);
+		perseguir(posJogador, posEsqueleto);
 
-			moveAleatorio = 4; // Para o esqueleto após sair do aggro
-			relogio.restart();
+		moveAleatorio = 4; // Para o esqueleto após sair do aggro
+		relogio.restart();
 
-	} else {
+	}
+	else {
 		movimentoAleatorio();
 	}
 	if (cair) {
 		body.move(sf::Vector2f(0, 9.8f * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
 	}
-	
+
 }
 
 

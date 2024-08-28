@@ -25,4 +25,7 @@ public:
     void liberarGravidade();
     void liberarMovimento();
     void mudarVelocidade(float fator);
+    void danificar();
+    void setJogador(Jogador* jogador);
+    void setLProj(Lista<Projetil>* listaProjetil);
 };

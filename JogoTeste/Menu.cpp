@@ -49,4 +49,3 @@ void Menu::opcaoAbaixo()
         temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, temp->getPosition().y));
     }
 }
-

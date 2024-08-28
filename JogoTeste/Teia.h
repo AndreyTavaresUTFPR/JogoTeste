@@ -1,8 +1,8 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Obstaculo.h"
-#define DANO_TEIA false
-#define SOLIDEZ_TEIA false
+#define DANO false
+#define SOLIDEZ false
 #define LENTIDAO_TEIA -0.1f
 
 namespace Obstaculos {
@@ -16,8 +16,8 @@ namespace Obstaculos {
 		~Teia();
 
 		void setBody(sf::Vector2f pos);
-		void afetarPersonagem(Jogador* pJog);
-		void afetarPersonagem(Inimigo* pInim);
+		void obstacular(Jogador* pJog);
+		void obstacular(Inimigo* pInim);
 		void executar();
 	};
 

@@ -1,7 +1,7 @@
 #include "Teia.h"
 
 Teia::Teia() :
-	Obstaculo(DANO_TEIA, SOLIDEZ_TEIA),
+	Obstaculo(DANO, SOLIDEZ),
 	lentidao(LENTIDAO_TEIA)
 {
 	setBody(sf::Vector2f(150.f, 150.f));
@@ -16,16 +16,20 @@ void Teia::setBody(sf::Vector2f pos)
 {
 	sf::RectangleShape b(sf::Vector2f(50.f, 50.f));
 	body = b;
-	body.setFillColor(sf::Color::Blue);
+	body.setFillColor(sf::Color::White);
+	textura.loadFromFile("../Imagens/Teia.png");
+	body.setTexture(&textura);
+	body.setFillColor(sf::Color::White);
 	body.move(pos); //Move para a parte inferior da jaenla;
+
 }
 
-void Teia::afetarPersonagem(Jogador* pJog)
+void Teia::obstacular(Jogador* pJog)
 {
 	pJog->mudarVelocidade(LENTIDAO_TEIA);
 }
 
-void Teia::afetarPersonagem(Inimigo* pInim)
+void Teia::obstacular(Inimigo* pInim)
 {
 	pInim->mudarVelocidade(LENTIDAO_TEIA);
 }

@@ -2,7 +2,7 @@
 
 void Fase::inicializaElementos()
 {
-	
+
 }
 
 Fase::Fase(Lista<Jogador>* listaJog) :
@@ -20,14 +20,14 @@ Lista<Jogador>* Fase::getListaJogadores()
 	return listaJogadores;
 }
 
-Lista<Inimigo>* Fase::getListaInimigos() 
-{ 
-	return &listaInimigos; 
+Lista<Inimigo>* Fase::getListaInimigos()
+{
+	return &listaInimigos;
 }
 
 Lista<Obstaculo>* Fase::getListaObstaculos()
-{ 
-	return &listaObstaculos; 
+{
+	return &listaObstaculos;
 }
 
 void Fase::executar()

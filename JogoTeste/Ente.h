@@ -5,8 +5,9 @@ class Ente
 {
 protected:
 	GerenciadorGrafico* pGrafico;
+	sf::Texture textura;
+	sf::Sprite figura;
 	//int id;
-	//figura* pFig;
 
 public:
 	Ente();

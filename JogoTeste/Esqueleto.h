@@ -23,10 +23,11 @@ namespace Personagens {
 		Esqueleto(Jogador* jogador);
 		~Esqueleto();
 
-		virtual void setBody(sf::Vector2f tam);
+		void setBody(sf::Vector2f tam);
 		void liberarGravidade();
 		void liberarMovimento();
 		void mudarVelocidade(float fator);
+		void danificar();
 		void perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto);
 		void movimentoAleatorio();
 		void move();

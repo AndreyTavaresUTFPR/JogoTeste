@@ -1,7 +1,7 @@
 #include "MenuPausa.h"
 
 MenuPausa::MenuPausa() :
-	Menu(), pausar(false), voltarInicio(false)
+    Menu(), pausar(false), voltarInicio(false)
 {
     if (!font.loadFromFile("Font.ttf")) {
         cout << "ERRO AO CARREGAR FONTE" << endl;
@@ -44,7 +44,7 @@ MenuPausa::~MenuPausa()
 
 bool MenuPausa::getPausa() const
 {
-	return pausar;
+    return pausar;
 }
 
 bool MenuPausa::getVoltarInicio() const
@@ -96,6 +96,6 @@ void MenuPausa::executar()
             if (!pausar)
                 return;
         }
-        
+
     }
 }

@@ -14,8 +14,8 @@ namespace Obstaculos {
 		Obstaculo(bool dano, bool solidez);
 		virtual ~Obstaculo();
 
-		virtual void afetarPersonagem(Jogador* pJog) = 0;
-		virtual void afetarPersonagem(Inimigo* pInim) = 0;
+		virtual void obstacular(Jogador* pJog) = 0;
+		virtual void obstacular(Inimigo* pInim) = 0;
 		bool ehSolido() const;
 		virtual void executar() = 0;
 	};

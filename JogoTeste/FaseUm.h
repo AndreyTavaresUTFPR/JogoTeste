@@ -32,7 +32,7 @@ namespace Fases {
 		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
 
-		
+
 		void executar();
 		void criarMapa();
 	};
