@@ -3,7 +3,7 @@
 #include "Obstaculo.h"
 #define DANO false
 #define SOLIDEZ false
-#define LENTIDAO_TEIA -0.1f
+#define LENTIDAO_TEIA 0.1f
 
 namespace Obstaculos {
 	class Teia : public Obstaculo 
@@ -21,4 +21,4 @@ namespace Obstaculos {
 		void executar();
 	};
 
-} using namespace Obstaculos;
+} using namespace Obstaculos; 

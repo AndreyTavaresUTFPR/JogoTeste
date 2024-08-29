@@ -1,18 +1,26 @@
 #pragma once
 #include "GerenciadorGrafico.h"
+#include <ctime>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
 
 class Ente 
 {
 protected:
 	GerenciadorGrafico* pGrafico;
 	sf::Texture textura;
-	sf::Sprite figura;
-	//int id;
+	sf::RectangleShape body;
+	static int n_entes;
+	int id;
 
 public:
 	Ente();
 	~Ente();
 
+	void atualizarTextura(const std::string& caminho);
+	virtual void setBody(sf::Vector2f tam);
+	sf::RectangleShape* getBody();
 	virtual void executar() = 0;
-	//virtual void desenhar() = 0;
+	void desenhar();
 };

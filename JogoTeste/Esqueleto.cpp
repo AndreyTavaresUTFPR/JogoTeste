@@ -8,6 +8,7 @@ Esqueleto::Esqueleto(Jogador* jogador) :
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
 	nivel_maldade = 1;
+	vida = 1;
 	relogio.restart();
 	setBody(sf::Vector2f(30.f, 60.f));
 }
@@ -21,8 +22,6 @@ void Esqueleto::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
-	body.setFillColor(sf::Color::Magenta);
-	body.setPosition(sf::Vector2f(400.f, 250.f));
 }
 
 void Esqueleto::liberarGravidade()
@@ -41,8 +40,8 @@ void Esqueleto::liberarMovimento()
 
 void Esqueleto::mudarVelocidade(float fator)
 {
-	vel.x = VEL_ESQUELETO_X + fator;
-	vel.y = VEL_ESQUELETO_Y + fator;
+	vel.x = VEL_ESQUELETO_X * fator;
+	vel.y = VEL_ESQUELETO_Y * fator;
 }
 
 void Esqueleto::danificar()
@@ -56,11 +55,13 @@ void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) //
 		if (direita)
 			body.move(vel.x, 0.0f);
 		esquerda = true;
+		atualizarTextura("../Imagens/EsqueletoD.png");
 	}
 	else {
 		if (esquerda)
 			body.move(-vel.x, 0.0f);
 		direita = true;
+		atualizarTextura("../Imagens/EsqueletoE.png");
 	}
 }
 
@@ -69,11 +70,13 @@ void Personagens::Esqueleto::movimentoAleatorio() // Movimento aleatório do esqu
 {
 	if (moveAleatorio == 1 && direita) {
 		body.move(vel.x, 0.f);
+		atualizarTextura("../Imagens/EsqueletoD.png");
 		if (body.getPosition().x + body.getSize().x > pGrafico->getWindow()->getSize().x)
 			body.move((pGrafico->getWindow()->getSize().x - body.getSize().x), body.getPosition().y);
 	}
 	else if (moveAleatorio == 2 && esquerda) {
 		body.move(-vel.x, 0.f);
+		atualizarTextura("../Imagens/EsqueletoE.png");
 	}
 	else {
 		body.move(0.f, 0.f);  // Pausas ocasionais no movimento
@@ -91,6 +94,7 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 {
 	sf::Vector2f posJogador = jogador->getCentro();
 	sf::Vector2f posEsqueleto = getCentro();
+	atualizarTextura("../Imagens/EsqueletoD.png");
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 
@@ -104,8 +108,12 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 		movimentoAleatorio();
 	}
 	if (cair) {
-		body.move(sf::Vector2f(0, 9.8f * relogio.getElapsedTime().asSeconds() * relogio.getElapsedTime().asSeconds()));
+		if (tempo_queda.getElapsedTime().asSeconds() > 1.f)
+			tempo_queda.restart();
+		body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
 	}
+	else
+		tempo_queda.restart();
 
 }
 

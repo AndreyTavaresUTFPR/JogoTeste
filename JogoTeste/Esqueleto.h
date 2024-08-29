@@ -17,6 +17,7 @@ namespace Personagens {
 	private:
 		Jogador* jogador; // Ponteiro para jogador
 		sf::Clock relogio;
+		sf::Clock tempo_queda;
 		int moveAleatorio;
 
 	public:

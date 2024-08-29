@@ -10,7 +10,8 @@ Menu::Menu() :
     altura(HEIGHT),
     largura(WIDTH)
 {
-
+    setBody(sf::Vector2f(800.f, 800.f));
+    atualizarTextura("../Imagens/Background.png");
 }
 
 Menu::~Menu()

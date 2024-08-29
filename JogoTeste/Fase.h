@@ -14,13 +14,15 @@ namespace Fases {
 	{
 	protected:
 		Lista<Jogador>* listaJogadores;
-		Lista<Inimigo> listaInimigos;
-		Lista<Obstaculo> listaObstaculos;
+		vector<Inimigo*> listaInimigos;
+		list<Obstaculo*> listaObstaculos;
 		GerenciadorColisao* pColisao;
 		MenuPausa menuPausa;
 		Lista<Projetil> listaProjetil;
 		Jogador* j1;
 		Jogador* j2;
+		vector<sf::FloatRect*> salas;
+		int sala_Atual;
 
 		virtual void inicializaElementos() = 0;
 
@@ -28,9 +30,12 @@ namespace Fases {
 		Fase(Lista<Jogador>* listaJog);
 		virtual ~Fase();
 
+		virtual void criarMapa() = 0;
+		virtual void apagarMapa() = 0;
+
 		Lista<Jogador>* getListaJogadores();
-		Lista<Inimigo>* getListaInimigos();
-		Lista<Obstaculo>* getListaObstaculos();
+		vector<Inimigo*>* getListaInimigos();
+		list<Obstaculo*>* getListaObstaculos();
 		void executar() = 0;
 	};
 } using namespace Fases;

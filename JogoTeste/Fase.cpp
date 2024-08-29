@@ -6,7 +6,7 @@ void Fase::inicializaElementos()
 }
 
 Fase::Fase(Lista<Jogador>* listaJog) :
-	Ente(), listaJogadores(listaJog), listaInimigos(), listaObstaculos(), listaProjetil(), pColisao(pColisao->getGerenciadorColisao())
+	Ente(), listaJogadores(listaJog), listaInimigos(), listaObstaculos(), pColisao(pColisao->getGerenciadorColisao()), sala_Atual(0)
 {
 
 }
@@ -20,12 +20,12 @@ Lista<Jogador>* Fase::getListaJogadores()
 	return listaJogadores;
 }
 
-Lista<Inimigo>* Fase::getListaInimigos()
+vector<Inimigo*>* Fase::getListaInimigos()
 {
 	return &listaInimigos;
 }
 
-Lista<Obstaculo>* Fase::getListaObstaculos()
+list<Obstaculo*>* Fase::getListaObstaculos()
 {
 	return &listaObstaculos;
 }

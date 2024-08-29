@@ -55,6 +55,7 @@ bool MenuPausa::getVoltarInicio() const
 void MenuPausa::desenharMenu()
 {
     pGrafico->limparJanela();
+    desenhar();
     pGrafico->desenharElemento(titulo);
     for (int i = 0; i < n_opcoes; i++)
         pGrafico->desenharElemento(*opcoes.getItem(i));
@@ -76,6 +77,7 @@ void MenuPausa::selecionarOpcao()
 void MenuPausa::executar()
 {
     pausar = true;
+    pGrafico->reposicionar();
     while (pausar)
     {
         desenharMenu();

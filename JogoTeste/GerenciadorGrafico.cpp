@@ -2,9 +2,11 @@
 
 GerenciadorGrafico* GerenciadorGrafico::pGrafico(nullptr);
 
-GerenciadorGrafico::GerenciadorGrafico()
+GerenciadorGrafico::GerenciadorGrafico():
+	cameraInicial(sf::FloatRect(0.f, 0.f, 800.f, 800.f))
 {
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo");
+	window->setFramerateLimit(240);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -28,6 +30,11 @@ GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
 sf::RenderWindow* GerenciadorGrafico::getWindow()
 {
 	return window;
+}
+
+void GerenciadorGrafico::reposicionar()
+{
+	window->setView(cameraInicial);
 }
 
 void GerenciadorGrafico::limparJanela()

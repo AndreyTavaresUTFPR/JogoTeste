@@ -1,10 +1,10 @@
 #include "Teia.h"
 
 Teia::Teia() :
-	Obstaculo(DANO, SOLIDEZ),
-	lentidao(LENTIDAO_TEIA)
+	Obstaculo(false, false)
 {
-	setBody(sf::Vector2f(150.f, 150.f));
+	setBody(sf::Vector2f(50.f, 50.f));
+	lentidao = (float)(rand() % 3 + 1) * 0.2f; //Três possibilidades de valor para a lentidão da teia
 }
 
 Teia::~Teia()
@@ -12,26 +12,23 @@ Teia::~Teia()
 
 }
 
-void Teia::setBody(sf::Vector2f pos)
+void Teia::setBody(sf::Vector2f tam)
 {
-	sf::RectangleShape b(sf::Vector2f(50.f, 50.f));
+	sf::RectangleShape b(tam);
 	body = b;
-	body.setFillColor(sf::Color::White);
-	textura.loadFromFile("../Imagens/Teia.png");
+	if (!textura.loadFromFile("../Imagens/Teia.png"))
+		cout << "Erro ao carregar Teia" << endl;
 	body.setTexture(&textura);
-	body.setFillColor(sf::Color::White);
-	body.move(pos); //Move para a parte inferior da jaenla;
-
 }
 
 void Teia::obstacular(Jogador* pJog)
 {
-	pJog->mudarVelocidade(LENTIDAO_TEIA);
+	pJog->mudarVelocidade(lentidao);
 }
 
 void Teia::obstacular(Inimigo* pInim)
 {
-	pInim->mudarVelocidade(LENTIDAO_TEIA);
+	pInim->mudarVelocidade(lentidao);
 }
 
 void Teia::executar()

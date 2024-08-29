@@ -4,7 +4,7 @@
 
 Personagens::Personagem::Personagem() :
 	Entidade(), vida(VIDA_PADRAO), vel(0.f, 0.f),
-	cair(false), esquerda(false), direita(false)
+	cair(false), esquerda(false), direita(false), vivo(true)
 {
 }
 
@@ -53,4 +53,28 @@ void Personagem::conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraE
 		}
 	}
 
+}
+
+void Personagem::receberDano()
+{
+	vida--;
+	if (vida <= 0)
+		vivo = false;
+}
+
+void Personagem::operator--()
+{
+	vida--;
+	if (vida <= 0)
+		vivo = false;
+}
+
+int Personagem::getVida() const
+{
+	return vida;
+}
+
+bool Personagem::getVivo() const
+{
+	return vivo;
 }

@@ -6,6 +6,7 @@
 #include "Solo.h"
 #include "Teia.h"
 #include "Espinhos.h"
+#include "Gelo.h"
 #include "MenuPausa.h"
 
 namespace Fases {
@@ -14,16 +15,10 @@ namespace Fases {
 	private:
 		Jogador* j1;
 		Jogador* j2;
-
-		Esqueleto* e1;
-		Esqueleto* e2;
 		Aranha* a1;
-		Chefe* mago;
-
-		Solo* solo1;
-		Teia* obst1;
-		Teia* obst2;
 		Espinhos* obst3;
+		Gelo* obst4;
+		//Chefe* mago;
 
 		MenuPausa pausa;
 
@@ -32,8 +27,15 @@ namespace Fases {
 		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
 
+		void criarInimigosFaceis();
+		void criarInimigosMedios();
+		void criarObstaculosFaceis();
+		void criarObstaculosMedios();
+		void criarTerreno1();
+		void criarTerreno2();
 
-		void executar();
 		void criarMapa();
+		void apagarMapa();
+		void executar();
 	};
 } using namespace Fases;

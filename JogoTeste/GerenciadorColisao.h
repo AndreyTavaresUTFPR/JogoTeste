@@ -13,8 +13,8 @@ namespace Gerenciadores {
 	class GerenciadorColisao {
 	private:
 		Lista<Jogador>* listaJogadores;
-		vector<Inimigo*> listaInimigos;
-		list<Obstaculo*> listaObstaculos;
+		vector<Inimigo*>* listaInimigos;
+		list<Obstaculo*>* listaObstaculos;
 		
 		static GerenciadorColisao* pColisao;
 		GerenciadorColisao();
@@ -22,7 +22,7 @@ namespace Gerenciadores {
 		~GerenciadorColisao();
 
 		static GerenciadorColisao* getGerenciadorColisao();
-		void setListas(Lista<Jogador>* listaJog, Lista<Inimigo>* listaInim, Lista<Obstaculo>* listaObst);
+		void setListas(Lista<Jogador>* listaJog, vector<Inimigo*>* listaInim, list<Obstaculo*>* listaObst);
 
 		void conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim);
 		void conferirColisaoJogObst(Jogador* pJog, Obstaculo* pObst);
