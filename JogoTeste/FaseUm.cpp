@@ -14,6 +14,12 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 		pJog->getBody()->setPosition(sf::Vector2f(27.f, 27.f));
 	}
 
+	sf::FloatRect* aux = new sf::FloatRect(0.f, 0.f, 800.f, 800.f);
+	salas.push_back(aux);
+	aux = new sf::FloatRect(-800.f, 650.f, 800.f, 800.f);
+	salas.push_back(aux);
+
+
 	this->j1 = listaJogadores->getItem(0);
 	e1 = new Esqueleto(j1);
 	e1->getBody()->setPosition(sf::Vector2f(200.f, 345.f));
@@ -144,16 +150,18 @@ void FaseUm::criarTerreno2()
 
 	//Criando as paredes
 	sf::Vector2f tam(25.f, 750.f);
-	sf::Vector2f pos(-800.f, 1.f);
+	sf::Vector2f pos(-800.f, 675.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
-	//temp->atualizarTextura(texturaParede);
+	temp->atualizarTextura("../Imagens/Parede.png");
 	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 
 	temp = new Solo();
-	pos = sf::Vector2f(775.f, 0.f);
+	tam.y = 650.f;
+	pos.x = -25.f;
+	pos.y = 775.f;
 	temp->setBody(tam);
-	//temp->atualizarTextura(texturaParede);
+	temp->atualizarTextura("../Imagens/Parede.png");
 	temp->getBody()->setPosition(pos); //Parede da lateral direita
 	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 
@@ -162,29 +170,29 @@ void FaseUm::criarTerreno2()
 	//Criando teto e chão
 	temp = new Solo();
 	tam = sf::Vector2f(800.f, 25.f);
-	pos = sf::Vector2f(0.f, 0.f);
+	pos = sf::Vector2f(-800.f, 650.f);
 	temp->setBody(tam);
+	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Teto
 	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 
 	temp = new Solo();
-	pos = sf::Vector2f(0.f, 775.f);
+	pos.y = 1425.f;
 	temp->setBody(tam);
+	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Chão
 	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 
 	/*********************************************************************************/
-
-	sf::Texture texturaAndares;
-	texturaAndares.loadFromFile("../Imagens/Andar.png");
 
 	//Criando andares
 	for (int i = 0; i < 3; i++)
 	{
 		temp = new Solo();
 		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(25.f + 150.f * (i+1 % 2), 800.f / 4 * (i + 1));
+		pos = sf::Vector2f(-775.f + 150.f * ((i+1) % 2), 800.f / 4 * (i + 1) + 575.f);
 		temp->setBody(tam);
+		temp->atualizarTextura("../Imagens/Andar.png");
 		temp->getBody()->setPosition(pos);
 		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 	}
@@ -193,7 +201,7 @@ void FaseUm::criarTerreno2()
 void FaseUm::criarMapa()
 {
 	criarTerreno1();
-
+	criarTerreno2();
 	
 }
 
@@ -254,5 +262,19 @@ void FaseUm::executar()
 		}
 		pColisao->executar();
 		pGrafico->mostrarElementos();
+		for (i = 0; i < salas.size(); i++)
+		{
+			if (salas[i]->contains(listaJogadores->getItem(0)->getCentro()))
+			{
+				if (sala_Atual != i)
+				{
+					sala_Atual = i;
+					body.setPosition((salas[i]->getPosition()));
+					if(listaJogadores->getLen() == 2)
+						listaJogadores->getItem(1)->getBody()->setPosition(listaJogadores->getItem(0)->getBody()->getPosition());
+				}
+			}
+		}
+		pGrafico->getWindow()->setView(sf::View(*salas[sala_Atual]));
 	}
 }

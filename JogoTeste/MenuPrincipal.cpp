@@ -119,6 +119,7 @@ void MenuPrincipal::selecionarOpcao()
 
 void MenuPrincipal::executar()
 {
+    pGrafico->reposicionar();
     while (iniciar == false && pGrafico->verificarJanela())
     {
         desenharMenu();

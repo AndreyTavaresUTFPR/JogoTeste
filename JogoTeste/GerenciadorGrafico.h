@@ -11,6 +11,7 @@ namespace Gerenciadores {
 	private:
 		sf::RenderWindow* window;
 		sf::Clock timer;
+		sf::View cameraInicial;
 
 		static GerenciadorGrafico* pGrafico;
 		GerenciadorGrafico();
@@ -19,6 +20,7 @@ namespace Gerenciadores {
 		~GerenciadorGrafico();
 		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
+		void reposicionar();
 		void limparJanela();
 		void desenharElemento(sf::RectangleShape corpo);
 		void desenharElemento(sf::Text texto);

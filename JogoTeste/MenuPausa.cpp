@@ -76,6 +76,7 @@ void MenuPausa::selecionarOpcao()
 void MenuPausa::executar()
 {
     pausar = true;
+    pGrafico->reposicionar();
     while (pausar)
     {
         desenharMenu();

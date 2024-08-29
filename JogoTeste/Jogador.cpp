@@ -69,12 +69,6 @@ void Jogador::move()
         if (cair) // Caindo
         {
             body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
-            if (body.getPosition().y > 800.f - body.getSize().y)
-            {
-                cair = false;
-                body.setPosition(sf::Vector2f(body.getPosition().x, 775 - body.getSize().y));
-            }
-
         }
         else
             tempo_queda.restart();
@@ -87,16 +81,10 @@ void Jogador::move()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && esquerda) { // para esquerda
             body.move(sf::Vector2f(-vel.x, 0));
             atualizarTextura("../Imagens/JogadorE.png");
-            if (body.getPosition().x < 0.f)
-                body.setPosition(sf::Vector2f(0.f, body.getPosition().y));
-            direita = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direita) { // para direita
             body.move(sf::Vector2f(vel.x, 0));
             atualizarTextura("../Imagens/JogadorD.png");
-            if (body.getPosition().x > 750.f)
-                body.setPosition(sf::Vector2f((800.f - body.getSize().x), body.getPosition().y));
-            esquerda = true;
         }
         if (cair) {
             body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));

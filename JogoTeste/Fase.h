@@ -21,6 +21,8 @@ namespace Fases {
 		Lista<Projetil> listaProjetil;
 		Jogador* j1;
 		Jogador* j2;
+		vector<sf::FloatRect*> salas;
+		int sala_Atual;
 
 		virtual void inicializaElementos() = 0;
 
