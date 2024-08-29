@@ -85,10 +85,12 @@ void GerenciadorColisao::conferirColisaoInimObst(Inimigo* pInim, Obstaculo* pObs
 	sf::Vector2f colisao(	((pInim->getBody()->getSize().x / 2.f + pObst->getBody()->getSize().x / 2.f) - ds.x),
 							((pInim->getBody()->getSize().y / 2.f + pObst->getBody()->getSize().y / 2.f) - ds.y));
 
-	if (pObst->ehSolido())
-		if (colisao.x > 0.f && colisao.y > 0.f)
+	if (colisao.x > 0.f && colisao.y > 0.f)
+	{
+		if (pObst->ehSolido())
 			pInim->conferirColisao(colisao, pObst->getCentro());
-	pObst->obstacular(pInim);
+		pObst->obstacular(pInim);
+	}
 }
 
 

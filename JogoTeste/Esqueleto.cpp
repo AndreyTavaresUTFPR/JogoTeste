@@ -40,8 +40,8 @@ void Esqueleto::liberarMovimento()
 
 void Esqueleto::mudarVelocidade(float fator)
 {
-	vel.x = VEL_ESQUELETO_X + fator;
-	vel.y = VEL_ESQUELETO_Y + fator;
+	vel.x = VEL_ESQUELETO_X * fator;
+	vel.y = VEL_ESQUELETO_Y * fator;
 }
 
 void Esqueleto::danificar()

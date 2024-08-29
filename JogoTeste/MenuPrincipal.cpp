@@ -88,6 +88,7 @@ bool MenuPrincipal::getDoisJogadores() const {
 void MenuPrincipal::desenharMenu()
 {
     pGrafico->limparJanela();
+    desenhar();
     pGrafico->desenharElemento(titulo);
     for (int i = 0; i < n_opcoes; i++)
         pGrafico->desenharElemento(*opcoes.getItem(i));

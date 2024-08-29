@@ -21,4 +21,4 @@ namespace Obstaculos {
 		void executar();
 	};
 
-} using namespace Obstaculos;
+} using namespace Obstaculos; 

@@ -19,13 +19,23 @@ Jogo::~Jogo()
 
 void Jogo::criarJogadores()
 {
+    Jogador* aux = nullptr;
     for (int i = listaJogadores.getLen(); i < n_jogadores; i++)
     {
-        Jogador* temp = new Jogador();
-        temp->getBody()->setPosition(50.f, 50.f);
-        if (temp != nullptr)
-            listaJogadores.push(temp);
+        aux = new Jogador();
+        if (aux != nullptr)
+        {
+            aux->getBody()->setPosition(50.f, 50.f);
+            listaJogadores.push(aux);
+        }
     }
+    if (n_jogadores == 1 && listaJogadores.getLen() == 2)
+    {
+        aux = listaJogadores.getItem(1);
+        listaJogadores.pop(listaJogadores.getItem(1));
+        delete aux;
+    }
+
 }
 
 void Jogo::criarFaseUm()
@@ -43,6 +53,8 @@ void Jogo::executar()
         menuPrincipal->executar();
         if (menuPrincipal->getDoisJogadores())
             n_jogadores = 2;
+        else
+            n_jogadores = 1;
         criarJogadores();
         //Conferir qual a fase a ser executada 
 

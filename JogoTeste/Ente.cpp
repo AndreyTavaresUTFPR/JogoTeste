@@ -1,14 +1,16 @@
 #include "Ente.h"
 
+int Ente::n_entes(1);
+
 Ente::Ente() :
-	pGrafico(pGrafico->getGerenciadorGrafico()), textura()
+	pGrafico(pGrafico->getGerenciadorGrafico()), textura(), id(n_entes++)
 {
 
 }
 
 Ente::~Ente()
 {
-
+	Ente::n_entes--;
 }
 
 void Ente::setBody(sf::Vector2f tam)
@@ -28,4 +30,9 @@ void Ente::atualizarTextura(const std::string& caminho)
 		cout << "Erro ao carregar textura" << endl;
 	else
 		this->body.setTexture(&textura);
+}
+
+void Ente::desenhar()
+{
+	pGrafico->desenharElemento(body);
 }

@@ -6,6 +6,7 @@
 #include "Solo.h"
 #include "Teia.h"
 #include "Espinhos.h"
+#include "Gelo.h"
 #include "MenuPausa.h"
 
 namespace Fases {
@@ -14,9 +15,9 @@ namespace Fases {
 	private:
 		Jogador* j1;
 		Jogador* j2;
-		Teia* obst1;
-		Teia* obst2;
+		Aranha* a1;
 		Espinhos* obst3;
+		Gelo* obst4;
 		//Chefe* mago;
 
 		MenuPausa pausa;

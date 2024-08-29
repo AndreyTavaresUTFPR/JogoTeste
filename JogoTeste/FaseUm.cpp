@@ -19,15 +19,17 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	aux = new sf::FloatRect(-800.f, 600.f, 800.f, 800.f);
 	salas.push_back(aux);
 
-	obst1 = new Teia();
-	obst1->getBody()->setPosition(sf::Vector2f(400.f, 350.f));
-	obst2 = new Teia();
-	obst2->getBody()->setPosition(sf::Vector2f(200.f, 150.f));
+	a1 = new Aranha();
+	a1->getBody()->setPosition(sf::Vector2f(750.f, 100.f));
+
 	obst3 = new Espinhos();
 	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
 
-	criarInimigosFaceis();
+	obst4 = new Gelo();
+	obst4->getBody()->setPosition(sf::Vector2f(150.f, 175.f));
 
+	criarInimigosFaceis();
+	criarObstaculosFaceis();
 	//mago = new Chefe();
 	//mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
 
@@ -46,12 +48,14 @@ void FaseUm::inicializaElementos()
 	//listaInimigos.push_back(static_cast<Inimigo*>(e1));
 	//if (listaJogadores->getLen() == 2)
 		//listaInimigos.push_back(static_cast<Inimigo*>(e2));
-	//listaInimigos.push_back(static_cast<Inimigo*>(a1));
+	listaInimigos.push_back(static_cast<Inimigo*>(a1));
 	//listaInimigos.push_back(static_cast<Inimigo*>(mago));
-	listaObstaculos.push_back(static_cast<Obstaculo*>(obst1));
-	listaObstaculos.push_back(static_cast<Obstaculo*>(obst2));
-	listaObstaculos.push_back(static_cast<Obstaculo*>(obst3));
+	//listaObstaculos.push_back(static_cast<Obstaculo*>(obst1));
+	//listaObstaculos.push_back(static_cast<Obstaculo*>(obst2));
+	//listaObstaculos.push_back(static_cast<Obstaculo*>(obst3));
 	criarMapa();
+
+	listaObstaculos.push_back(static_cast<Obstaculo*>(obst4));
 }
 
 void FaseUm::criarInimigosFaceis()
@@ -90,6 +94,23 @@ void FaseUm::criarInimigosMedios()
 void FaseUm::criarObstaculosFaceis()
 {
 	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
+	Teia* aux = nullptr;
+
+	vector<sf::Vector2f> posicoesPossiveis = { {200.f, 125.f}, {200.f, 325.f}, {200.f, 525.f}, {200.f, 725.f},
+												{-600.f, 725.f}, {-600.f, 925.f}, {-600.f, 1125.f}, {-600.f, 1325.f} };
+
+	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
+
+	int i = 0;
+	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
+	while (i < n_obst)
+	{
+		aux = new Teia();
+		aux->getBody()->setPosition(*it);
+		listaObstaculos.push_back(static_cast<Obstaculo*>(aux));
+		it++;
+		i++;
+	}
 }
 
 void FaseUm::criarObstaculosMedios()
@@ -245,12 +266,12 @@ void FaseUm::executar()
 		}
 
 		pGrafico->limparJanela();
-		pGrafico->desenharElemento(body);
+		desenhar();
 		for (i = 0; i < listaJogadores->getLen(); i++)
 		{
 			pPers = static_cast<Personagem*>(listaJogadores->getItem(i));
 			pPers->executar();
-			pGrafico->desenharElemento(*pPers->getBody());
+			pPers->desenhar();
 		}
 		for (itInim = listaInimigos.begin(); itInim != listaInimigos.end(); itInim++)
 		{
@@ -258,14 +279,14 @@ void FaseUm::executar()
 			if (pPers->getVivo())
 			{
 				pPers->executar();
-				pGrafico->desenharElemento(*pPers->getBody());
+				pPers->desenhar();
 			}
 		}
 		for (itObst = listaObstaculos.begin(); itObst != listaObstaculos.end(); itObst++)
 		{
 			pObst = static_cast<Obstaculo*>(*itObst);
 			pObst->executar();
-			pGrafico->desenharElemento(*pObst->getBody());
+			pObst->desenhar();
 		}
 		pColisao->executar();
 		pGrafico->mostrarElementos();

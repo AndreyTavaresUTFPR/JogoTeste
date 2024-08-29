@@ -11,7 +11,8 @@ protected:
 	GerenciadorGrafico* pGrafico;
 	sf::Texture textura;
 	sf::RectangleShape body;
-	//int id;
+	static int n_entes;
+	int id;
 
 public:
 	Ente();
@@ -21,5 +22,5 @@ public:
 	virtual void setBody(sf::Vector2f tam);
 	sf::RectangleShape* getBody();
 	virtual void executar() = 0;
-	//virtual void desenhar() = 0;
+	void desenhar();
 };
