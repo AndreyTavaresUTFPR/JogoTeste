@@ -68,6 +68,8 @@ void Jogador::move()
         }
         if (cair) // Caindo
         {
+            if (tempo_queda.getElapsedTime().asSeconds() > 1.f)
+                tempo_queda.restart();
             body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
         }
         else

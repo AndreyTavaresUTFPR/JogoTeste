@@ -260,6 +260,7 @@ void FaseUm::executar()
 					menuPausa.executar();
 					if (menuPausa.getVoltarInicio())
 						return;
+					break;
 				}
 			if (event.type == sf::Event::Closed)
 				pGrafico->fecharJanela();

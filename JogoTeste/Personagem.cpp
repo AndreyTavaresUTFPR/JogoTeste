@@ -62,6 +62,13 @@ void Personagem::receberDano()
 		vivo = false;
 }
 
+void Personagem::operator--()
+{
+	vida--;
+	if (vida <= 0)
+		vivo = false;
+}
+
 int Personagem::getVida() const
 {
 	return vida;

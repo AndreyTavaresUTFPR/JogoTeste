@@ -39,12 +39,8 @@ void Aranha::liberarMovimento()
 
 void Aranha::mudarVelocidade(float fator)
 {
-	vel.x += fator;
-	if (vel.x < 0.f)
-		vel.x = -vel.x;
-	vel.y += fator;
-	if (vel.y < 0.f)
-		vel.y = -vel.y;
+	vel.x = VELOCIDADE_HORIZONTAL * fator;
+	vel.y = VELOCIDADE_PULO * fator;
 }
 
 void Aranha::danificar()
@@ -55,7 +51,7 @@ void Aranha::danificar()
 void Aranha::pular()
 {
 	float tempo = timer_gravidade.getElapsedTime().asSeconds();
-
+	pulo.x = -pulo.x;
 		body.move(sf::Vector2f(pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo))));
 		//body.move(sf::Vector2f(-pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo)))); PENSAR EM COMO IMPLEMENTAR O MOVIMENTO ALEATORIO
 }
