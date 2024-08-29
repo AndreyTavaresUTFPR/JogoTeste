@@ -16,20 +16,9 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 
 	sf::FloatRect* aux = new sf::FloatRect(0.f, 0.f, 800.f, 800.f);
 	salas.push_back(aux);
-	aux = new sf::FloatRect(-800.f, 650.f, 800.f, 800.f);
+	aux = new sf::FloatRect(-800.f, 600.f, 800.f, 800.f);
 	salas.push_back(aux);
 
-
-	this->j1 = listaJogadores->getItem(0);
-	e1 = new Esqueleto(j1);
-	e1->getBody()->setPosition(sf::Vector2f(200.f, 345.f));
-	if (listaJogadores->getLen() == 2)
-	{
-		this->j2 = listaJogadores->getItem(1);
-		e2 = new Esqueleto(j2);
-		e2->getBody()->setPosition(sf::Vector2f(750.f, 100.f));
-	}
-	a1 = new Aranha();
 	obst1 = new Teia();
 	obst1->getBody()->setPosition(sf::Vector2f(400.f, 350.f));
 	obst2 = new Teia();
@@ -37,12 +26,14 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	obst3 = new Espinhos();
 	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
 
-	mago = new Chefe();
-	mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
+	criarInimigosFaceis();
+
+	//mago = new Chefe();
+	//mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
 
 	inicializaElementos();
-	mago->setJogador(j1);
-	mago->setLProj(&listaProjetil);
+	//mago->setJogador(j1);
+	//mago->setLProj(&listaProjetil);
 }
 
 FaseUm::~FaseUm()
@@ -52,11 +43,11 @@ FaseUm::~FaseUm()
 
 void FaseUm::inicializaElementos()
 {
-	listaInimigos.push_back(static_cast<Inimigo*>(e1));
-	if (listaJogadores->getLen() == 2)
-		listaInimigos.push_back(static_cast<Inimigo*>(e2));
-	listaInimigos.push_back(static_cast<Inimigo*>(a1));
-	listaInimigos.push_back(static_cast<Inimigo*>(mago));
+	//listaInimigos.push_back(static_cast<Inimigo*>(e1));
+	//if (listaJogadores->getLen() == 2)
+		//listaInimigos.push_back(static_cast<Inimigo*>(e2));
+	//listaInimigos.push_back(static_cast<Inimigo*>(a1));
+	//listaInimigos.push_back(static_cast<Inimigo*>(mago));
 	listaObstaculos.push_back(static_cast<Obstaculo*>(obst1));
 	listaObstaculos.push_back(static_cast<Obstaculo*>(obst2));
 	listaObstaculos.push_back(static_cast<Obstaculo*>(obst3));
@@ -66,7 +57,23 @@ void FaseUm::inicializaElementos()
 void FaseUm::criarInimigosFaceis()
 {
 	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
-	
+	Esqueleto* aux = nullptr;
+
+	vector<sf::Vector2f> posicoesPossiveis = {	{200.f, 100.f}, {200.f, 300.f}, {200.f, 500.f}, {200.f, 675.f},
+												{-600.f, 675.f}, {-600.f, 875.f}, {-600.f, 1075.f}, {-600.f, 1150.f}};
+
+	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
+
+	int i = 0;
+	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
+	while (i < n_inim)
+	{
+		aux = new Esqueleto(listaJogadores->getItem(0));
+		aux->getBody()->setPosition(*it);
+		listaInimigos.push_back(static_cast<Inimigo*>(aux));
+		it++;
+		i++;
+	}
 	
 }
 
@@ -95,7 +102,7 @@ void FaseUm::criarTerreno1()
 	Solo* temp = new Solo();
 
 	//Criando as paredes
-	sf::Vector2f tam(25.f, 625.f);
+	sf::Vector2f tam(25.f, 600.f);
 	sf::Vector2f pos(0.f, 25.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
@@ -136,7 +143,7 @@ void FaseUm::criarTerreno1()
 	{
 		temp = new Solo();
 		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(25.f + 150.f * (i % 2), 800.f / 4 * (i + 1));
+		pos = sf::Vector2f(25.f + 150.f * (i % 2), 200.f * (i + 1) - 25.f);
 		temp->setBody(tam);
 		temp->getBody()->setPosition(pos);
 		temp->atualizarTextura("../Imagens/Andar.png");
@@ -150,7 +157,7 @@ void FaseUm::criarTerreno2()
 
 	//Criando as paredes
 	sf::Vector2f tam(25.f, 750.f);
-	sf::Vector2f pos(-800.f, 675.f);
+	sf::Vector2f pos(-800.f, 625.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
 	temp->atualizarTextura("../Imagens/Parede.png");
@@ -170,14 +177,14 @@ void FaseUm::criarTerreno2()
 	//Criando teto e chão
 	temp = new Solo();
 	tam = sf::Vector2f(800.f, 25.f);
-	pos = sf::Vector2f(-800.f, 650.f);
+	pos = sf::Vector2f(-800.f, 600.f);
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Teto
 	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
 
 	temp = new Solo();
-	pos.y = 1425.f;
+	pos.y = 1375.f;
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Chão
@@ -190,7 +197,7 @@ void FaseUm::criarTerreno2()
 	{
 		temp = new Solo();
 		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(-775.f + 150.f * ((i+1) % 2), 800.f / 4 * (i + 1) + 575.f);
+		pos = sf::Vector2f(-775.f + 150.f * ((i+1) % 2), 200.f * (i + 1) + 575.f);
 		temp->setBody(tam);
 		temp->atualizarTextura("../Imagens/Andar.png");
 		temp->getBody()->setPosition(pos);
