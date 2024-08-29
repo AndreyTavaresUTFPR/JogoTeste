@@ -22,10 +22,6 @@ void Esqueleto::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
-	textura.loadFromFile("../Imagens/Esqueleto.png");
-	body.setTexture(&textura);
-	//body.setFillColor(sf::Color::Magenta);
-	body.setPosition(sf::Vector2f(400.f, 250.f));
 }
 
 void Esqueleto::liberarGravidade()
@@ -59,11 +55,13 @@ void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) //
 		if (direita)
 			body.move(vel.x, 0.0f);
 		esquerda = true;
+		atualizarTextura("../Imagens/EsqueletoD.png");
 	}
 	else {
 		if (esquerda)
 			body.move(-vel.x, 0.0f);
 		direita = true;
+		atualizarTextura("../Imagens/EsqueletoE.png");
 	}
 }
 
@@ -72,11 +70,13 @@ void Personagens::Esqueleto::movimentoAleatorio() // Movimento aleatório do esqu
 {
 	if (moveAleatorio == 1 && direita) {
 		body.move(vel.x, 0.f);
+		atualizarTextura("../Imagens/EsqueletoD.png");
 		if (body.getPosition().x + body.getSize().x > pGrafico->getWindow()->getSize().x)
 			body.move((pGrafico->getWindow()->getSize().x - body.getSize().x), body.getPosition().y);
 	}
 	else if (moveAleatorio == 2 && esquerda) {
 		body.move(-vel.x, 0.f);
+		atualizarTextura("../Imagens/EsqueletoE.png");
 	}
 	else {
 		body.move(0.f, 0.f);  // Pausas ocasionais no movimento
@@ -94,6 +94,7 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 {
 	sf::Vector2f posJogador = jogador->getCentro();
 	sf::Vector2f posEsqueleto = getCentro();
+	atualizarTextura("../Imagens/EsqueletoD.png");
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 

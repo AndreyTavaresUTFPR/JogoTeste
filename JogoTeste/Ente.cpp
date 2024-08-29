@@ -22,8 +22,10 @@ sf::RectangleShape* Ente::getBody()
 	return &body;
 }
 
-void Ente::atualizarTextura(sf::Texture texture)
+void Ente::atualizarTextura(const std::string& caminho)
 {
-	textura = texture;
-	body.setTexture(&textura);
+	if (!this->textura.loadFromFile(caminho))
+		cout << "Erro ao carregar textura" << endl;
+	else
+		this->body.setTexture(&textura);
 }

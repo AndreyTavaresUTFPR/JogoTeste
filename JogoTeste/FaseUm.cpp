@@ -8,6 +8,12 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	setBody(sf::Vector2f(800.f, 800.f));
 	body.setTexture(&textura);
 
+	for (int i = 0; i < listaJogadores->getLen(); i++)
+	{
+		Jogador* pJog = listaJogadores->getItem(i);
+		pJog->getBody()->setPosition(sf::Vector2f(27.f, 27.f));
+	}
+
 	this->j1 = listaJogadores->getItem(0);
 	e1 = new Esqueleto(j1);
 	e1->getBody()->setPosition(sf::Vector2f(200.f, 345.f));
@@ -51,57 +57,6 @@ void FaseUm::inicializaElementos()
 	criarMapa();
 }
 
-void FaseUm::criarMapa()
-{
-	Solo* temp = new Solo();
-
-	//Criando as paredes
-	sf::Vector2f tam(25.f, 800.f);
-	sf::Vector2f pos(0.f, -150.f);
-	sf::Texture texturaParede;
-	texturaParede.loadFromFile("../Imagens/Parede.png");
-	temp->setBody(tam); //Parede lateal esquerda
-	temp->getBody()->setPosition(pos);
-	temp->atualizarTextura(texturaParede);
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
-
-	temp = new Solo();
-	pos = sf::Vector2f(775.f, 0.f);
-	temp->setBody(tam);
-	temp->atualizarTextura(texturaParede);
-	temp->getBody()->setPosition(pos); //Parede da lateral direita
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
-
-	/*********************************************************************************/
-
-	//Criando teto e chão
-	temp = new Solo();
-	tam = sf::Vector2f(800.f, 25.f);
-	pos = sf::Vector2f(0.f, 0.f);
-	temp->setBody(tam);
-	temp->getBody()->setPosition(pos); //Teto
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
-
-	temp = new Solo();
-	pos = sf::Vector2f(0.f, 775.f);
-	temp->setBody(tam);
-	temp->getBody()->setPosition(pos); //Chão
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
-
-	/*********************************************************************************/
-
-	//Criando andares
-	for (int i = 0; i < 3; i++)
-	{
-		temp = new Solo();
-		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(25.f + 150.f * (i % 2), 800.f / 4 * (i + 1));
-		temp->setBody(tam);
-		temp->getBody()->setPosition(pos);
-		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
-	}
-}
-
 void FaseUm::criarInimigosFaceis()
 {
 	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
@@ -127,6 +82,124 @@ void FaseUm::criarObstaculosFaceis()
 void FaseUm::criarObstaculosMedios()
 {
 	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
+}
+
+void FaseUm::criarTerreno1()
+{
+	Solo* temp = new Solo();
+
+	//Criando as paredes
+	sf::Vector2f tam(25.f, 625.f);
+	sf::Vector2f pos(0.f, 25.f);
+	temp->setBody(tam); //Parede lateal esquerda
+	temp->getBody()->setPosition(pos);
+	temp->atualizarTextura("../Imagens/Parede.png");
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	temp = new Solo();
+	tam.y = 750.f;
+	pos.x = 775.f;
+	temp->setBody(tam);
+	temp->atualizarTextura("../Imagens/Parede.png");
+	temp->getBody()->setPosition(pos); //Parede da lateral direita
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	/*********************************************************************************/
+
+	//Criando teto e chão
+	temp = new Solo();
+	tam = sf::Vector2f(800.f, 25.f);
+	pos = sf::Vector2f(0.f, 0.f);
+	temp->setBody(tam);
+	temp->getBody()->setPosition(pos); //Teto
+	temp->atualizarTextura("../Imagens/Teto.png");
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	temp = new Solo();
+	pos = sf::Vector2f(0.f, 775.f);
+	temp->setBody(tam);
+	temp->getBody()->setPosition(pos); //Chão
+	temp->atualizarTextura("../Imagens/Teto.png");
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	/*********************************************************************************/
+
+
+	//Criando andares
+	for (int i = 0; i < 3; i++)
+	{
+		temp = new Solo();
+		tam = sf::Vector2f(600.f, 50.f);
+		pos = sf::Vector2f(25.f + 150.f * (i % 2), 800.f / 4 * (i + 1));
+		temp->setBody(tam);
+		temp->getBody()->setPosition(pos);
+		temp->atualizarTextura("../Imagens/Andar.png");
+		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	}
+}
+
+void FaseUm::criarTerreno2()
+{
+	Solo* temp = new Solo();
+
+	//Criando as paredes
+	sf::Vector2f tam(25.f, 750.f);
+	sf::Vector2f pos(-800.f, 1.f);
+	temp->setBody(tam); //Parede lateal esquerda
+	temp->getBody()->setPosition(pos);
+	//temp->atualizarTextura(texturaParede);
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	temp = new Solo();
+	pos = sf::Vector2f(775.f, 0.f);
+	temp->setBody(tam);
+	//temp->atualizarTextura(texturaParede);
+	temp->getBody()->setPosition(pos); //Parede da lateral direita
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	/*********************************************************************************/
+
+	//Criando teto e chão
+	temp = new Solo();
+	tam = sf::Vector2f(800.f, 25.f);
+	pos = sf::Vector2f(0.f, 0.f);
+	temp->setBody(tam);
+	temp->getBody()->setPosition(pos); //Teto
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	temp = new Solo();
+	pos = sf::Vector2f(0.f, 775.f);
+	temp->setBody(tam);
+	temp->getBody()->setPosition(pos); //Chão
+	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+
+	/*********************************************************************************/
+
+	sf::Texture texturaAndares;
+	texturaAndares.loadFromFile("../Imagens/Andar.png");
+
+	//Criando andares
+	for (int i = 0; i < 3; i++)
+	{
+		temp = new Solo();
+		tam = sf::Vector2f(600.f, 50.f);
+		pos = sf::Vector2f(25.f + 150.f * (i+1 % 2), 800.f / 4 * (i + 1));
+		temp->setBody(tam);
+		temp->getBody()->setPosition(pos);
+		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	}
+}
+
+void FaseUm::criarMapa()
+{
+	criarTerreno1();
+
+	
+}
+
+void FaseUm::apagarMapa()
+{
+
 }
 
 void FaseUm::executar()

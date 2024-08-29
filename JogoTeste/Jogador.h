@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #define VEL_JOGADOR_X 1.f
-#define VEL_JOGADOR_Y 0.8f
+#define VEL_JOGADOR_Y 1.f
 
 
 namespace Personagens {
@@ -14,7 +14,7 @@ namespace Personagens {
         sf::Clock tempo_andando;
         static int n_players;
         int player;
-        bool atacando;
+        int pontuacao;
 
     public:
         Jogador();
@@ -24,7 +24,7 @@ namespace Personagens {
         void liberarMovimento();
         void setBody(sf::Vector2f tam);
         void mudarVelocidade(float fator);
-        bool getAtacando() const;
+        void ganharPontos(int pontos);
         void move();
         void executar();
     };

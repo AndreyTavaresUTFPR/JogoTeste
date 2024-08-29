@@ -34,8 +34,11 @@ namespace Fases {
 		void criarInimigosMedios();
 		void criarObstaculosFaceis();
 		void criarObstaculosMedios();
+		void criarTerreno1();
+		void criarTerreno2();
 
-		void executar();
 		void criarMapa();
+		void apagarMapa();
+		void executar();
 	};
 } using namespace Fases;

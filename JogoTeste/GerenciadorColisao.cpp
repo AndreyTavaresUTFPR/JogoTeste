@@ -37,10 +37,12 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 
 	if (colisao.x > 0.f && colisao.y > 0.f)
 	{
+		if (colisao.x > colisao.y && pJog->getCentro().y < pInim->getCentro().y)
+		{
+			pInim->receberDano();
+		}
 		pJog->conferirColisao(colisao, pInim->getCentro());
 		pInim->conferirColisao(colisao, pJog->getCentro());
-		if (pJog->getAtacando())
-			pInim->receberDano();
 	}
 }
 

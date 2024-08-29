@@ -17,7 +17,7 @@ public:
 	Ente();
 	~Ente();
 
-	void atualizarTextura(sf::Texture texture);
+	void atualizarTextura(const std::string& caminho);
 	virtual void setBody(sf::Vector2f tam);
 	sf::RectangleShape* getBody();
 	virtual void executar() = 0;

@@ -29,6 +29,7 @@ namespace Fases {
 		virtual ~Fase();
 
 		virtual void criarMapa() = 0;
+		virtual void apagarMapa() = 0;
 
 		Lista<Jogador>* getListaJogadores();
 		vector<Inimigo*>* getListaInimigos();

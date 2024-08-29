@@ -17,9 +17,6 @@ void Solo::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
-	textura.loadFromFile("../Imagens/Andar.png");
-	body.setTexture(&textura);
-	textura.setRepeated(true);
 }
 
 void Solo::obstacular(Jogador* pJog)
