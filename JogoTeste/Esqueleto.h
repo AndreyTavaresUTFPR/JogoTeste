@@ -16,8 +16,6 @@ namespace Personagens {
 	{
 	private:
 		Jogador* jogador; // Ponteiro para jogador
-		sf::Clock relogio;
-		sf::Clock tempo_queda;
 		int moveAleatorio;
 
 	public:
@@ -25,10 +23,8 @@ namespace Personagens {
 		~Esqueleto();
 
 		void setBody(sf::Vector2f tam);
-		void liberarGravidade();
-		void liberarMovimento();
 		void mudarVelocidade(float fator);
-		void danificar();
+		void danificar(Jogador* pJog);
 		void perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto);
 		void movimentoAleatorio();
 		void move();

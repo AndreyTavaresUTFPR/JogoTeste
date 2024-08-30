@@ -1,76 +1,87 @@
 #include "Aranha.h"
 
 Aranha::Aranha():
-	Inimigo(), pulo(VELOCIDADE_HORIZONTAL, VELOCIDADE_PULO)
+	Inimigo(VIDA_ARANHA), paraEsquerda(true)
 {
-	timer_gravidade.restart();
-	nivel_maldade = 2;
+	peconhenta = (bool)(rand() % 2);
+	nivel_maldade = rand() % 2 + 1;
 	setBody(sf::Vector2f(30.f, 30.f));
 }
 
 Aranha::~Aranha()
 {
+
 }
 
 void Aranha::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
-	//body.setFillColor(sf::Color::Yellow);
-	textura.loadFromFile("../Imagens/Aranha.png");
+	if (peconhenta)
+		body.setFillColor(sf::Color::Green);
+	textura.loadFromFile("../Imagens/AranhaE.png");
 	body.setTexture(&textura);
 	body.setPosition(sf::Vector2f(700.f, 250.f));
 }
 
-
-void Aranha::liberarGravidade()
-{
-	cair = true;
-	vel.y = VELOCIDADE_PULO;
-}
-
-
-void Aranha::liberarMovimento()
-{
-	esquerda = true;
-	direita = true;
-	vel.x = VELOCIDADE_HORIZONTAL;
-}
-
 void Aranha::mudarVelocidade(float fator)
 {
-	vel.x = VELOCIDADE_HORIZONTAL * fator;
-	vel.y = VELOCIDADE_PULO * fator;
+	alteracaoVel *= fator;
 }
 
-void Aranha::danificar()
+void Aranha::danificar(Jogador* pJog)
 {
-
+	pJog->operator--();
+	if (peconhenta)
+		pJog->operator--();
+	if (pJog->getCentro().x < getCentro().x)
+		pJog->empurrar(true);
+	else
+		pJog->empurrar(false);
 }
 
 void Aranha::pular()
 {
-	float tempo = timer_gravidade.getElapsedTime().asSeconds();
-	pulo.x = -pulo.x;
-		body.move(sf::Vector2f(pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo))));
-		//body.move(sf::Vector2f(-pulo.x, pulo.y + (9.8f / 2.f * (tempo * tempo)))); PENSAR EM COMO IMPLEMENTAR O MOVIMENTO ALEATORIO
+	
 }
 
 
 void Aranha::move()
 {
-	pular();
-
-	if (!cair) {
-		timer_gravidade.restart();
+	if (paraEsquerda)
+		vel.x += -VEL_ARANHA_X * nivel_maldade;
+	else
+		vel.x += VEL_ARANHA_X * nivel_maldade;
+	vel.y -= VEL_ARANHA_PULO;
+	if (cair)
+	{
+		if (tempo_queda.getElapsedTime().asSeconds() > 1.f)
+			tempo_queda.restart();
+		vel.y += 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
 	}
+	else
+		tempo_queda.restart();
+	if (vel.x > 0)
+		atualizarTextura("../Imagens/AranhaD.png");
+	else
+		atualizarTextura("../Imagens/AranhaE.png");
+	body.move(vel);
+	vel.x = 0.f;
+	vel.y = 0.f;
+	alteracaoVel = 1.f;
+	cair = true;
+	esquerda = true;
+	direita = true;
+
 }
 
 void Aranha::executar()
 {
-	if (body.getPosition().x > 800-body.getSize().x || body.getPosition().x < 0)
-		pulo.x = -pulo.x;
-
+	if (relogio.getElapsedTime().asSeconds() > 1.f)
+	{
+		paraEsquerda = !paraEsquerda;
+		relogio.restart();
+	}
 	move();
 }
 

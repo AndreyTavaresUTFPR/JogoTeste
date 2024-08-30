@@ -11,7 +11,7 @@ Menu::Menu() :
     largura(WIDTH)
 {
     setBody(sf::Vector2f(800.f, 800.f));
-    atualizarTextura("../Imagens/Background.png");
+    atualizarTextura("../Imagens/Background1.1.png");
 }
 
 Menu::~Menu()

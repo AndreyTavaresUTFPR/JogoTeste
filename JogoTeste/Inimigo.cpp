@@ -2,10 +2,18 @@
 
 
 Inimigo::Inimigo():
-	Personagem(), nivel_maldade(1)
+	Personagem(), nivel_maldade(0)
 {
+	relogio.restart();
+}
+
+Inimigo::Inimigo(int vida) :
+	Personagem(vida), nivel_maldade(0)
+{
+	relogio.restart();
 }
 
 Inimigo::~Inimigo()
 {
+
 }

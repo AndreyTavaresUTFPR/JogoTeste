@@ -4,7 +4,7 @@ Gelo::Gelo():
 	Obstaculo(false, true)
 {
 	setBody(sf::Vector2f(100.f, 20.f));
-	lisura = (float)(rand() % 3 + 1) * 0.2f + 1.f; //Três possibilidades de valor para o quão liso é o gelo
+	lisura = (float)(rand() % 3 + 2); //Três possibilidades de valor para o quão liso é o gelo
 }
 
 Gelo::~Gelo()

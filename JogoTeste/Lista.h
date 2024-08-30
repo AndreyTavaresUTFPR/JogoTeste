@@ -17,6 +17,9 @@ public:
 	int getLen() { return len; }
 
 	TL* getItem(int posicao) {
+		if (posicao > len)
+			return nullptr;
+
 		Elemento<TL>* temp = pPrimeiro;
 
 		for (int i = 0; i < posicao; i++)

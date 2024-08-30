@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #define VEL_JOGADOR_X 1.f
-#define VEL_JOGADOR_Y 1.f
+#define VEL_JOGADOR_Y 1.2f
 
 
 namespace Personagens {
@@ -20,10 +20,9 @@ namespace Personagens {
         Jogador();
         ~Jogador();
 
-        void liberarGravidade();
-        void liberarMovimento();
         void setBody(sf::Vector2f tam);
         void mudarVelocidade(float fator);
+        void empurrar(bool esquerda);
         void ganharPontos(int pontos);
         void move();
         void executar();

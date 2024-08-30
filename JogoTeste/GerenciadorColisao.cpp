@@ -32,8 +32,8 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 {
 	sf::Vector2f ds(fabsf(pJog->getCentro().x - pInim->getCentro().x), fabsf(pJog->getCentro().y - pInim->getCentro().y));
 
-	sf::Vector2f colisao(	((pJog->getBody()->getSize().x / 2.f + pInim->getBody()->getSize().x / 2.f) - ds.x),
-							((pJog->getBody()->getSize().y / 2.f + pInim->getBody()->getSize().y / 2.f) - ds.y));
+	sf::Vector2f colisao(	((pJog->getBody()->getSize().x / 2.f + pInim->getBody()->getSize().x / 2.f) - ds.x + 0.2f),
+							((pJog->getBody()->getSize().y / 2.f + pInim->getBody()->getSize().y / 2.f) - ds.y + 0.2f));
 
 	if (colisao.x > 0.f && colisao.y > 0.f)
 	{
@@ -41,6 +41,8 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 		{
 			pInim->operator--();
 		}
+		else
+			pInim->danificar(pJog);
 		pJog->conferirColisao(colisao, pInim->getCentro());
 		pInim->conferirColisao(colisao, pJog->getCentro());
 	}
@@ -50,7 +52,7 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 void GerenciadorColisao::conferirColisaoJogObst(Jogador* pJog, Obstaculo* pObst)
 {
 	sf::Vector2f ds(fabsf(pJog->getCentro().x - pObst->getCentro().x), fabsf(pJog->getCentro().y - pObst->getCentro().y));
-
+	 
 	sf::Vector2f colisao(	((pJog->getBody()->getSize().x / 2.f + pObst->getBody()->getSize().x / 2.f) - ds.x),
 							((pJog->getBody()->getSize().y / 2.f + pObst->getBody()->getSize().y / 2.f) - ds.y));
 
@@ -104,21 +106,7 @@ void GerenciadorColisao::executar()
 	vector<Inimigo*>::iterator itInim2;
 	list<Obstaculo*>::iterator itObst;
 
-	int i = 0, j = 0;
-
-	for (i = 0; i < listaJogadores->getLen(); i++)
-	{
-		pJog = listaJogadores->getItem(i);
-		pJog->liberarGravidade();
-		pJog->liberarMovimento();
-	}
-
-	for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
-	{
-		pInim1 = (*itInim);
-		pInim1->liberarGravidade();
-		pInim1->liberarMovimento();
-	}
+	int i = 0;
 
 	for (i = 0; i < listaJogadores->getLen(); i++)
 	{

@@ -2,28 +2,23 @@
 #define VIDA_PADRAO 100
 
 
-Personagens::Personagem::Personagem() :
-	Entidade(), vida(VIDA_PADRAO), vel(0.f, 0.f),
+Personagem::Personagem() :
+	Entidade(), vel(sf::Vector2f(0.f, 0.f)), alteracaoVel(1.f), vida(VIDA_PADRAO),
 	cair(false), esquerda(false), direita(false), vivo(true)
 {
+	tempo_queda.restart();
+}
+
+Personagem::Personagem(int vida) :
+	Entidade(), vel(sf::Vector2f(0.f, 0.f)), alteracaoVel(1.f), vida(vida),
+	cair(false), esquerda(false), direita(false), vivo(true)
+{
+	tempo_queda.restart();
 }
 
 Personagens::Personagem::~Personagem()
 {
 	vida = -1;
-}
-
-void Personagem::liberarGravidade()
-{
-	cair = true;
-	vel.y = 0.15f;
-}
-
-void Personagem::liberarMovimento()
-{
-	esquerda = true;
-	direita = true;
-	vel.x = 0.15f;
 }
 
 void Personagem::conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraEnt) //Colisão diz o quanto um corpo entrou no outro, e centroOutraEnt é o centro do corpo da entidade comparada
@@ -53,13 +48,6 @@ void Personagem::conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraE
 		}
 	}
 
-}
-
-void Personagem::receberDano()
-{
-	vida--;
-	if (vida <= 0)
-		vivo = false;
 }
 
 void Personagem::operator--()

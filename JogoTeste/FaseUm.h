@@ -18,7 +18,6 @@ namespace Fases {
 		Aranha* a1;
 		Espinhos* obst3;
 		Gelo* obst4;
-		//Chefe* mago;
 
 		MenuPausa pausa;
 
@@ -36,6 +35,8 @@ namespace Fases {
 
 		void criarMapa();
 		void apagarMapa();
+		void atualizarFundo();
+		bool verificarFim();
 		void executar();
 	};
 } using namespace Fases;
