@@ -1,9 +1,10 @@
 #include "Espinhos.h"
 
 Espinhos::Espinhos() :
-	Obstaculo(DANO_ESPINHOS, SOLIDEZ_ESPINHOS)
+	Obstaculo(true, true)
 {
-	setBody(sf::Vector2f(0.f, 0.f));
+	muitosEspinhos = (bool)(rand() % 2);
+	setBody(sf::Vector2f(40.f, 20.f));
 }
 
 Espinhos::~Espinhos()
@@ -11,27 +12,36 @@ Espinhos::~Espinhos()
 
 }
 
-void Espinhos::setBody(sf::Vector2f pos)
+void Espinhos::setBody(sf::Vector2f tam)
 {
-	sf::RectangleShape b(sf::Vector2f(40.f, 20.f));
-	body = b;
-	//body.setFillColor(sf::Color::Red);
-	textura.loadFromFile("../Imagens/Espinhos.png");
-	body.setTexture(&textura);
-	body.move(pos); //Move para a parte inferior da jaenla;
+	if (muitosEspinhos)
+	{
+		tam.x *= 2.f; //Dobra a quantidade dos espinhos
+		sf::RectangleShape b(tam);
+		body = b;
+		textura.loadFromFile("../Imagens/Espinhos2.png");
+		body.setTexture(&textura);
+	}
+	else
+	{
+		sf::RectangleShape b(tam);
+		body = b;
+		textura.loadFromFile("../Imagens/Espinhos.png");
+		body.setTexture(&textura);
+	}
 }
 
 void Espinhos::obstacular(Jogador* pJog)
 {
-
+	pJog->operator--();
 }
 
 void Espinhos::obstacular(Inimigo* pInim)
 {
-
+	//Não faz nada com o Inimigo além de colidir...
 }
 
 void Espinhos::executar()
 {
-
+	//TO DO: Talvez mudar a aparencia com o tempo...
 }

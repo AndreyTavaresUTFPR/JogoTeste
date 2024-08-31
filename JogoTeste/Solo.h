@@ -5,6 +5,7 @@ namespace Obstaculos {
 	class Solo : public Obstaculo
 	{
 	private:
+		//Apenas Plataforma, não faz nada além de colidir
 
 	public:
 		Solo();

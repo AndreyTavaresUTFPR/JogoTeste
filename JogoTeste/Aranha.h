@@ -11,7 +11,7 @@ class Aranha :
 {
 private:
     bool paraEsquerda;
-    bool peconhenta;
+    bool peconhenta; //Aranhas peconhentas dão o dobro de dano
 
 public:
     Aranha();
@@ -20,8 +20,6 @@ public:
     void setBody(sf::Vector2f tam);
     void mudarVelocidade(float fator); 
     void danificar(Jogador* pJog);
-
-    void pular();
 
     void move();
     void executar();

@@ -15,7 +15,7 @@ namespace Personagens {
 	class Esqueleto : public Inimigo
 	{
 	private:
-		Jogador* jogador; // Ponteiro para jogador
+		Jogador* pJogador; // Ponteiro para jogador
 		int moveAleatorio;
 
 	public:
@@ -25,7 +25,7 @@ namespace Personagens {
 		void setBody(sf::Vector2f tam);
 		void mudarVelocidade(float fator);
 		void danificar(Jogador* pJog);
-		void perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto);
+		void perseguir();
 		void movimentoAleatorio();
 		void move();
 		void executar();

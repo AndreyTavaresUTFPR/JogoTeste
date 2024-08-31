@@ -3,18 +3,19 @@
 #include <SFML/Graphics.hpp>
 
 #define VEL_JOGADOR_X 1.f
-#define VEL_JOGADOR_Y 1.2f
-
+#define VEL_JOGADOR_Y 1.f
+#define VIDA_JOGADOR 10
 
 namespace Personagens {
     class Jogador : public Personagem
     {
     private:
         sf::Clock tempo_queda;
-        sf::Clock tempo_andando;
+        sf::Clock tempo_pulo;
         static int n_players;
         int player;
         int pontuacao;
+        bool pulando;
 
     public:
         Jogador();
@@ -24,6 +25,9 @@ namespace Personagens {
         void mudarVelocidade(float fator);
         void empurrar(bool esquerda);
         void ganharPontos(int pontos);
+        void setPulando();
+        void pular();
+        void reviver();
         void move();
         void executar();
     };

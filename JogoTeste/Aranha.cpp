@@ -3,6 +3,7 @@
 Aranha::Aranha():
 	Inimigo(VIDA_ARANHA), paraEsquerda(true)
 {
+	tipo = 2;
 	peconhenta = (bool)(rand() % 2);
 	nivel_maldade = rand() % 2 + 1;
 	setBody(sf::Vector2f(30.f, 30.f));
@@ -10,7 +11,6 @@ Aranha::Aranha():
 
 Aranha::~Aranha()
 {
-
 }
 
 void Aranha::setBody(sf::Vector2f tam)
@@ -32,19 +32,13 @@ void Aranha::mudarVelocidade(float fator)
 void Aranha::danificar(Jogador* pJog)
 {
 	pJog->operator--();
-	if (peconhenta)
+	if (peconhenta) 
 		pJog->operator--();
 	if (pJog->getCentro().x < getCentro().x)
 		pJog->empurrar(true);
 	else
 		pJog->empurrar(false);
 }
-
-void Aranha::pular()
-{
-	
-}
-
 
 void Aranha::move()
 {

@@ -35,10 +35,14 @@ void Jogo::criarJogadores()
         listaJogadores.pop(listaJogadores.getItem(1));
         delete aux;
     }
+    for (int i = 0; i < listaJogadores.getLen(); i++)
+    {
+        listaJogadores.getItem(i)->reviver();
+    }
 
 }
 
-void Jogo::criarFaseUm()
+void Jogo::executarFaseUm()
 {
     fase1 = new FaseUm(&listaJogadores);
     fase1->executar();
@@ -58,7 +62,7 @@ void Jogo::executar()
         criarJogadores();
         //Conferir qual a fase a ser executada 
 
-        criarFaseUm();
+        executarFaseUm();
         menuPrincipal->voltarMenu();
     }
 }

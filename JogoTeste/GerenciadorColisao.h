@@ -12,9 +12,9 @@ using namespace std;
 namespace Gerenciadores {
 	class GerenciadorColisao {
 	private:
-		Lista<Jogador>* listaJogadores;
-		vector<Inimigo*>* listaInimigos;
-		list<Obstaculo*>* listaObstaculos;
+		Lista<Jogador> listaJogadores;
+		vector<Inimigo*> listaInimigos;
+		list<Obstaculo*> listaObstaculos;
 		
 		static GerenciadorColisao* pColisao;
 		GerenciadorColisao();
@@ -22,7 +22,10 @@ namespace Gerenciadores {
 		~GerenciadorColisao();
 
 		static GerenciadorColisao* getGerenciadorColisao();
-		void setListas(Lista<Jogador>* listaJog, vector<Inimigo*>* listaInim, list<Obstaculo*>* listaObst);
+		void incluirJogador(Jogador* pJog);
+		void incluirInimigo(Inimigo* pInim);
+		void incluirObstaculo(Obstaculo* pObst);
+		void limparListas();
 
 		void conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim);
 		void conferirColisaoJogObst(Jogador* pJog, Obstaculo* pObst);

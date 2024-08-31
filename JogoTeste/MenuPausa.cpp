@@ -33,8 +33,6 @@ MenuPausa::MenuPausa() :
         temp = opcoes.getItem(i);
         temp->setPosition(sf::Vector2f(largura / 2 - temp->getLocalBounds().width / 2, (altura - 300.f) / (n_opcoes + 1) * (i + 1) + 150.f));
     }
-
-
 }
 
 MenuPausa::~MenuPausa()

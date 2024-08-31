@@ -33,5 +33,5 @@ void Teia::obstacular(Inimigo* pInim)
 
 void Teia::executar()
 {
-
+	//TO DO: Talvez alterar a textura com o tempo
 }

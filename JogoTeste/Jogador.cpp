@@ -3,8 +3,9 @@
 int Jogador::n_players(1);
 
 Jogador::Jogador() :
-    Personagem(), player(n_players++)
+    Personagem(VIDA_JOGADOR), player(n_players++)
 {
+    tipo = 1;
     vel.x = VEL_JOGADOR_X;
     vel.y = VEL_JOGADOR_Y;
     setBody(sf::Vector2f(30.f, 60.f));
@@ -46,38 +47,87 @@ void Jogador::ganharPontos(int pontos)
     pontuacao += pontos;
 }
 
+void Jogador::setPulando()
+{
+    cair = true;
+    tempo_queda.restart();
+    pulando = true;
+}
+
+
+void Jogador::pular()
+{
+    vel.y = -VEL_JOGADOR_Y;
+    if (player == 1)
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // para a Esquerda
+            atualizarTextura("../Imagens/JogadorPE.png");
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))  // para a Direita
+            atualizarTextura("../Imagens/JogadorPD.png");
+    }
+    else if (player == 2)
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) // para a Esquerda
+            atualizarTextura("../Imagens/JogadorPE.png");
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))  // para a Direita
+            atualizarTextura("../Imagens/JogadorPD.png");
+    }
+}
+
+void Jogador::reviver()
+{
+    noJogo = true;
+    vida = VIDA_JOGADOR;
+}
+
 // Move o jogardor
 void Jogador::move()
 {
     if (player == 1) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && esquerda) // andar para a Esquerda
         {
-            //body.move(sf::Vector2f(-vel.x, 0));
             vel.x += -VEL_JOGADOR_X;
             atualizarTextura("../Imagens/JogadorE.png");
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direita)  // andar para a Direita
         {
-            //body.move(sf::Vector2f(vel.x, 0));
             vel.x += VEL_JOGADOR_X;
             atualizarTextura("../Imagens/JogadorD.png");
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) // Pular
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && !pulando) // Pular
         {
-            //body.move(sf::Vector2f(0, -vel.y));
-            vel.y += -VEL_JOGADOR_Y;
+            pulando = true;
         }
+        if (pulando)
+            pular();
         if (cair) // Caindo
         {
             if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
                 tempo_queda.restart();
-            //body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
             vel.y += 9.8f / 2 * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
         }
         else
         {
             tempo_queda.restart();
+            pulando = false;
         }
+
+        /*
+        if (fabsf(vel.y) > 0.1f)
+        {
+            if(vel.x < 0.f)
+                atualizarTextura("../Imagens/JogadorPE.png");
+            else
+                atualizarTextura("../Imagens/JogadorPD.png");
+        }
+        else
+        {
+            if (vel.x < 0.f)
+                atualizarTextura("../Imagens/JogadorE.png");
+            else
+                atualizarTextura("../Imagens/JogadorD.png");
+        }
+        */
 
         vel.x *= alteracaoVel;
         vel.y *= alteracaoVel;
@@ -93,9 +143,6 @@ void Jogador::move()
     }
 
     if (player == 2) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) { // para cima
-            vel.y += -VEL_JOGADOR_Y;
-        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && esquerda) { // para esquerda
             vel.x -= VEL_JOGADOR_X;
             atualizarTextura("../Imagens/JogadorE.png");
@@ -104,14 +151,21 @@ void Jogador::move()
             vel.x += VEL_JOGADOR_X;
             atualizarTextura("../Imagens/JogadorD.png");
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !pulando) { // para cima
+            pulando = true;
+        }
+        if (pulando)
+            pular();
         if (cair) {
             if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
                 tempo_queda.restart();
-            //body.move(sf::Vector2f(0.f, 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds()));
             vel.y += 9.8f / 2 * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
         }
         else
+        {
             tempo_queda.restart();
+            pulando = false;
+        }
 
         vel.x *= alteracaoVel;
         vel.y *= alteracaoVel;

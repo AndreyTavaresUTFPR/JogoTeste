@@ -14,7 +14,10 @@ public:
 	~Lista();
 
 
-	int getLen() { return len; }
+	int getLen() 
+	{ 
+		return len; 
+	}
 
 	TL* getItem(int posicao) {
 		if (posicao > len)
@@ -27,7 +30,9 @@ public:
 			temp = temp->getPProx(); //Só para diminuir um pouco o código, para posicao = 0 pula o loop e retorna o primeiro
 		}
 
-		return temp->getItem();
+		if (temp != nullptr)
+			return temp->getItem();
+		return nullptr;
 	}
 
 	void push(TL* item) {
@@ -40,7 +45,6 @@ public:
 		pUltimo = temp;
 		len++;
 	}
-
 
 	void pop(TL* item) {
 		Elemento<TL>* temp = pPrimeiro;
@@ -67,6 +71,20 @@ public:
 		delete temp;
 		len--;
 	}
+
+	void clear() {
+		Elemento<TL>* temp = pPrimeiro;
+		while (temp != nullptr)
+		{
+			pPrimeiro = pPrimeiro->getPProx();
+			delete temp;
+			temp = pPrimeiro;
+		}
+		len = 0;
+		pPrimeiro = nullptr;
+		pUltimo = nullptr;
+	}
+
 };
 
 
@@ -82,12 +100,6 @@ inline Lista<TL>::Lista():
 template<class TL>
 inline Lista<TL>::~Lista()
 {
-	while (pPrimeiro != nullptr)
-	{
-		Elemento<TL>* temp = pPrimeiro->getPProx();
-		delete pPrimeiro;
-		pPrimeiro = temp;
-	}
-	pPrimeiro = nullptr;
-	pUltimo = nullptr;
+	clear();
+	len = -1;
 }

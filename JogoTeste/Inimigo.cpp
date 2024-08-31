@@ -4,6 +4,7 @@
 Inimigo::Inimigo():
 	Personagem(), nivel_maldade(0)
 {
+	tipo = 2;
 	relogio.restart();
 }
 

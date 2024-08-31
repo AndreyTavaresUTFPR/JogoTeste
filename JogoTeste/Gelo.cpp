@@ -17,8 +17,6 @@ void Gelo::setBody(sf::Vector2f tam)
 	sf::RectangleShape b(tam);
 	body = b;
 	atualizarTextura("../Imagens/Gelo.png");
-
-	
 }
 
 void Gelo::obstacular(Jogador* pJog)
@@ -34,5 +32,5 @@ void Gelo::obstacular(Inimigo* pInim)
 
 void Gelo::executar()
 {
-
+	//TO DO: Talvez mudar a textura com o tempo...
 }

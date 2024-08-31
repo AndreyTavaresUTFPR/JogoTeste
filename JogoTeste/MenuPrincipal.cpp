@@ -7,6 +7,8 @@ MenuPrincipal::MenuPrincipal() :
     iniciar(false),
     dois_jogadores(false)
 {
+    atualizarTextura("../Imagens/BackgroundMenuPrincipal.png");
+
     if (!font.loadFromFile("Font.ttf")) {
         cout << "ERRO AO CARREGAR FONTE" << endl;
     }

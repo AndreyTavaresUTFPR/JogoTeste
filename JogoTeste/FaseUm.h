@@ -13,15 +13,11 @@ namespace Fases {
 	class FaseUm : public Fase
 	{
 	private:
-		Jogador* j1;
-		Jogador* j2;
-		Aranha* a1;
-		Espinhos* obst3;
-		Gelo* obst4;
+		int n_esqueletos;
+		int n_aranhas;
+		int n_teias;
+		int n_gelos;
 
-		MenuPausa pausa;
-
-		void inicializaElementos();
 	public:
 		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
@@ -30,13 +26,13 @@ namespace Fases {
 		void criarInimigosMedios();
 		void criarObstaculosFaceis();
 		void criarObstaculosMedios();
-		void criarTerreno1();
-		void criarTerreno2();
+		void criarTerreno();
 
 		void criarMapa();
 		void apagarMapa();
-		void atualizarFundo();
 		bool verificarFim();
+		bool mudouSala();
+		void atualizarFundo();
 		void executar();
 	};
 } using namespace Fases;

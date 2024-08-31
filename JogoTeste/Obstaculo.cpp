@@ -1,10 +1,9 @@
 #include "Obstaculo.h"
-#define DANO false
-
 
 Obstaculos::Obstaculo::Obstaculo(bool dano, bool solidez):
 	Entidade(), danoso(dano), solido(solidez)
 {
+	tipo = 3;
 }
 
 Obstaculos::Obstaculo::~Obstaculo() 

@@ -1,17 +1,17 @@
 #include "Personagem.h"
-#define VIDA_PADRAO 100
+#define VIDA_PADRAO 10
 
 
 Personagem::Personagem() :
 	Entidade(), vel(sf::Vector2f(0.f, 0.f)), alteracaoVel(1.f), vida(VIDA_PADRAO),
-	cair(false), esquerda(false), direita(false), vivo(true)
+	cair(false), esquerda(false), direita(false)
 {
 	tempo_queda.restart();
 }
 
 Personagem::Personagem(int vida) :
 	Entidade(), vel(sf::Vector2f(0.f, 0.f)), alteracaoVel(1.f), vida(vida),
-	cair(false), esquerda(false), direita(false), vivo(true)
+	cair(false), esquerda(false), direita(false)
 {
 	tempo_queda.restart();
 }
@@ -54,15 +54,10 @@ void Personagem::operator--()
 {
 	vida--;
 	if (vida <= 0)
-		vivo = false;
+		noJogo = false;
 }
 
 int Personagem::getVida() const
 {
 	return vida;
-}
-
-bool Personagem::getVivo() const
-{
-	return vivo;
 }

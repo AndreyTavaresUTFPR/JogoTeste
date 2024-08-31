@@ -3,14 +3,14 @@
 GerenciadorColisao* GerenciadorColisao::pColisao(nullptr);
 
 GerenciadorColisao::GerenciadorColisao() :
-	listaJogadores(nullptr), listaInimigos(), listaObstaculos()
+	listaJogadores(), listaInimigos(), listaObstaculos()
 {
 	
 }
 
 GerenciadorColisao::~GerenciadorColisao()
 {
-
+	limparListas();
 }
 
 GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
@@ -20,12 +20,28 @@ GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
 	return pColisao;
 }
 
-void GerenciadorColisao::setListas(Lista<Jogador>* listaJog, vector<Inimigo*>* listaInim, list<Obstaculo*>* listaObst)
+void GerenciadorColisao::incluirJogador(Jogador* pJog)
 {
-	listaJogadores = listaJog;
-	listaInimigos = listaInim;
-	listaObstaculos = listaObst;
+	listaJogadores.push(pJog);
 }
+
+void GerenciadorColisao::incluirInimigo(Inimigo* pInim)
+{
+	listaInimigos.push_back(pInim);
+}
+
+void GerenciadorColisao::incluirObstaculo(Obstaculo* pObst)
+{
+	listaObstaculos.push_back(pObst);
+}
+
+void GerenciadorColisao::limparListas()
+{
+	listaJogadores.clear();
+	listaInimigos.clear();
+	listaObstaculos.clear();
+}
+
 
 //Confere Colisão entre Jogador e Inimigo
 void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
@@ -37,14 +53,15 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 
 	if (colisao.x > 0.f && colisao.y > 0.f)
 	{
+		pJog->conferirColisao(colisao, pInim->getCentro());
+		pInim->conferirColisao(colisao, pJog->getCentro());
 		if (colisao.x > colisao.y && pJog->getCentro().y < pInim->getCentro().y)
 		{
 			pInim->operator--();
+			pJog->setPulando();
 		}
 		else
 			pInim->danificar(pJog);
-		pJog->conferirColisao(colisao, pInim->getCentro());
-		pInim->conferirColisao(colisao, pJog->getCentro());
 	}
 }
 
@@ -108,34 +125,37 @@ void GerenciadorColisao::executar()
 
 	int i = 0;
 
-	for (i = 0; i < listaJogadores->getLen(); i++)
+	for (i = 0; i < listaJogadores.getLen(); i++)
 	{
-		pJog = listaJogadores->getItem(i);
-		for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
+		pJog = listaJogadores.getItem(i);
+		if (pJog->getNoJogo())
 		{
-			pInim1 = (*itInim);
-			if (pInim1->getVivo())
-			conferirColisaoJogInim(pJog, pInim1);
-		}
-		for (itObst = listaObstaculos->begin(); itObst != listaObstaculos->end(); itObst++)
-		{
-			pObst = (*itObst);
-			conferirColisaoJogObst(pJog, pObst);
+			for (itInim = listaInimigos.begin(); itInim != listaInimigos.end(); itInim++)
+			{
+				pInim1 = (*itInim);
+				if (pInim1->getNoJogo())
+					conferirColisaoJogInim(pJog, pInim1);
+			}
+			for (itObst = listaObstaculos.begin(); itObst != listaObstaculos.end(); itObst++)
+			{
+				pObst = (*itObst);
+				conferirColisaoJogObst(pJog, pObst);
+			}
 		}
 	}
 
-	for (itInim = listaInimigos->begin(); itInim != listaInimigos->end(); itInim++)
+	for (itInim = listaInimigos.begin(); itInim != listaInimigos.end(); itInim++)
 	{
 		pInim1 = (*itInim);
-		if (pInim1->getVivo()) {
-			for (itInim2 = listaInimigos->begin(); itInim2 != listaInimigos->end(); itInim2++)
+		if (pInim1->getNoJogo()) {
+			for (itInim2 = listaInimigos.begin(); itInim2 != listaInimigos.end(); itInim2++)
 			{
 				pInim2 = (*itInim2);
-				if (pInim2->getVivo())
+				if (pInim2->getNoJogo())
 					if (pInim1 != pInim2)
 						conferirColisaoInimInim(pInim1, pInim2);
 			}
-			for (itObst = listaObstaculos->begin(); itObst != listaObstaculos->end(); itObst++)
+			for (itObst = listaObstaculos.begin(); itObst != listaObstaculos.end(); itObst++)
 			{
 				pObst = (*itObst);
 				conferirColisaoInimObst(pInim1, pObst);

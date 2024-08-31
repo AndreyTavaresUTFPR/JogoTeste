@@ -15,7 +15,6 @@ private:
 	int n_jogadores;
 	Lista<Jogador> listaJogadores;
 	Lista<Projetil> listaProjetil;
-	//ListaJogadores* listaJogadores;
 	Lista<Inimigo>* listaInimigos;
 	Lista<Obstaculo>* listaObstaculos;
 	FaseUm* fase1;
@@ -26,6 +25,6 @@ public:
 	~Jogo();
 
 	void criarJogadores();
-	void criarFaseUm();
+	void executarFaseUm();
 	void executar();
 };

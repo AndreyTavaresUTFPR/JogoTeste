@@ -9,11 +9,25 @@ public:
 	Elemento();
 	~Elemento();
 
-	Elemento<TE>* getPProx() { return pProx; }
-	TE* getItem() { return item; }
+	Elemento<TE>* getPProx() 
+	{ 
+		return pProx; 
+	}
+	
+	TE* getItem() 
+	{ 
+		return item; 
+	}
 
-	void setPProx(Elemento<TE>* pProx) { this->pProx = pProx; }
-	void setItem(TE* item) { this->item = item; }
+	void setPProx(Elemento<TE>* pProx) 
+	{ 
+		this->pProx = pProx; 
+	}
+	
+	void setItem(TE* item) 
+	{ 
+		this->item = item; 
+	}
 
 };
 
@@ -29,6 +43,6 @@ inline Elemento<TE>::Elemento()
 template<class TE>
 inline Elemento<TE>::~Elemento()
 {
-	//pProx = nullptr;
-	//item = nullptr;
+	pProx = nullptr;
+	item = nullptr;
 }

@@ -2,7 +2,7 @@
 
 
 Esqueleto::Esqueleto(Jogador* jogador) :
-	Inimigo(), jogador(jogador), moveAleatorio(rand() % 5)
+	Inimigo(), pJogador(jogador), moveAleatorio(rand() % 5)
 {
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
@@ -16,6 +16,7 @@ Esqueleto::Esqueleto(Jogador* jogador) :
 
 Esqueleto::~Esqueleto()
 {
+	pJogador = nullptr;
 }
 
 void Esqueleto::setBody(sf::Vector2f tam)
@@ -38,9 +39,9 @@ void Esqueleto::danificar(Jogador* pJog)
 		pJog->empurrar(false);
 }
 
-void Esqueleto::perseguir(sf::Vector2f posJogador, sf::Vector2f posEsqueleto) // Persegue o jogador se o mesmo entrar no aggro
+void Esqueleto::perseguir() // Persegue o jogador se o mesmo entrar no aggro
 {
-	if (posJogador.x - posEsqueleto.x > 0.0f) {
+	if (pJogador->getCentro().x - getCentro().x > 0.0f) {
 		if (direita)
 			vel.x += VEL_ESQUELETO_X * nivel_maldade;
 		atualizarTextura("../Imagens/EsqueletoD.png");
@@ -76,13 +77,13 @@ void Personagens::Esqueleto::movimentoAleatorio() // Movimento aleatório do esqu
 
 void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 {
-	sf::Vector2f posJogador = jogador->getCentro();
+	sf::Vector2f posJogador = pJogador->getCentro();
 	sf::Vector2f posEsqueleto = getCentro();
 	atualizarTextura("../Imagens/EsqueletoD.png");
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 
-		perseguir(posJogador, posEsqueleto);
+		perseguir();
 
 		moveAleatorio = 4; // Para o esqueleto após sair do aggro
 		relogio.restart();

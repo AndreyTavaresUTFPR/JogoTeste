@@ -5,49 +5,29 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 {
 	setBody(sf::Vector2f(800.f, 800.f));
 	atualizarTextura("../Imagens/Background1.1.png");
-	for (int i = 0; i < listaJogadores->getLen(); i++)
-	{
-		Jogador* pJog = listaJogadores->getItem(i);
-		pJog->getBody()->setPosition(sf::Vector2f(40.f, 40.f));
-	}
+	menuPausa.atualizarTextura("../Imagens/Background1.1.png");
 
 	sf::FloatRect* aux = new sf::FloatRect(0.f, 0.f, 800.f, 800.f);
 	salas.push_back(aux);
 	aux = new sf::FloatRect(-800.f, 600.f, 800.f, 800.f);
 	salas.push_back(aux);
 
-	a1 = new Aranha();
-	a1->getBody()->setPosition(sf::Vector2f(750.f, 345.f));
+	n_esqueletos = rand() % 3 + 3;
+	n_aranhas = rand() % 3 + 3;
+	n_teias = rand() % 3 + 3;
+	n_gelos = rand() % 3 + 3;
 
-	obst3 = new Espinhos();
-	obst3->getBody()->setPosition(sf::Vector2f(400.f, 180.f));
-
-	obst4 = new Gelo();
-	obst4->getBody()->setPosition(sf::Vector2f(150.f, 174.9f));
-
-	//mago = new Chefe();
-	//mago->getBody()->setPosition(sf::Vector2f(500.f, 500.f));
-
-	inicializaElementos();
-	//mago->setJogador(j1);
-	//mago->setLProj(&listaProjetil);
+	criarMapa();
 }
 
 FaseUm::~FaseUm()
 {
-
+	listaJogadores = nullptr;
+	apagarMapa();
+	pColisao->limparListas();
 }
 
-void FaseUm::inicializaElementos()
-{
-	listaInimigos.push_back(static_cast<Inimigo*>(a1));
-	criarMapa();
-	criarInimigosFaceis();
-	criarInimigosMedios();
-	criarObstaculosFaceis();
-	criarObstaculosMedios();
-}
-
+//Cria Esqueleto na fase e distribui de forma aleatoria
 void FaseUm::criarInimigosFaceis()
 {
 	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
@@ -55,7 +35,7 @@ void FaseUm::criarInimigosFaceis()
 	
 	aux = new Esqueleto(listaJogadores->getItem(0));
 	aux->getBody()->setPosition(sf::Vector2f(300.f, 100.f));
-	listaInimigos.push_back(static_cast<Inimigo*>(aux));
+	listaEntidades.LEs.push(static_cast<Entidade*>(aux));
 
 	vector<sf::Vector2f> posicoesPossiveis = { {200.f + (float)(rand() % 200), 300.f}, {200.f + (float)(rand() % 200), 500.f}, {200.f + (float)(rand() % 200), 675.f},
 												{-600.f + (float)(rand() % 200), 675.f}, {-600.f + (float)(rand() % 200), 875.f}, {-600.f, 1075.f}, {-600.f + (float)(rand() % 200), 1150.f} };
@@ -67,11 +47,12 @@ void FaseUm::criarInimigosFaceis()
 	{
 		aux = new Esqueleto(listaJogadores->getItem(0));
 		aux->getBody()->setPosition(*it);
-		listaInimigos.push_back(static_cast<Inimigo*>(aux));
+		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
 		it++;
 	}
 }
 
+//Cria Aranhha na fase e distribui de forma aleatoria
 void FaseUm::criarInimigosMedios()
 {
 	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
@@ -87,11 +68,12 @@ void FaseUm::criarInimigosMedios()
 	{
 		Aranha* aux = new Aranha();
 		aux->getBody()->setPosition(*it);
-		listaInimigos.push_back(static_cast<Inimigo*>(aux));
+		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
 		it++;
 	}
 }
 
+//Cria Teia na fase e distribui de forma aleatoria
 void FaseUm::criarObstaculosFaceis()
 {
 	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
@@ -107,12 +89,13 @@ void FaseUm::criarObstaculosFaceis()
 	{
 		aux = new Teia();
 		aux->getBody()->setPosition(*it);
-		listaObstaculos.push_back(static_cast<Obstaculo*>(aux));
+		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
 		it++;
 
 	}
 }
 
+//Cria Gelo na fase e distribui de forma aleatoria
 void FaseUm::criarObstaculosMedios()
 {
 	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
@@ -129,22 +112,24 @@ void FaseUm::criarObstaculosMedios()
 	{
 		aux = new Gelo();
 		aux->getBody()->setPosition(*it);
-		listaObstaculos.push_back(static_cast<Obstaculo*>(aux));
+		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
 		it++;
 	}
 }
 
-void FaseUm::criarTerreno1()
+//Cria o terreno da fase
+void FaseUm::criarTerreno()
 {
-	Solo* temp = new Solo();
+	//Criando Terreno da Primeira Sala
 
-	//Criando as paredes
+	//Criando Paredes
+	Solo* temp = new Solo();
 	sf::Vector2f tam(25.f, 600.f);
 	sf::Vector2f pos(0.f, 25.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
 	temp->atualizarTextura("../Imagens/Parede.png");
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	temp = new Solo();
 	tam.y = 750.f;
@@ -152,53 +137,60 @@ void FaseUm::criarTerreno1()
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Parede.png");
 	temp->getBody()->setPosition(pos); //Parede da lateral direita
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	/*********************************************************************************/
-
+	/***********************************************************************************/
 	//Criando teto e chão
+
 	temp = new Solo();
 	tam = sf::Vector2f(800.f, 25.f);
 	pos = sf::Vector2f(0.f, 0.f);
 	temp->setBody(tam);
 	temp->getBody()->setPosition(pos); //Teto
 	temp->atualizarTextura("../Imagens/Teto.png");
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	temp = new Solo();
 	pos = sf::Vector2f(0.f, 775.f);
 	temp->setBody(tam);
 	temp->getBody()->setPosition(pos); //Chão
 	temp->atualizarTextura("../Imagens/Teto.png");
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	/*********************************************************************************/
-
-
+	/***********************************************************************************/
 	//Criando andares
-	for (int i = 0; i < 3; i++)
+
+	tam = sf::Vector2f(600.f, 50.f);
+	for (int i = 1; i <= 3; i++)
 	{
 		temp = new Solo();
-		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(25.f + 150.f * (i % 2), 200.f * (i + 1) - 25.f);
+		if (temp == nullptr)
+			cout << "Erro ao criar Solo." << endl;
+		pos = sf::Vector2f(25.f + 150.f * ((i-1) % 2), 200.f * i - 25.f);
 		temp->setBody(tam);
 		temp->getBody()->setPosition(pos);
 		temp->atualizarTextura("../Imagens/Andar.png");
-		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+		listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 	}
-}
 
-void FaseUm::criarTerreno2()
-{
-	Solo* temp = new Solo();
+	//Por algum motivo o andar da altura 600 não está sendo criado, então tive que fazer ele fora do loop
+	pos = sf::Vector2f(25.f, 600.f -25.f);
+	temp = new Solo();
+	temp->setBody(tam);
+	temp->getBody()->setPosition(pos);
+	temp->atualizarTextura("../Imagens/Andar.png");
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	//Criando as paredes
-	sf::Vector2f tam(25.f, 750.f);
-	sf::Vector2f pos(-800.f, 625.f);
+	/***********************************************************************************/
+	//Criando Terreno da Segunda Sala
+
+	//Criando Paredes
+	tam = sf::Vector2f(25.f, 750.f);
+	pos = sf::Vector2f(-800.f, 625.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
 	temp->atualizarTextura("../Imagens/Parede.png");
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	temp = new Solo();
 	tam.y = 650.f;
@@ -207,53 +199,58 @@ void FaseUm::criarTerreno2()
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Parede.png");
 	temp->getBody()->setPosition(pos); //Parede da lateral direita
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	/*********************************************************************************/
+	/***********************************************************************************/
+	//Criando Teto e Chao
 
-	//Criando teto e chão
 	temp = new Solo();
 	tam = sf::Vector2f(800.f, 25.f);
 	pos = sf::Vector2f(-800.f, 600.f);
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Teto
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	temp = new Solo();
 	pos.y = 1375.f;
 	temp->setBody(tam);
 	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Chão
-	listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	/*********************************************************************************/
+	/***********************************************************************************/
+	//Criando Andares
 
-	//Criando andares
 	for (int i = 0; i < 3; i++)
 	{
 		temp = new Solo();
 		tam = sf::Vector2f(600.f, 50.f);
-		pos = sf::Vector2f(-775.f + 150.f * ((i+1) % 2), 200.f * (i + 1) + 575.f);
+		pos = sf::Vector2f(-775.f + 150.f * ((i + 1) % 2), 200.f * (i + 1) + 575.f);
 		temp->setBody(tam);
 		temp->atualizarTextura("../Imagens/Andar.png");
 		temp->getBody()->setPosition(pos);
-		listaObstaculos.push_back(static_cast<Obstaculo*>(temp));
+		listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 	}
 }
 
+//Cria a os elementos da fase
 void FaseUm::criarMapa()
 {
-	criarTerreno1();
-	criarTerreno2();
+	criarTerreno();
+	criarInimigosFaceis();
+	criarInimigosMedios();
+	criarObstaculosFaceis();
+	criarObstaculosMedios();
+}
+
+//Deleta os elementos criados para a sala
+void FaseUm::apagarMapa()
+{
 	
 }
 
-void FaseUm::apagarMapa()
-{
-
-}
-
+//Atualiza o fundo da janela caso algum jogador mude de sala
 void FaseUm::atualizarFundo()
 {
 	if (sala_Atual == 1)
@@ -262,6 +259,7 @@ void FaseUm::atualizarFundo()
 		atualizarTextura("../Imagens/Background1.1.png");
 }
 
+//Verifica se algum jogador chegou ao final da fase, encerra a fase caso sim
 bool FaseUm::verificarFim()
 {
 	sf::FloatRect saida(-150.f, 1275.f, 100.f, 100.f);
@@ -273,17 +271,49 @@ bool FaseUm::verificarFim()
 	return false;
 }
 
+bool FaseUm::mudouSala()
+{
+	bool flag = false;
+	for (int i = 0; i < salas.size(); i++)
+	{
+		if (salas[i]->contains(listaJogadores->getItem(0)->getCentro()) && sala_Atual != i)
+		{
+			flag = true;
+			sala_Atual = i;
+			body.setPosition((salas[i]->getPosition()));
+			if (listaJogadores->getLen() == 2)
+				listaJogadores->getItem(1)->getBody()->setPosition(listaJogadores->getItem(0)->getBody()->getPosition());
+		}
+		else if (listaJogadores->getLen() == 2)
+			if (salas[i]->contains(listaJogadores->getItem(1)->getCentro()) && sala_Atual != i)
+			{
+				flag = true;
+				sala_Atual = i;
+				body.setPosition((salas[i]->getPosition()));
+				listaJogadores->getItem(0)->getBody()->setPosition(listaJogadores->getItem(1)->getBody()->getPosition());
+			}
+	}
+	return flag;
+}
+
+
 void FaseUm::executar()
 {
-	pColisao->setListas(listaJogadores, &listaInimigos, &listaObstaculos);
+	incluirElementosColisao();
 	Personagem* pPers = nullptr;
 	Obstaculo* pObst = nullptr;
+	Entidade* pEnt = nullptr;
 	vector<Inimigo*>::iterator itInim;
 	list<Obstaculo*>::iterator itObst;
-
-
-
 	int i = 0;
+
+	//Move os jogadores para o inicio da fase
+	for (i = 0; i < listaJogadores->getLen(); i++)
+	{
+		Jogador* pJog = listaJogadores->getItem(i);
+		pJog->getBody()->setPosition(sf::Vector2f(40.f, 40.f));
+	}
+
 	while (pGrafico->verificarJanela())
 	{
 		sf::Event event;
@@ -300,53 +330,23 @@ void FaseUm::executar()
 			if (event.type == sf::Event::Closed)
 				pGrafico->fecharJanela();
 		}
-		bool mudouSala = false;
 		pGrafico->limparJanela();
-		pColisao->executar();
 		desenhar();
-		for (i = 0; i < listaJogadores->getLen(); i++)
+		for (int i = 0; i < listaEntidades.LEs.getLen(); i++)
 		{
-			pPers = static_cast<Personagem*>(listaJogadores->getItem(i));
-			pPers->executar();
-			pPers->desenhar();
-		}
-		for (itInim = listaInimigos.begin(); itInim != listaInimigos.end(); itInim++)
-		{
-			pPers = static_cast<Personagem*>(*itInim);
-			if (pPers->getVivo())
+			pEnt = listaEntidades.LEs.getItem(i);
+			if (pEnt->getNoJogo())
 			{
-				pPers->executar();
-				pPers->desenhar();
+				pEnt->executar();
+				pEnt->desenhar();
 			}
 		}
-		for (itObst = listaObstaculos.begin(); itObst != listaObstaculos.end(); itObst++)
-		{
-			pObst = static_cast<Obstaculo*>(*itObst);
-			pObst->executar();
-			pObst->desenhar();
-		}
-		for (i = 0; i < salas.size(); i++)
-		{
-			if (salas[i]->contains(listaJogadores->getItem(0)->getCentro()) && sala_Atual != i)
-			{
-				mudouSala = true;
-				sala_Atual = i;
-				body.setPosition((salas[i]->getPosition()));
-				if (listaJogadores->getLen() == 2)
-					listaJogadores->getItem(1)->getBody()->setPosition(listaJogadores->getItem(0)->getBody()->getPosition());
-			}
-			else if (listaJogadores->getLen() == 2)
-				if (salas[i]->contains(listaJogadores->getItem(1)->getCentro()) && sala_Atual != i)
-				{
-					mudouSala = true;
-					sala_Atual = i;
-					body.setPosition((salas[i]->getPosition()));
-					listaJogadores->getItem(0)->getBody()->setPosition(listaJogadores->getItem(1)->getBody()->getPosition());
-				}
-		}
-		if (mudouSala)
+
+
+		if (mudouSala())
 			atualizarFundo();
 		pGrafico->getWindow()->setView(sf::View(*salas[sala_Atual]));
+		pColisao->executar();
 		pGrafico->mostrarElementos();
 		if (verificarFim())
 			return;
