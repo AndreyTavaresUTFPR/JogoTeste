@@ -3,27 +3,27 @@
 #include "Esqueleto.h"
 #include "Aranha.h"
 #include "Solo.h"
-#include "Teia.h"
+#include "Espinhos.h"
 #include "Gelo.h"
 #include "MenuPausa.h"
 
 namespace Fases {
-	class FaseUm : public Fase
+	class FaseDois : public Fase
 	{
 	private:
 		int n_esqueletos;
 		int n_aranhas;
-		int n_teias;
+		int n_espinhos;
 		int n_gelos;
 
 	public:
-		FaseUm(Lista<Jogador>* listaJog);
-		~FaseUm();
+		FaseDois(Lista<Jogador>* listaJog);
+		~FaseDois();
 
 		void criarInimigosFaceis();
 		void criarInimigosMedios();
-		void criarObstaculosFaceis();
 		void criarObstaculosMedios();
+		void criarObstaculosDificeis();
 		void criarTerreno();
 
 		void criarFase();

@@ -50,6 +50,14 @@ void Jogo::executarFaseUm()
     pGrafico->limparJanela();
 }
 
+void Jogo::executarFaseDois()
+{
+    fase2 = new FaseDois(&listaJogadores);
+    fase2->executar();
+    delete fase2;
+    pGrafico->limparJanela();
+}
+
 void Jogo::executar()
 {
     while (pGrafico->verificarJanela())
@@ -62,7 +70,8 @@ void Jogo::executar()
         criarJogadores();
         //Conferir qual a fase a ser executada 
 
-        executarFaseUm();
+        //executarFaseUm();
+        executarFaseDois();
         menuPrincipal->voltarMenu();
     }
 }

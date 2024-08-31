@@ -24,11 +24,11 @@ namespace Fases {
 		Fase(Lista<Jogador>* listaJog);
 		virtual ~Fase();
 
-		virtual void criarMapa() = 0; //Cria terreno, Inimigos e Obstáculos
-		virtual void apagarMapa() = 0; //Destroi terreno, Inimigos e Obstáculos
+		virtual void criarFase() = 0; //Cria terreno, Inimigos e Obstáculos
+		virtual void apagarFase() = 0; //Destroi terreno, Inimigos e Obstáculos
 		virtual bool verificarFim() = 0; //Verifica se algum jogador chegou ao fim da fase;
 
 		void incluirElementosColisao(); //Inclui os elementos no Gerenciador de Colisao
-		void executar() = 0;
+		virtual void executar() = 0;
 	};
 } using namespace Fases;

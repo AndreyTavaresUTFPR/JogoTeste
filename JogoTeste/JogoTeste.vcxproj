@@ -145,6 +145,7 @@
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinhos.cpp" />
     <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="FaseDois.cpp" />
     <ClCompile Include="FaseUm.cpp" />
     <ClCompile Include="Gelo.cpp" />
     <ClCompile Include="GerenciadorColisao.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Chefe.h" />
     <ClInclude Include="Espinhos.h" />
     <ClInclude Include="Ente.h" />
+    <ClInclude Include="FaseDois.h" />
     <ClInclude Include="FaseUm.h" />
     <ClInclude Include="Gelo.h" />
     <ClInclude Include="GerenciadorColisao.h" />

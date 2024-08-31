@@ -6,6 +6,7 @@
 #include "Jogador.h"
 #include "ListaEntidades.h"
 #include "FaseUm.h"
+#include "FaseDois.h"
 
 class Jogo
 {
@@ -14,10 +15,8 @@ private:
 	GerenciadorEvento* pEvento;
 	int n_jogadores;
 	Lista<Jogador> listaJogadores;
-	Lista<Projetil> listaProjetil;
-	Lista<Inimigo>* listaInimigos;
-	Lista<Obstaculo>* listaObstaculos;
 	FaseUm* fase1;
+	FaseDois* fase2;
 	MenuPrincipal* menuPrincipal;
 
 public:
@@ -26,5 +25,6 @@ public:
 
 	void criarJogadores();
 	void executarFaseUm();
+	void executarFaseDois();
 	void executar();
 };
