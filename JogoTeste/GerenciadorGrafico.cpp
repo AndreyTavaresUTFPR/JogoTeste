@@ -6,7 +6,7 @@ GerenciadorGrafico::GerenciadorGrafico():
 	cameraInicial(sf::FloatRect(0.f, 0.f, 800.f, 800.f))
 {
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Jogo");
-	window->setFramerateLimit(240);
+	window->setFramerateLimit(60);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()

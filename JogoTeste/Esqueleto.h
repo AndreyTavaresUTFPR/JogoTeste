@@ -2,10 +2,10 @@
 #include "Inimigo.h"
 #include "Jogador.h"
 
-#define VIDA_ESQUELETO 100
+#define VIDA_ESQUELETO 2
 
-#define VEL_ESQUELETO_X 0.15f
-#define VEL_ESQUELETO_Y 0.2f
+#define VEL_ESQUELETO_X 1.f
+#define VEL_ESQUELETO_Y 1.f
 
 #define RAIO_AGGRO_X 200.0f
 #define RAIO_AGGRO_Y 100.0f

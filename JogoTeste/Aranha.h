@@ -2,9 +2,9 @@
 #include "Inimigo.h"
 #include "Jogador.h"
 
-#define VEL_ARANHA_PULO 0.5f  //Diminui o pulo da aranha para ficar mais facil acompanhar
-#define VEL_ARANHA_X 0.5f
-#define VIDA_ARANHA 5
+#define VEL_ARANHA_PULO 2.f  
+#define VEL_ARANHA_X 2.f
+#define VIDA_ARANHA 1
 
 class Aranha :
     public Inimigo

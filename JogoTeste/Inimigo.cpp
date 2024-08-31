@@ -11,6 +11,7 @@ Inimigo::Inimigo():
 Inimigo::Inimigo(int vida) :
 	Personagem(vida), nivel_maldade(0)
 {
+	tipo = 2;
 	relogio.restart();
 }
 

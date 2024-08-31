@@ -3,7 +3,6 @@
 Aranha::Aranha():
 	Inimigo(VIDA_ARANHA), paraEsquerda(true)
 {
-	tipo = 2;
 	peconhenta = (bool)(rand() % 2);
 	nivel_maldade = rand() % 2 + 1;
 	setBody(sf::Vector2f(30.f, 30.f));
@@ -43,18 +42,21 @@ void Aranha::danificar(Jogador* pJog)
 void Aranha::move()
 {
 	if (paraEsquerda)
-		vel.x += -VEL_ARANHA_X * nivel_maldade;
+		vel.x += -VEL_ARANHA_X * (nivel_maldade + 1) / 2.f;
 	else
-		vel.x += VEL_ARANHA_X * nivel_maldade;
+		vel.x += VEL_ARANHA_X * (nivel_maldade + 1) / 2.f;
 	vel.y -= VEL_ARANHA_PULO;
 	if (cair)
 	{
-		if (tempo_queda.getElapsedTime().asSeconds() > 1.f)
+		if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
 			tempo_queda.restart();
 		vel.y += 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
 	}
 	else
+	{
 		tempo_queda.restart();
+		paraEsquerda = !paraEsquerda;
+	}
 	if (vel.x > 0)
 		atualizarTextura("../Imagens/AranhaD.png");
 	else
@@ -71,11 +73,6 @@ void Aranha::move()
 
 void Aranha::executar()
 {
-	if (relogio.getElapsedTime().asSeconds() > 1.f)
-	{
-		paraEsquerda = !paraEsquerda;
-		relogio.restart();
-	}
 	move();
 }
 

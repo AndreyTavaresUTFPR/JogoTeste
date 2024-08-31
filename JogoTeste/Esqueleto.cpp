@@ -2,15 +2,14 @@
 
 
 Esqueleto::Esqueleto(Jogador* jogador) :
-	Inimigo(), pJogador(jogador), moveAleatorio(rand() % 5)
+	Inimigo(VIDA_ESQUELETO), pJogador(jogador), moveAleatorio(rand() % 5)
 {
 	vida = VIDA_ESQUELETO;
 	vel.x = VEL_ESQUELETO_X;
 	vel.y = VEL_ESQUELETO_Y;
 	nivel_maldade = rand() % 2 + 1;
-	vida = 1;
 	relogio.restart();
-	setBody(sf::Vector2f(30.f, 60.f));
+	setBody(sf::Vector2f(30.f, 50.f));
 }
 
 
@@ -23,6 +22,9 @@ void Esqueleto::setBody(sf::Vector2f tam)
 {
 	sf::RectangleShape b(tam);
 	body = b;
+	if (nivel_maldade == 2)
+		body.setFillColor(sf::Color::Magenta);
+	atualizarTextura("../Imagens/EsqueletoD.png");
 }
 
 void Esqueleto::mudarVelocidade(float fator)
@@ -43,7 +45,7 @@ void Esqueleto::perseguir() // Persegue o jogador se o mesmo entrar no aggro
 {
 	if (pJogador->getCentro().x - getCentro().x > 0.0f) {
 		if (direita)
-			vel.x += VEL_ESQUELETO_X * nivel_maldade;
+			vel.x += VEL_ESQUELETO_X * (nivel_maldade + 1) / 2.f; //Quanto maior o nível de maldade, maior a perseguição 
 		atualizarTextura("../Imagens/EsqueletoD.png");
 	}
 	else {
@@ -79,7 +81,6 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 {
 	sf::Vector2f posJogador = pJogador->getCentro();
 	sf::Vector2f posEsqueleto = getCentro();
-	atualizarTextura("../Imagens/EsqueletoD.png");
 
 	if (fabsf(posJogador.x - posEsqueleto.x) <= RAIO_AGGRO_X && fabsf(posJogador.y - posEsqueleto.y) <= RAIO_AGGRO_Y) {
 
@@ -99,22 +100,24 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 	}
 	else
 		tempo_queda.restart();
-	vel.y += 0.1f;
 	vel.x *= alteracaoVel;
 	vel.y *= alteracaoVel;
+	vel.y += 0.1f; //Uma correção para ele conseguir passar pelo gelo 
 
 	body.move(sf::Vector2f(vel.x, vel.y));
+
 	vel.x = 0;
 	vel.y = 0;
 	alteracaoVel = 1.f;
 	cair = true;
 	esquerda = true;
 	direita = true;
-
 }
 
 
 void Esqueleto::executar() 
-{ 
+{
+	if (vida == 1)
+		body.setSize(sf::Vector2f(30.f, 25.f));
 	move(); 
 }

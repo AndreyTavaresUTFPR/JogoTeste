@@ -2,8 +2,8 @@
 #include "Personagem.h"
 #include <SFML/Graphics.hpp>
 
-#define VEL_JOGADOR_X 1.f
-#define VEL_JOGADOR_Y 1.f
+#define VEL_JOGADOR_X 2.5f
+#define VEL_JOGADOR_Y 2.5f
 #define VIDA_JOGADOR 10
 
 namespace Personagens {
