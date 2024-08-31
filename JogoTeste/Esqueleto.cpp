@@ -94,7 +94,7 @@ void Esqueleto::move() // Gerencia todo o movimento do esqueleto
 		movimentoAleatorio();
 	}
 	if (cair) {
-		if (tempo_queda.getElapsedTime().asSeconds() > 1.f)
+		if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
 			tempo_queda.restart();
 		vel.y = VEL_ESQUELETO_X * tempo_queda.getElapsedTime().asSeconds() + 9.8f / 2.f * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
 	}

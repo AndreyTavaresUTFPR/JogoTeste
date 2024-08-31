@@ -1,8 +1,9 @@
 #include "Aranha.h"
 
 Aranha::Aranha():
-	Inimigo(VIDA_ARANHA), paraEsquerda(true)
+	Inimigo(VIDA_ARANHA)
 {
+	paraEsquerda = (bool)(rand() % 2);
 	peconhenta = (bool)(rand() % 2);
 	nivel_maldade = rand() % 2 + 1;
 	setBody(sf::Vector2f(30.f, 30.f));

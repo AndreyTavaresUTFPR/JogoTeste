@@ -30,67 +30,66 @@ FaseUm::~FaseUm()
 //Cria Esqueleto na fase e distribui de forma aleatoria
 void FaseUm::criarInimigosFaceis()
 {
-	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
-	Esqueleto* aux = nullptr;
-	
-	aux = new Esqueleto(listaJogadores->getItem(0));
-	aux->getBody()->setPosition(sf::Vector2f(300.f, 100.f));
-	listaEntidades.LEs.push(static_cast<Entidade*>(aux));
-
-	vector<sf::Vector2f> posicoesPossiveis = { {200.f + (float)(rand() % 200), 300.f}, {200.f + (float)(rand() % 200), 500.f}, {200.f + (float)(rand() % 200), 675.f},
-												{-600.f + (float)(rand() % 200), 675.f}, {-600.f + (float)(rand() % 200), 875.f}, {-600.f, 1075.f}, {-600.f + (float)(rand() % 200), 1150.f} };
+	vector<sf::Vector2f> posicoesPossiveis = {	{200.f + (float)(rand() % 200), 125.f}, { 200.f + (float)(rand() % 200), 325.f }, {200.f + (float)(rand() % 200), 525.f}, {200.f + (float)(rand() % 200), 725.f},
+												{-600.f + (float)(rand() % 200), 725.f}, {-600.f + (float)(rand() % 200), 925.f}, {-600.f + (float)(rand() % 200), 1125.f}, {-600.f + (float)(rand() % 200), 1325.f} };
 
 	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
 	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
 
-	for(int i = 0; i < n_inim; i++)
+	for(int i = 0; i < n_esqueletos; i++)
 	{
+		Esqueleto* aux = nullptr;
 		aux = new Esqueleto(listaJogadores->getItem(0));
-		aux->getBody()->setPosition(*it);
-		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
-		it++;
+		if (aux != nullptr)
+		{
+			aux->getBody()->setPosition(*it);
+			listaEntidades.LEs.push(static_cast<Entidade*>(aux));
+			it++;
+		}
 	}
 }
 
 //Cria Aranhha na fase e distribui de forma aleatoria
 void FaseUm::criarInimigosMedios()
 {
-	int n_inim = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
-	
-
-	vector<sf::Vector2f> posicoesPossiveis = {	{200.f + (float)(rand()%200), 300.f}, {200.f + (float)(rand() % 200), 500.f}, {200.f + (float)(rand() % 200), 675.f},
-												{-600.f + (float)(rand() % 200), 675.f}, {-600.f + (float)(rand() % 200), 875.f}, {-600.f, 1075.f}, {-600.f + (float)(rand() % 200), 1150.f} };
+	vector<sf::Vector2f> posicoesPossiveis = {	{200.f + (float)(rand() % 300), 145.f}, {200.f + (float)(rand() % 300), 345.f}, {200.f + (float)(rand() % 300), 545.f}, {200.f + (float)(rand() % 300), 745.f},
+												{-600.f + (float)(rand() % 300), 745.f}, {-600.f + (float)(rand() % 300), 945.f}, {-600.f + (float)(rand() % 300), 1145.f}, {-600.f + (float)(rand() % 300), 1345.f}};
 
 	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
 	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
 
-	for (int i = 0; i < n_inim; i++)
+	for (int i = 0; i < n_aranhas; i++)
 	{
-		Aranha* aux = new Aranha();
-		aux->getBody()->setPosition(*it);
-		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
-		it++;
+		Aranha* aux = nullptr;
+		aux = new Aranha();
+		if (aux != nullptr)
+		{
+			aux->getBody()->setPosition(*it);
+			listaEntidades.LEs.push(static_cast<Entidade*>(aux));
+			it++;
+		}
 	}
 }
 
 //Cria Teia na fase e distribui de forma aleatoria
 void FaseUm::criarObstaculosFaceis()
 {
-	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
-	Teia* aux = nullptr;
-
-	vector<sf::Vector2f> posicoesPossiveis = {	{200.f + (float)(rand() % 400), 325.f}, {200.f + (float)(rand() % 400), 525.f}, {200.f + (float)(rand() % 400), 725.f},
-												{-600.f + (float)(rand() % 400), 725.f}, {-600.f + (float)(rand() % 400), 925.f}, {-600.f + (float)(rand() % 400), 1125.f}, {-600.f + (float)(rand() % 300), 1325.f} };
+	vector<sf::Vector2f> posicoesPossiveis = {	{200.f + (float)(rand() % 350), 125.f }, { 200.f + (float)(rand() % 350), 325.f }, {200.f + (float)(rand() % 350), 525.f}, {200.f + (float)(rand() % 350), 725.f},
+												{-600.f + (float)(rand() % 350), 725.f}, {-600.f + (float)(rand() % 350), 925.f}, {-600.f + (float)(rand() % 350), 1125.f}, {-600.f + (float)(rand() % 350), 1325.f} };
 
 	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
 
 	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
-	for(int i = 1; i < n_obst; i++)
+	for(int i = 1; i < n_teias; i++)
 	{
+		Teia* aux = nullptr;
 		aux = new Teia();
-		aux->getBody()->setPosition(*it);
-		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
-		it++;
+		if (aux != nullptr)
+		{
+			aux->getBody()->setPosition(*it);
+			listaEntidades.LEs.push(static_cast<Entidade*>(aux));
+			it++;
+		}
 
 	}
 }
@@ -98,22 +97,22 @@ void FaseUm::criarObstaculosFaceis()
 //Cria Gelo na fase e distribui de forma aleatoria
 void FaseUm::criarObstaculosMedios()
 {
-	int n_obst = (rand() % 2 + 3); // Gera um número aleatório entre 3 e 4
-	Gelo* aux = nullptr;
-
-
-	vector<sf::Vector2f> posicoesPossiveis = { {200.f + (float)(rand() % 400), 174.9f}, {200.f + (float)(rand() % 400), 374.9f}, {200.f + (float)(rand() % 400), 574.9f}, {200.f + (float)(rand() % 400), 774.9f},
-												{-600.f + (float)(rand() % 400), 774.9f}, {-600.f + (float)(rand() % 400), 974.9f}, {-600.f + (float)(rand() % 400), 1174.9f}, {-600.f + (float)(rand() % 300), 1374.9f} };
+	vector<sf::Vector2f> posicoesPossiveis = { {200.f + (float)(rand() % 300), 174.9f}, {200.f + (float)(rand() % 300), 374.9f}, {200.f + (float)(rand() % 300), 574.9f}, {200.f + (float)(rand() % 300), 774.9f},
+												{-600.f + (float)(rand() % 300), 774.9f}, {-600.f + (float)(rand() % 300), 974.9f}, {-600.f + (float)(rand() % 300), 1174.9f}, {-600.f + (float)(rand() % 300), 1374.9f} };
 
 	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
 
 	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
-	for (int i = 1; i < n_obst; i++)
+	for (int i = 0; i < n_gelos; i++)
 	{
+		Gelo* aux = nullptr;
 		aux = new Gelo();
-		aux->getBody()->setPosition(*it);
-		listaEntidades.LEs.push(static_cast<Entidade*>(aux));
-		it++;
+		if (aux != nullptr)
+		{
+			aux->getBody()->setPosition(*it);
+			listaEntidades.LEs.push(static_cast<Entidade*>(aux));
+			it++;
+		}
 	}
 }
 
@@ -234,7 +233,7 @@ void FaseUm::criarTerreno()
 	}
 }
 
-//Cria a os elementos da fase
+//Cria os elementos da fase
 void FaseUm::criarMapa()
 {
 	criarTerreno();
@@ -244,7 +243,7 @@ void FaseUm::criarMapa()
 	criarObstaculosMedios();
 }
 
-//Deleta os elementos criados para a sala
+//Deleta os elementos criados para a fase
 void FaseUm::apagarMapa()
 {
 	
