@@ -20,7 +20,7 @@ namespace Personagens {
 			~Personagem();
 
 			void conferirColisao(sf::Vector2f colisao, sf::Vector2f centroOutraEnt);
-			void operator--();
+			virtual void operator--();
 			int getVida() const;
 			virtual void mudarVelocidade(float fator) = 0;
 			virtual void move() = 0;

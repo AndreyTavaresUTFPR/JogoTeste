@@ -1,29 +1,71 @@
 #pragma once
-#include "Elemento.h"
-
 
 template <class TL> class Lista
 {
 private:
-	Elemento<TL>* pPrimeiro;
-	Elemento<TL>* pUltimo;
+	class Elemento
+	{
+	private:
+		Elemento* pProx;
+		TL* item;
+
+	public:
+		Elemento() :
+			pProx(nullptr), item(nullptr)
+		{
+		}
+
+		~Elemento()
+		{
+		}
+
+		Elemento* getPProx()
+		{
+			return pProx;
+		}
+
+		TL* getItem()
+		{
+			return item;
+		}
+
+		void setPProx(Elemento* pProx)
+		{
+			this->pProx = pProx;
+		}
+
+		void setItem(TL* item)
+		{
+			this->item = item;
+		}
+	};
+
+	Elemento* pPrimeiro;
+	Elemento* pUltimo;
 	int len;
 
 public:
-	Lista();
-	~Lista();
+	Lista() :
+		pPrimeiro(nullptr), pUltimo(nullptr), len(0)
+	{
+	}
 
+	~Lista()
+	{
+		clear();
+	}
 
 	int getLen() 
 	{ 
 		return len; 
 	}
 
-	TL* getItem(int posicao) {
+	TL* getItem(int posicao) 
+	{
 		if (posicao > len)
 			return nullptr;
 
-		Elemento<TL>* temp = pPrimeiro;
+		Elemento* temp = pPrimeiro;
 
 		for (int i = 0; i < posicao; i++)
 		{
@@ -36,7 +78,7 @@ public:
 	}
 
 	void push(TL* item) {
-		Elemento<TL>* temp = new Elemento<TL>();
+		Elemento* temp = new Elemento();
 		temp->setItem(item);
 		if (pPrimeiro == nullptr)
 			pPrimeiro = temp;
@@ -46,9 +88,10 @@ public:
 		len++;
 	}
 
-	void pop(TL* item) {
-		Elemento<TL>* temp = pPrimeiro;
-		Elemento<TL>* tempAnt = nullptr;
+	void pop(TL* item) 
+	{
+		Elemento* temp = pPrimeiro;
+		Elemento* tempAnt = nullptr;
 
 		while (temp->getItem() != item) {
 			tempAnt = temp;
@@ -72,8 +115,9 @@ public:
 		len--;
 	}
 
-	void clear() {
-		Elemento<TL>* temp = pPrimeiro;
+	void clear() 
+	{
+		Elemento* temp = pPrimeiro;
 		while (temp != nullptr)
 		{
 			pPrimeiro = pPrimeiro->getPProx();
@@ -86,20 +130,3 @@ public:
 	}
 
 };
-
-
-template<class TL>
-inline Lista<TL>::Lista():
-	len(0)
-{
-	pPrimeiro = nullptr;
-	pUltimo = nullptr;
-}
-
-
-template<class TL>
-inline Lista<TL>::~Lista()
-{
-	clear();
-	len = -1;
-}

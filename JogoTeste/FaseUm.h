@@ -17,6 +17,7 @@ namespace Fases {
 		int n_gelos;
 
 	public:
+		FaseUm();
 		FaseUm(Lista<Jogador>* listaJog);
 		~FaseUm();
 

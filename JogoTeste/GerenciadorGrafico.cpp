@@ -16,6 +16,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 		delete window;
 		window = nullptr;
 	}
+	delete pGrafico;
 }
 
 GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()

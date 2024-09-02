@@ -34,6 +34,7 @@ void Espinhos::setBody(sf::Vector2f tam)
 void Espinhos::obstacular(Jogador* pJog)
 {
 	pJog->operator--();
+	pJog->setPulando();
 }
 
 void Espinhos::obstacular(Inimigo* pInim)

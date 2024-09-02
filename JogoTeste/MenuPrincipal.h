@@ -9,6 +9,7 @@ namespace Menus {
 	private:
 		bool iniciar;
 		bool dois_jogadores;
+		int fase_selecionada;
 
 		static MenuPrincipal* pMenuPrincipal;
 		MenuPrincipal();
@@ -19,8 +20,10 @@ namespace Menus {
 		void voltarMenu();
 		bool getIniciar() const;
 		bool getDoisJogadores() const;
+		int getFaseSelecionada() const;
 		void desenharMenu();
 		void selecionarOpcao();
+		void selecionarFase();
 		void executar();
 	};
-} using namespace Menus;
+} using namespace Menus;   

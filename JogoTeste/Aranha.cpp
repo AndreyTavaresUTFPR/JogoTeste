@@ -31,8 +31,9 @@ void Aranha::mudarVelocidade(float fator)
 
 void Aranha::danificar(Jogador* pJog)
 {
-	pJog->operator--();
-	if (peconhenta) 
+	if (peconhenta)
+		pJog->receberDano(2);
+	else
 		pJog->operator--();
 	if (pJog->getCentro().x < getCentro().x)
 		pJog->empurrar(true);

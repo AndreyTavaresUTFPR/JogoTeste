@@ -1,6 +1,8 @@
 #pragma once
 #include "GerenciadorGrafico.h"
 #include <ctime>
+#include <Windows.h>
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 using namespace std;

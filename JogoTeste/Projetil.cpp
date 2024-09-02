@@ -13,6 +13,12 @@ Projetil::~Projetil()
 {
 }
 
+void Projetil::setBody(sf::Vector2f tam)
+{
+	sf::RectangleShape b(tam);
+	body = b;
+}
+
 void Projetil::executar()
 {
 	if (pJogador->getCentro().x <= this->getCentro().x)

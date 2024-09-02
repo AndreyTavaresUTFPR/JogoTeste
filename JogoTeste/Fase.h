@@ -21,6 +21,7 @@ namespace Fases {
 		int sala_Atual; //Região da tela onde os jogadores estão
 
 	public:
+		Fase();
 		Fase(Lista<Jogador>* listaJog);
 		virtual ~Fase();
 
@@ -28,6 +29,7 @@ namespace Fases {
 		virtual void apagarFase() = 0; //Destroi terreno, Inimigos e Obstáculos
 		virtual bool verificarFim() = 0; //Verifica se algum jogador chegou ao fim da fase;
 
+		bool verificaGameOver();
 		void incluirElementosColisao(); //Inclui os elementos no Gerenciador de Colisao
 		virtual void executar() = 0;
 	};

@@ -10,12 +10,17 @@ Chefe::Chefe():
 	delay.restart();
 	pJogador = nullptr;
 	listaProjetil = nullptr;
-
 }
 
 
 Chefe::~Chefe()
 {
+}
+
+void Chefe::setBody(sf::Vector2f tam)
+{
+	sf::RectangleShape b(tam);
+	body = b;
 }
 
 void Chefe::atacarProjetil()

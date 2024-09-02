@@ -20,6 +20,7 @@ public:
     Chefe();
     ~Chefe();
 
+    void setBody(sf::Vector2f tam);
     void atacarProjetil();
     void move();
     void executar();

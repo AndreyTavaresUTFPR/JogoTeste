@@ -149,7 +149,6 @@
     <ClCompile Include="FaseUm.cpp" />
     <ClCompile Include="Gelo.cpp" />
     <ClCompile Include="GerenciadorColisao.cpp" />
-    <ClCompile Include="GerenciadorEvento.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Esqueleto.cpp" />
     <ClCompile Include="Inimigo.cpp" />
@@ -175,7 +174,6 @@
     <ClInclude Include="FaseUm.h" />
     <ClInclude Include="Gelo.h" />
     <ClInclude Include="GerenciadorColisao.h" />
-    <ClInclude Include="GerenciadorEvento.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
     <ClInclude Include="Elemento.h" />
     <ClInclude Include="Entidade.h" />

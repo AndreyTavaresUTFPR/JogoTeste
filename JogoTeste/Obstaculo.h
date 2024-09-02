@@ -11,6 +11,7 @@ namespace Obstaculos {
 		bool solido;
 
 	public:
+		Obstaculo();
 		Obstaculo(bool dano, bool solidez);
 		virtual ~Obstaculo();
 

@@ -1,14 +1,17 @@
 #pragma once
 #include "Obstaculo.h"
+#include "Lista.h"
 
 namespace Obstaculos {
 	class Solo : public Obstaculo
 	{
 	private:
-		//Apenas Plataforma, não faz nada além de colidir
+		const char* tipo_plataforma;
+		static Lista<sf::Texture> texturasPlataforma;
 
 	public:
 		Solo();
+		Solo(const char* tipo);
 		~Solo();
 
 		void setBody(sf::Vector2f tam);

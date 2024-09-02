@@ -3,7 +3,7 @@
 int Jogador::n_players(1);
 
 Jogador::Jogador() :
-    Personagem(VIDA_JOGADOR), player(n_players++)
+    Personagem(VIDA_JOGADOR), player(n_players++), imune(false)
 {
     tipo = 1;
     vel.x = VEL_JOGADOR_X;
@@ -42,9 +42,9 @@ void Jogador::empurrar(bool esquerda)
         body.move(sf::Vector2f(50.f, 0.f));
 }
 
-void Jogador::ganharPontos(int pontos)
+void Jogador::operator++()
 {
-    pontuacao += pontos;
+    pontuacao += 10;
 }
 
 void Jogador::setPulando()
@@ -80,6 +80,32 @@ void Jogador::reviver()
     vida = VIDA_JOGADOR;
 }
 
+void Jogador::receberDano(int dano)
+{
+    if (!imune)
+    {
+        vida -= dano;
+        if (vida <= 0)
+            noJogo = false;
+        imune = true;
+        body.setFillColor(sf::Color::Red);
+        tempo_imune.restart();
+    }
+}
+
+void Jogador::operator--()
+{
+    if (!imune)
+    {
+        vida--;
+        if (vida <= 0)
+            noJogo = false;
+        imune = true;
+        body.setFillColor(sf::Color::Red);
+        tempo_imune.restart();
+    }
+}
+
 // Move o jogardor
 void Jogador::move()
 {
@@ -98,48 +124,6 @@ void Jogador::move()
         {
             pulando = true;
         }
-        if (pulando)
-            pular();
-        if (cair) // Caindo
-        {
-            if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
-                tempo_queda.restart();
-            vel.y += 9.8f / 2 * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
-        }
-        else
-        {
-            tempo_queda.restart();
-            pulando = false;
-        }
-
-        /*
-        if (fabsf(vel.y) > 0.1f)
-        {
-            if(vel.x < 0.f)
-                atualizarTextura("../Imagens/JogadorPE.png");
-            else
-                atualizarTextura("../Imagens/JogadorPD.png");
-        }
-        else
-        {
-            if (vel.x < 0.f)
-                atualizarTextura("../Imagens/JogadorE.png");
-            else
-                atualizarTextura("../Imagens/JogadorD.png");
-        }
-        */
-
-        vel.x *= alteracaoVel;
-        vel.y *= alteracaoVel;
-
-        body.move(sf::Vector2f(vel.x, vel.y));
-
-        vel.x = 0.f;
-        vel.y = 0.f;
-        alteracaoVel = 1.f;
-        cair = true;
-        esquerda = true;
-        direita = true;
     }
 
     if (player == 2) {
@@ -154,36 +138,47 @@ void Jogador::move()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !pulando) { // para cima
             pulando = true;
         }
-        if (pulando)
-            pular();
-        if (cair) {
-            if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
-                tempo_queda.restart();
-            vel.y += 9.8f / 2 * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
-        }
-        else
-        {
-            tempo_queda.restart();
-            pulando = false;
-        }
-
-        vel.x *= alteracaoVel;
-        vel.y *= alteracaoVel;
-
-        body.move(sf::Vector2f(vel.x, vel.y));
-
-        vel.x = 0.f;
-        vel.y = 0.f;
-        alteracaoVel = 1.f;
-        cair = true;
-        esquerda = true;
-        direita = true;
     }
 
+    if (pulando)
+        pular();
+    if (cair) // Caindo
+    {
+        if (tempo_queda.getElapsedTime().asSeconds() > 2.f)
+            tempo_queda.restart();
+        vel.y += 9.8f / 2 * tempo_queda.getElapsedTime().asSeconds() * tempo_queda.getElapsedTime().asSeconds();
+    }
+    else
+    {
+        tempo_queda.restart();
+        pulando = false;
+    }
+
+    vel.x *= alteracaoVel;
+    vel.y *= alteracaoVel;
+
+    body.move(sf::Vector2f(vel.x, vel.y));
+
+    vel.x = 0.f;
+    vel.y = 0.f;
+    alteracaoVel = 1.f;
+    cair = true;
+    esquerda = true;
+    direita = true;
 }
    
 
 void Personagens::Jogador::executar()
 {
     move();
+
+    //Se passou de 1 segundo após tomar dano, volta ao normal e perde a imunidade
+    if (tempo_imune.getElapsedTime().asSeconds() > 1.f)
+    {
+        imune = false;
+        if (player == 2)
+            body.setFillColor(sf::Color::Cyan);
+        else
+            body.setFillColor(sf::Color::White);
+    }
 }

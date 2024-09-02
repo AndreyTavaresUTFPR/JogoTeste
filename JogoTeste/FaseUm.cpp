@@ -1,5 +1,10 @@
 #include "FaseUm.h"
 
+FaseUm::FaseUm() :
+	Fase()
+{
+}
+
 FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 	Fase(listaJog)
 {
@@ -22,8 +27,8 @@ FaseUm::FaseUm(Lista<Jogador>* listaJog) :
 
 FaseUm::~FaseUm()
 {
-	listaJogadores = nullptr;
 	apagarFase();
+	listaJogadores = nullptr;
 	pColisao->limparListas();
 }
 
@@ -39,7 +44,7 @@ void FaseUm::criarInimigosFaceis()
 	for(int i = 0; i < n_esqueletos; i++)
 	{
 		Esqueleto* aux = nullptr;
-		aux = new Esqueleto(listaJogadores->getItem(0));
+		aux = new Esqueleto(listaJogadores);
 		if (aux != nullptr)
 		{
 			aux->getBody()->setPosition(*it);
@@ -80,7 +85,7 @@ void FaseUm::criarObstaculosFaceis()
 	std::random_shuffle(posicoesPossiveis.begin(), posicoesPossiveis.end());
 
 	vector<sf::Vector2f>::iterator it = posicoesPossiveis.begin();
-	for(int i = 1; i < n_teias; i++)
+	for(int i = 0; i < n_teias; i++)
 	{
 		Teia* aux = nullptr;
 		aux = new Teia();
@@ -122,38 +127,34 @@ void FaseUm::criarTerreno()
 	//Criando Terreno da Primeira Sala
 
 	//Criando Paredes
-	Solo* temp = new Solo();
+	Solo* temp = new Solo("Parede1");
 	sf::Vector2f tam(25.f, 600.f);
 	sf::Vector2f pos(0.f, 25.f);
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
-	temp->atualizarTextura("../Imagens/Parede.png");
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	temp = new Solo();
+	temp = new Solo("Parede1");
 	tam.y = 750.f;
 	pos.x = 775.f;
 	temp->setBody(tam);
-	temp->atualizarTextura("../Imagens/Parede.png");
 	temp->getBody()->setPosition(pos); //Parede da lateral direita
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	/***********************************************************************************/
 	//Criando teto e chão
 
-	temp = new Solo();
+	temp = new Solo("Teto1");
 	tam = sf::Vector2f(800.f, 25.f);
 	pos = sf::Vector2f(0.f, 0.f);
 	temp->setBody(tam);
 	temp->getBody()->setPosition(pos); //Teto
-	temp->atualizarTextura("../Imagens/Teto.png");
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	temp = new Solo();
+	temp = new Solo("Teto1");
 	pos = sf::Vector2f(0.f, 775.f);
 	temp->setBody(tam);
 	temp->getBody()->setPosition(pos); //Chão
-	temp->atualizarTextura("../Imagens/Teto.png");
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	/***********************************************************************************/
@@ -162,22 +163,20 @@ void FaseUm::criarTerreno()
 	tam = sf::Vector2f(600.f, 50.f);
 	for (int i = 1; i <= 3; i++)
 	{
-		temp = new Solo();
+		temp = new Solo("Andar1");
 		if (temp == nullptr)
 			cout << "Erro ao criar Solo." << endl;
 		pos = sf::Vector2f(25.f + 150.f * ((i-1) % 2), 200.f * i - 25.f);
 		temp->setBody(tam);
 		temp->getBody()->setPosition(pos);
-		temp->atualizarTextura("../Imagens/Andar.png");
 		listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 	}
 
 	//Por algum motivo o andar da altura 600 não está sendo criado, então tive que fazer ele fora do loop
 	pos = sf::Vector2f(25.f, 600.f -25.f);
-	temp = new Solo();
+	temp = new Solo("Andar1");
 	temp->setBody(tam);
 	temp->getBody()->setPosition(pos);
-	temp->atualizarTextura("../Imagens/Andar.png");
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	/***********************************************************************************/
@@ -186,35 +185,32 @@ void FaseUm::criarTerreno()
 	//Criando Paredes
 	tam = sf::Vector2f(25.f, 750.f);
 	pos = sf::Vector2f(-800.f, 625.f);
+	temp = new Solo("Parede1");
 	temp->setBody(tam); //Parede lateal esquerda
 	temp->getBody()->setPosition(pos);
-	temp->atualizarTextura("../Imagens/Parede.png");
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	temp = new Solo();
+	temp = new Solo("Parede1");
 	tam.y = 650.f;
 	pos.x = -25.f;
 	pos.y = 775.f;
 	temp->setBody(tam);
-	temp->atualizarTextura("../Imagens/Parede.png");
 	temp->getBody()->setPosition(pos); //Parede da lateral direita
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
 	/***********************************************************************************/
 	//Criando Teto e Chao
 
-	temp = new Solo();
+	temp = new Solo("Teto1");
 	tam = sf::Vector2f(800.f, 25.f);
 	pos = sf::Vector2f(-800.f, 600.f);
 	temp->setBody(tam);
-	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Teto
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
-	temp = new Solo();
+	temp = new Solo("Teto1");
 	pos.y = 1375.f;
 	temp->setBody(tam);
-	temp->atualizarTextura("../Imagens/Teto.png");
 	temp->getBody()->setPosition(pos); //Chão
 	listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 
@@ -223,11 +219,10 @@ void FaseUm::criarTerreno()
 
 	for (int i = 0; i < 3; i++)
 	{
-		temp = new Solo();
+		temp = new Solo("Andar1");
 		tam = sf::Vector2f(600.f, 50.f);
 		pos = sf::Vector2f(-775.f + 150.f * ((i + 1) % 2), 200.f * (i + 1) + 575.f);
 		temp->setBody(tam);
-		temp->atualizarTextura("../Imagens/Andar.png");
 		temp->getBody()->setPosition(pos);
 		listaEntidades.LEs.push(static_cast<Entidade*>(temp));
 	}
@@ -246,7 +241,13 @@ void FaseUm::criarFase()
 //Deleta os elementos criados para a fase
 void FaseUm::apagarFase()
 {
-	
+	for (int i = 0; i < listaJogadores->getLen(); i++)
+	{
+		if (listaJogadores->getItem(i)->getTipo() != 1)
+		{
+			delete listaJogadores->getItem(i);
+		}
+	}
 }
 
 //Atualiza o fundo da janela caso algum jogador mude de sala
@@ -270,6 +271,7 @@ bool FaseUm::verificarFim()
 	return false;
 }
 
+//Verifica se algum jogador foi para outra sala
 bool FaseUm::mudouSala()
 {
 	bool flag = false;
@@ -294,7 +296,6 @@ bool FaseUm::mudouSala()
 	}
 	return flag;
 }
-
 
 void FaseUm::executar()
 {
@@ -348,6 +349,8 @@ void FaseUm::executar()
 		pColisao->executar();
 		pGrafico->mostrarElementos();
 		if (verificarFim())
+			return;
+		if (verificaGameOver())
 			return;
 	}
 }

@@ -3,7 +3,6 @@
 
 Jogo::Jogo() :
     pGrafico(pGrafico->getGerenciadorGrafico()),
-    pEvento(pEvento->getGerenciadorEvento()),
     n_jogadores(1),
     listaJogadores(),
     menuPrincipal(menuPrincipal->getMenuPrincipal())
@@ -14,7 +13,8 @@ Jogo::Jogo() :
 
 Jogo::~Jogo()
 {
-
+    for (int i = 0; i < listaJogadores.getLen(); i++)
+        delete listaJogadores.getItem(i);
 }
 
 void Jogo::criarJogadores()
@@ -68,10 +68,11 @@ void Jogo::executar()
         else
             n_jogadores = 1;
         criarJogadores();
-        //Conferir qual a fase a ser executada 
-
-        //executarFaseUm();
-        executarFaseDois();
+        
+        if (menuPrincipal->getFaseSelecionada() == 1)
+            executarFaseUm();
+        else if (menuPrincipal->getFaseSelecionada() == 2)
+            executarFaseDois();
         menuPrincipal->voltarMenu();
     }
 }

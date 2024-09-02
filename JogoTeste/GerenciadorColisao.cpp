@@ -11,6 +11,7 @@ GerenciadorColisao::GerenciadorColisao() :
 GerenciadorColisao::~GerenciadorColisao()
 {
 	limparListas();
+	delete pColisao;
 }
 
 GerenciadorColisao* GerenciadorColisao::getGerenciadorColisao()
@@ -59,6 +60,7 @@ void GerenciadorColisao::conferirColisaoJogInim(Jogador* pJog, Inimigo* pInim)
 		{
 			pInim->operator--();
 			pJog->setPulando();
+			pJog->operator++();
 		}
 		else
 			pInim->danificar(pJog);

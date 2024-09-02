@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GerenciadorGrafico.h"
-#include "GerenciadorEvento.h"
-#include "Menu.h"
+#include "MenuPrincipal.h"
 #include "Jogador.h"
 #include "ListaEntidades.h"
 #include "FaseUm.h"
@@ -12,7 +11,6 @@ class Jogo
 {
 private:
 	GerenciadorGrafico* pGrafico;
-	GerenciadorEvento* pEvento;
 	int n_jogadores;
 	Lista<Jogador> listaJogadores;
 	FaseUm* fase1;

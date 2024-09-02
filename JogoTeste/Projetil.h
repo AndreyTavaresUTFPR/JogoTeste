@@ -16,6 +16,8 @@ private:
 public:
     Projetil(sf::Vector2f tam, Jogador* pJogador = nullptr);
     ~Projetil();
+
+    void setBody(sf::Vector2f tam);
     void executar();
 };
 
